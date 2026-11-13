@@ -997,6 +997,15 @@
   "@settingsAutoExtract": {
     "description": "Per-platform switch"
   },
+  "settingsBasedOn": "Based on {project}",
+  "@settingsBasedOn": {
+    "description": "Credit to the original project in Settings > About",
+    "placeholders": {
+      "project": {
+        "type": "String"
+      }
+    }
+  },
   "settingsChdEnabled": "Convert CD games to CHD",
   "@settingsChdEnabled": {
     "description": "Settings switch"

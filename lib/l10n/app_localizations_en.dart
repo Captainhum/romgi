@@ -748,6 +748,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsAutoExtract => 'Auto-extract';
 
   @override
+  String settingsBasedOn(String project) {
+    return 'Based on $project';
+  }
+
+  @override
   String get settingsChdEnabled => 'Convert CD games to CHD';
 
   @override

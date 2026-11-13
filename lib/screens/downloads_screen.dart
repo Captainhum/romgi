@@ -316,7 +316,11 @@ class _QueuedDownloadTile extends ConsumerWidget {
       ),
       title: Text(task.title, maxLines: 1, overflow: TextOverflow.ellipsis),
       subtitle: Text(
-        '${PlatformNames.getDisplayName(task.platform)} • ${task.link.sizeStr}${isPaused ? ' • ${context.l10n.downloadsPausedSuffix}' : ''}',
+        [
+          PlatformNames.getDisplayName(task.platform),
+          if (task.link.sizeStr.isNotEmpty) task.link.sizeStr,
+          if (isPaused) context.l10n.downloadsPausedSuffix,
+        ].join(' • '),
       ),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
@@ -371,7 +375,10 @@ class _CompletedDownloadTile extends ConsumerWidget {
       ),
       title: Text(task.title, maxLines: 1, overflow: TextOverflow.ellipsis),
       subtitle: Text(
-        '${PlatformNames.getDisplayName(task.platform)} • ${task.link.sizeStr}',
+        [
+          PlatformNames.getDisplayName(task.platform),
+          if (task.link.sizeStr.isNotEmpty) task.link.sizeStr,
+        ].join(' • '),
       ),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,

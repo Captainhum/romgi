@@ -34,6 +34,12 @@ android {
     buildTypes {
         release {
             signingConfig = signingConfigs.getByName("debug")
+            // ORG_GRADLE_PROJECT_romgiSideBySide=true builds a release that
+            // installs next to the official romgi (same id as debug builds).
+            if (project.findProperty("romgiSideBySide") == "true") {
+                applicationIdSuffix = ".dev"
+                manifestPlaceholders["appLabel"] = "romgi dev"
+            }
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(

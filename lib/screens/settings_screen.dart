@@ -451,6 +451,16 @@ class SettingsScreen extends ConsumerWidget {
                 ListTile(
                   leading: const Icon(Icons.code),
                   title: Text(context.l10n.settingsSourceCode),
+                  subtitle: const Text('github.com/Captainhum/romgi'),
+                  trailing: const Icon(Icons.open_in_new),
+                  onTap: () => launchUrl(
+                    Uri.parse('https://github.com/Captainhum/romgi'),
+                    mode: LaunchMode.externalApplication,
+                  ),
+                ),
+                ListTile(
+                  leading: const Icon(Icons.favorite_outline),
+                  title: Text(context.l10n.settingsBasedOn('romgi')),
                   subtitle: const Text('github.com/caprado/romgi'),
                   trailing: const Icon(Icons.open_in_new),
                   onTap: () => launchUrl(

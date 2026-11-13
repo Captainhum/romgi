@@ -202,6 +202,7 @@
   "settingsApiKeySaved": "Clé API enregistrée",
   "settingsAppearance": "Apparence",
   "settingsAutoExtract": "Extraction auto",
+  "settingsBasedOn": "Basé sur {project}",
   "settingsChdEnabled": "Convertir les jeux CD en CHD",
   "settingsChdEnabledHint": "Après le téléchargement, les disques CUE/BIN, GDI et ISO deviennent un seul fichier .chd compressé (PlayStation, Saturn, Dreamcast, Sega CD…). Les originaux ne sont supprimés qu'une fois le CHD vérifié.",
   "settingsChdPlatform": "CHD",

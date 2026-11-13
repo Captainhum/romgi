@@ -1310,6 +1310,12 @@ abstract class AppLocalizations {
   /// **'Auto-extract'**
   String get settingsAutoExtract;
 
+  /// Credit to the original project in Settings > About
+  ///
+  /// In en, this message translates to:
+  /// **'Based on {project}'**
+  String settingsBasedOn(String project);
+
   /// Settings switch
   ///
   /// In en, this message translates to:
