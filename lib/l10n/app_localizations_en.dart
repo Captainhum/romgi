@@ -73,19 +73,31 @@ class AppLocalizationsEn extends AppLocalizations {
   String get commonContinue => 'Continue';
 
   @override
+  String get commonDelete => 'Delete';
+
+  @override
   String get commonDownload => 'Download';
 
   @override
   String get commonDownloaded => 'Downloaded';
 
   @override
+  String get commonErrorOccurred => 'An error occurred';
+
+  @override
   String get commonFilters => 'Filters';
+
+  @override
+  String get commonLoading => 'Loading...';
 
   @override
   String get commonRemove => 'Remove';
 
   @override
   String get commonRetry => 'Retry';
+
+  @override
+  String get commonSave => 'Save';
 
   @override
   String get commonSkip => 'Skip';
@@ -95,6 +107,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get commonTryAgainTooltip => 'Try again';
+
+  @override
+  String get commonUnknown => 'Unknown';
 
   @override
   String get commonView => 'View';
@@ -460,6 +475,261 @@ class AppLocalizationsEn extends AppLocalizations {
   String get navSettings => 'Settings';
 
   @override
+  String get settingsAbout => 'About';
+
+  @override
+  String get settingsAccounts => 'Accounts';
+
+  @override
+  String get settingsApiKeyCleared => 'API key cleared';
+
+  @override
+  String get settingsApiKeySaved => 'API key saved';
+
+  @override
+  String get settingsAppearance => 'Appearance';
+
+  @override
+  String get settingsAutoExtract => 'Auto-extract';
+
+  @override
+  String get settingsChecking => 'Checking...';
+
+  @override
+  String get settingsChooseTheme => 'Choose Theme';
+
+  @override
+  String get settingsCleanUpHint => 'Remove entries for missing files';
+
+  @override
+  String settingsConcurrentCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count downloads at a time',
+      one: '1 download at a time',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get settingsConcurrentDownloads => 'Concurrent Downloads';
+
+  @override
+  String get settingsConcurrentUnlimited => 'Unlimited concurrent downloads';
+
+  @override
+  String get settingsConnected => 'Connected successfully';
+
+  @override
+  String get settingsCredentialsCleared => 'Credentials cleared';
+
+  @override
+  String get settingsCredentialsSaved => 'Credentials saved';
+
+  @override
+  String get settingsDatabaseDeleted => 'Database deleted';
+
+  @override
+  String settingsDatabaseDownloadFailed(String error) {
+    return 'Download failed: $error';
+  }
+
+  @override
+  String get settingsDatabaseDownloadPrompt =>
+      'Download the ROM database to browse and search games.';
+
+  @override
+  String get settingsDatabaseError => 'Error loading database info';
+
+  @override
+  String get settingsDatabaseNewVersion =>
+      'A new database version is available.';
+
+  @override
+  String settingsDatabaseSize(String size) {
+    return 'Size: $size MB';
+  }
+
+  @override
+  String get settingsDatabaseUpdate => 'Update Database';
+
+  @override
+  String get settingsDatabaseUpdated => 'Database updated successfully';
+
+  @override
+  String get settingsDatabaseUpdating => 'Updating Database';
+
+  @override
+  String settingsDatabaseVersion(String version, String entries) {
+    return 'Version $version - $entries entries';
+  }
+
+  @override
+  String settingsDebridApiKey(String provider) {
+    return '$provider API key';
+  }
+
+  @override
+  String get settingsDebridService => 'Debrid Service';
+
+  @override
+  String get settingsDefaultLocation => 'Default Location';
+
+  @override
+  String get settingsDeleteDatabase => 'Delete Database';
+
+  @override
+  String get settingsDeleteDatabaseBody =>
+      'This will delete the ROM database. You will need to download it again to browse ROMs.\n\nThis can help fix issues with a corrupted database.';
+
+  @override
+  String get settingsDeleteReset => 'Delete & Reset';
+
+  @override
+  String get settingsDisableAutoExtract => 'Disable Auto-Extract';
+
+  @override
+  String get settingsDisableAutoExtractHint =>
+      'Keep downloaded archives as-is without extracting';
+
+  @override
+  String get settingsDisableTorrents => 'Disable Torrents';
+
+  @override
+  String get settingsDisableTorrentsHint =>
+      'Only use direct downloads (hides torrent-only sources)';
+
+  @override
+  String get settingsDownloadLocations => 'Download Locations';
+
+  @override
+  String get settingsFieldApiKey => 'API key';
+
+  @override
+  String settingsFieldOptional(String label) {
+    return '$label (optional)';
+  }
+
+  @override
+  String get settingsFieldPassword => 'Password';
+
+  @override
+  String get settingsFieldUsername => 'Username';
+
+  @override
+  String get settingsFillRequired => 'Fill in all required fields';
+
+  @override
+  String get settingsGameMetadata => 'Game Metadata';
+
+  @override
+  String get settingsIaLoginHint => 'Login to download protected files';
+
+  @override
+  String get settingsInstall => 'Install';
+
+  @override
+  String settingsLoggedInAs(String username) {
+    return 'Logged in as $username';
+  }
+
+  @override
+  String get settingsLoggedOut => 'Logged out from Internet Archive';
+
+  @override
+  String get settingsLogout => 'Logout';
+
+  @override
+  String get settingsLogoutConfirm =>
+      'Are you sure you want to logout from Internet Archive?';
+
+  @override
+  String get settingsMetadataSubtitle =>
+      'Descriptions, screenshots and artwork on game pages (ScreenScraper, SteamGridDB)';
+
+  @override
+  String get settingsNoApiKey => 'No API key saved';
+
+  @override
+  String get settingsNoCredentials => 'No credentials saved';
+
+  @override
+  String get settingsNotInstalled => 'Not installed';
+
+  @override
+  String get settingsNotLoggedIn => 'Not logged in';
+
+  @override
+  String get settingsPlatformLocations => 'Platform-Specific Locations';
+
+  @override
+  String get settingsPlatformLocationsHint =>
+      'Override download location for specific platforms';
+
+  @override
+  String get settingsPlatformsError => 'Failed to load platforms';
+
+  @override
+  String get settingsProvider => 'Provider';
+
+  @override
+  String get settingsRomDatabase => 'ROM Database';
+
+  @override
+  String get settingsRomSources => 'ROM sources';
+
+  @override
+  String get settingsRomSourcesHint =>
+      'Status of the catalogs that feed this app';
+
+  @override
+  String get settingsSaveKey => 'Save key';
+
+  @override
+  String get settingsShowMetadata => 'Show game metadata';
+
+  @override
+  String get settingsSourceCode => 'Source Code';
+
+  @override
+  String get settingsSources => 'Sources';
+
+  @override
+  String get settingsTest => 'Test';
+
+  @override
+  String get settingsTheme => 'Theme';
+
+  @override
+  String get settingsThemeDark => 'Dark';
+
+  @override
+  String get settingsThemeLight => 'Light';
+
+  @override
+  String get settingsThemeSystem => 'System default';
+
+  @override
+  String get settingsUpdate => 'Update';
+
+  @override
+  String get settingsUseDebrid => 'Use debrid service';
+
+  @override
+  String get settingsUseDebridHint =>
+      'Resolve cached torrents to fast direct links (TorBox, Real-Debrid)';
+
+  @override
+  String get settingsUsingDefault => 'Using default';
+
+  @override
+  String get settingsVerifyFilesHint => 'Check if downloaded files still exist';
+
+  @override
+  String get settingsVersion => 'Version';
+
+  @override
   String get statusCachingDebrid => 'Caching on debrid...';
 
   @override
@@ -497,7 +767,46 @@ class AppLocalizationsEn extends AppLocalizations {
   String get storagePermissionTitle => 'Storage Permission';
 
   @override
+  String get updateAvailable => 'Update Available';
+
+  @override
   String updateAvailableSnack(String version) {
     return 'Update available: v$version';
+  }
+
+  @override
+  String get updateCheck => 'Check for Updates';
+
+  @override
+  String get updateChecking => 'Checking for Updates...';
+
+  @override
+  String get updateDownloading => 'Downloading Update...';
+
+  @override
+  String updateDownloadingProgress(int progress) {
+    return 'Downloading... $progress%';
+  }
+
+  @override
+  String get updateFailed => 'Update Check Failed';
+
+  @override
+  String get updatePleaseWait => 'Please wait...';
+
+  @override
+  String get updateReady => 'Ready to Install';
+
+  @override
+  String updateTapInstall(String version) {
+    return 'Tap Install to update to $version';
+  }
+
+  @override
+  String get updateTapToCheck => 'Tap to check for new versions';
+
+  @override
+  String updateVersionAvailable(String version) {
+    return 'Version $version is available';
   }
 }

@@ -75,19 +75,31 @@ class AppLocalizationsFr extends AppLocalizations {
   String get commonContinue => 'Continuer';
 
   @override
+  String get commonDelete => 'Supprimer';
+
+  @override
   String get commonDownload => 'Télécharger';
 
   @override
   String get commonDownloaded => 'Téléchargé';
 
   @override
+  String get commonErrorOccurred => 'Une erreur est survenue';
+
+  @override
   String get commonFilters => 'Filtres';
+
+  @override
+  String get commonLoading => 'Chargement…';
 
   @override
   String get commonRemove => 'Supprimer';
 
   @override
   String get commonRetry => 'Réessayer';
+
+  @override
+  String get commonSave => 'Enregistrer';
 
   @override
   String get commonSkip => 'Passer';
@@ -97,6 +109,9 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get commonTryAgainTooltip => 'Réessayer';
+
+  @override
+  String get commonUnknown => 'Inconnu';
 
   @override
   String get commonView => 'Voir';
@@ -464,6 +479,265 @@ class AppLocalizationsFr extends AppLocalizations {
   String get navSettings => 'Réglages';
 
   @override
+  String get settingsAbout => 'À propos';
+
+  @override
+  String get settingsAccounts => 'Comptes';
+
+  @override
+  String get settingsApiKeyCleared => 'Clé API effacée';
+
+  @override
+  String get settingsApiKeySaved => 'Clé API enregistrée';
+
+  @override
+  String get settingsAppearance => 'Apparence';
+
+  @override
+  String get settingsAutoExtract => 'Extraction auto';
+
+  @override
+  String get settingsChecking => 'Vérification…';
+
+  @override
+  String get settingsChooseTheme => 'Choisir le thème';
+
+  @override
+  String get settingsCleanUpHint =>
+      'Retirer les entrées des fichiers manquants';
+
+  @override
+  String settingsConcurrentCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count téléchargements à la fois',
+      one: '1 téléchargement à la fois',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get settingsConcurrentDownloads => 'Téléchargements simultanés';
+
+  @override
+  String get settingsConcurrentUnlimited =>
+      'Téléchargements simultanés illimités';
+
+  @override
+  String get settingsConnected => 'Connexion réussie';
+
+  @override
+  String get settingsCredentialsCleared => 'Identifiants effacés';
+
+  @override
+  String get settingsCredentialsSaved => 'Identifiants enregistrés';
+
+  @override
+  String get settingsDatabaseDeleted => 'Base supprimée';
+
+  @override
+  String settingsDatabaseDownloadFailed(String error) {
+    return 'Échec du téléchargement : $error';
+  }
+
+  @override
+  String get settingsDatabaseDownloadPrompt =>
+      'Télécharge la base de données pour parcourir et rechercher des jeux.';
+
+  @override
+  String get settingsDatabaseError => 'Erreur de lecture de la base';
+
+  @override
+  String get settingsDatabaseNewVersion =>
+      'Une nouvelle version de la base est disponible.';
+
+  @override
+  String settingsDatabaseSize(String size) {
+    return 'Taille : $size Mo';
+  }
+
+  @override
+  String get settingsDatabaseUpdate => 'Mettre à jour la base';
+
+  @override
+  String get settingsDatabaseUpdated => 'Base mise à jour';
+
+  @override
+  String get settingsDatabaseUpdating => 'Mise à jour de la base';
+
+  @override
+  String settingsDatabaseVersion(String version, String entries) {
+    return 'Version $version - $entries jeux';
+  }
+
+  @override
+  String settingsDebridApiKey(String provider) {
+    return 'Clé API $provider';
+  }
+
+  @override
+  String get settingsDebridService => 'Service debrid';
+
+  @override
+  String get settingsDefaultLocation => 'Dossier par défaut';
+
+  @override
+  String get settingsDeleteDatabase => 'Supprimer la base';
+
+  @override
+  String get settingsDeleteDatabaseBody =>
+      'La base de données des ROM sera supprimée. Il faudra la retélécharger pour parcourir le catalogue.\n\nÇa peut corriger une base corrompue.';
+
+  @override
+  String get settingsDeleteReset => 'Supprimer et réinitialiser';
+
+  @override
+  String get settingsDisableAutoExtract =>
+      'Désactiver l\'extraction automatique';
+
+  @override
+  String get settingsDisableAutoExtractHint =>
+      'Garder les archives téléchargées sans les extraire';
+
+  @override
+  String get settingsDisableTorrents => 'Désactiver les torrents';
+
+  @override
+  String get settingsDisableTorrentsHint =>
+      'Utiliser uniquement les téléchargements directs (masque les sources torrent)';
+
+  @override
+  String get settingsDownloadLocations => 'Dossiers de téléchargement';
+
+  @override
+  String get settingsFieldApiKey => 'Clé API';
+
+  @override
+  String settingsFieldOptional(String label) {
+    return '$label (facultatif)';
+  }
+
+  @override
+  String get settingsFieldPassword => 'Mot de passe';
+
+  @override
+  String get settingsFieldUsername => 'Nom d\'utilisateur';
+
+  @override
+  String get settingsFillRequired => 'Remplis tous les champs obligatoires';
+
+  @override
+  String get settingsGameMetadata => 'Métadonnées des jeux';
+
+  @override
+  String get settingsIaLoginHint =>
+      'Connecte-toi pour télécharger les fichiers protégés';
+
+  @override
+  String get settingsInstall => 'Installer';
+
+  @override
+  String settingsLoggedInAs(String username) {
+    return 'Connecté en tant que $username';
+  }
+
+  @override
+  String get settingsLoggedOut => 'Déconnecté d\'Internet Archive';
+
+  @override
+  String get settingsLogout => 'Déconnexion';
+
+  @override
+  String get settingsLogoutConfirm => 'Te déconnecter d\'Internet Archive ?';
+
+  @override
+  String get settingsMetadataSubtitle =>
+      'Descriptions, captures et illustrations sur les fiches de jeux (ScreenScraper, SteamGridDB)';
+
+  @override
+  String get settingsNoApiKey => 'Aucune clé API enregistrée';
+
+  @override
+  String get settingsNoCredentials => 'Aucun identifiant enregistré';
+
+  @override
+  String get settingsNotInstalled => 'Non installée';
+
+  @override
+  String get settingsNotLoggedIn => 'Non connecté';
+
+  @override
+  String get settingsPlatformLocations => 'Dossiers par plateforme';
+
+  @override
+  String get settingsPlatformLocationsHint =>
+      'Choisir un dossier différent pour certaines plateformes';
+
+  @override
+  String get settingsPlatformsError => 'Impossible de charger les plateformes';
+
+  @override
+  String get settingsProvider => 'Fournisseur';
+
+  @override
+  String get settingsRomDatabase => 'Base de données des ROM';
+
+  @override
+  String get settingsRomSources => 'Sources de ROM';
+
+  @override
+  String get settingsRomSourcesHint =>
+      'État des catalogues qui alimentent l\'app';
+
+  @override
+  String get settingsSaveKey => 'Enregistrer la clé';
+
+  @override
+  String get settingsShowMetadata => 'Afficher les métadonnées';
+
+  @override
+  String get settingsSourceCode => 'Code source';
+
+  @override
+  String get settingsSources => 'Sources';
+
+  @override
+  String get settingsTest => 'Tester';
+
+  @override
+  String get settingsTheme => 'Thème';
+
+  @override
+  String get settingsThemeDark => 'Sombre';
+
+  @override
+  String get settingsThemeLight => 'Clair';
+
+  @override
+  String get settingsThemeSystem => 'Par défaut du système';
+
+  @override
+  String get settingsUpdate => 'Mettre à jour';
+
+  @override
+  String get settingsUseDebrid => 'Utiliser un service debrid';
+
+  @override
+  String get settingsUseDebridHint =>
+      'Transformer les torrents en cache en liens directs rapides (TorBox, Real-Debrid)';
+
+  @override
+  String get settingsUsingDefault => 'Dossier par défaut';
+
+  @override
+  String get settingsVerifyFilesHint =>
+      'Vérifier que les fichiers téléchargés existent toujours';
+
+  @override
+  String get settingsVersion => 'Version';
+
+  @override
   String get statusCachingDebrid => 'Mise en cache sur le debrid…';
 
   @override
@@ -501,7 +775,46 @@ class AppLocalizationsFr extends AppLocalizations {
   String get storagePermissionTitle => 'Autorisation de stockage';
 
   @override
+  String get updateAvailable => 'Mise à jour disponible';
+
+  @override
   String updateAvailableSnack(String version) {
     return 'Mise à jour disponible : v$version';
+  }
+
+  @override
+  String get updateCheck => 'Rechercher des mises à jour';
+
+  @override
+  String get updateChecking => 'Recherche de mises à jour…';
+
+  @override
+  String get updateDownloading => 'Téléchargement de la mise à jour…';
+
+  @override
+  String updateDownloadingProgress(int progress) {
+    return 'Téléchargement… $progress %';
+  }
+
+  @override
+  String get updateFailed => 'Échec de la recherche de mise à jour';
+
+  @override
+  String get updatePleaseWait => 'Patiente…';
+
+  @override
+  String get updateReady => 'Prête à installer';
+
+  @override
+  String updateTapInstall(String version) {
+    return 'Appuie sur Installer pour passer à la version $version';
+  }
+
+  @override
+  String get updateTapToCheck => 'Appuie pour rechercher une nouvelle version';
+
+  @override
+  String updateVersionAvailable(String version) {
+    return 'La version $version est disponible';
   }
 }

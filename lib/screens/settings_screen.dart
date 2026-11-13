@@ -10,6 +10,7 @@ import '../services/storage_service.dart';
 import '../utils/utils.dart';
 import 'internet_archive_login_screen.dart';
 import 'sources_screen.dart';
+import '../l10n/l10n.dart';
 
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
@@ -21,21 +22,23 @@ class SettingsScreen extends ConsumerWidget {
     final storage = ref.watch(storageServiceProvider);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Settings')),
+      appBar: AppBar(title: Text(context.l10n.navSettings)),
       body: settings.isLoading
           ? const Center(child: CircularProgressIndicator())
           : ListView(
               children: [
                 // Downloads Section
-                _SectionHeader(title: 'Downloads'),
+                _SectionHeader(title: context.l10n.navDownloads),
 
                 ListTile(
                   leading: const Icon(Icons.download),
-                  title: const Text('Concurrent Downloads'),
+                  title: Text(context.l10n.settingsConcurrentDownloads),
                   subtitle: Text(
                     settings.maxConcurrentDownloads == 0
-                        ? 'Unlimited concurrent downloads'
-                        : '${settings.maxConcurrentDownloads} download${settings.maxConcurrentDownloads == 1 ? '' : 's'} at a time',
+                        ? context.l10n.settingsConcurrentUnlimited
+                        : context.l10n.settingsConcurrentCount(
+                            settings.maxConcurrentDownloads,
+                          ),
                   ),
                 ),
                 Padding(
@@ -73,9 +76,9 @@ class SettingsScreen extends ConsumerWidget {
 
                 SwitchListTile(
                   secondary: const Icon(Icons.block),
-                  title: const Text('Disable Torrents'),
-                  subtitle: const Text(
-                    'Only use direct downloads (hides torrent-only sources)',
+                  title: Text(context.l10n.settingsDisableTorrents),
+                  subtitle: Text(
+                    context.l10n.settingsDisableTorrentsHint,
                   ),
                   value: settings.torrentsDisabled,
                   onChanged: (value) {
@@ -87,9 +90,9 @@ class SettingsScreen extends ConsumerWidget {
 
                 SwitchListTile(
                   secondary: const Icon(Icons.unarchive),
-                  title: const Text('Disable Auto-Extract'),
-                  subtitle: const Text(
-                    'Keep downloaded archives as-is without extracting',
+                  title: Text(context.l10n.settingsDisableAutoExtract),
+                  subtitle: Text(
+                    context.l10n.settingsDisableAutoExtractHint,
                   ),
                   value: settings.autoExtractDisabled,
                   onChanged: (value) {
@@ -101,17 +104,17 @@ class SettingsScreen extends ConsumerWidget {
 
                 const Divider(height: 32),
 
-                _SectionHeader(title: 'Debrid Service'),
+                _SectionHeader(title: context.l10n.settingsDebridService),
                 const _DebridSection(),
 
                 const Divider(height: 32),
 
-                _SectionHeader(title: 'Game Metadata'),
+                _SectionHeader(title: context.l10n.settingsGameMetadata),
                 const _MetadataSection(),
 
                 const Divider(height: 32),
 
-                _SectionHeader(title: 'Download Locations'),
+                _SectionHeader(title: context.l10n.settingsDownloadLocations),
 
                 FutureBuilder<String>(
                   future: storage.getDownloadDirectory().then((d) => d.path),
@@ -119,10 +122,10 @@ class SettingsScreen extends ConsumerWidget {
                     final currentPath =
                         settings.defaultDownloadPath ??
                         snapshot.data ??
-                        'Loading...';
+                        context.l10n.commonLoading;
                     return ListTile(
                       leading: const Icon(Icons.folder),
-                      title: const Text('Default Location'),
+                      title: Text(context.l10n.settingsDefaultLocation),
                       subtitle: Text(
                         currentPath,
                         maxLines: 2,
@@ -148,7 +151,7 @@ class SettingsScreen extends ConsumerWidget {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
                   child: Text(
-                    'Platform-Specific Locations',
+                    context.l10n.settingsPlatformLocations,
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: Theme.of(context).colorScheme.primary,
                     ),
@@ -157,7 +160,7 @@ class SettingsScreen extends ConsumerWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Text(
-                    'Override download location for specific platforms',
+                    context.l10n.settingsPlatformLocationsHint,
                     style: Theme.of(
                       context,
                     ).textTheme.bodySmall?.copyWith(color: Colors.grey[600]),
@@ -172,7 +175,7 @@ class SettingsScreen extends ConsumerWidget {
                   error: (error, stackTrace) => Padding(
                     padding: const EdgeInsets.all(16),
                     child: Text(
-                      'Failed to load platforms',
+                      context.l10n.settingsPlatformsError,
                       style: TextStyle(color: Colors.grey[600]),
                     ),
                   ),
@@ -197,7 +200,7 @@ class SettingsScreen extends ConsumerWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                customPath ?? 'Using default',
+                                customPath ?? context.l10n.settingsUsingDefault,
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                               ),
@@ -224,7 +227,7 @@ class SettingsScreen extends ConsumerWidget {
                                   ),
                                   const SizedBox(width: 6),
                                   Text(
-                                    'Auto-extract',
+                                    context.l10n.settingsAutoExtract,
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodySmall
@@ -264,12 +267,12 @@ class SettingsScreen extends ConsumerWidget {
 
                 const Divider(height: 32),
 
-                _SectionHeader(title: 'Appearance'),
+                _SectionHeader(title: context.l10n.settingsAppearance),
 
                 ListTile(
                   leading: const Icon(Icons.brightness_6),
-                  title: const Text('Theme'),
-                  subtitle: Text(_getThemeModeName(settings.themeMode)),
+                  title: Text(context.l10n.settingsTheme),
+                  subtitle: Text(_getThemeModeName(context.l10n, settings.themeMode)),
                   trailing: const Icon(Icons.chevron_right),
                   onTap: () =>
                       _showThemePicker(context, ref, settings.themeMode),
@@ -277,17 +280,17 @@ class SettingsScreen extends ConsumerWidget {
 
                 const Divider(height: 32),
 
-                _SectionHeader(title: 'Library'),
+                _SectionHeader(title: context.l10n.navLibrary),
 
                 ListTile(
                   leading: const Icon(Icons.verified),
-                  title: const Text('Verify Files'),
-                  subtitle: const Text('Check if downloaded files still exist'),
+                  title: Text(context.l10n.libraryVerifyFiles),
+                  subtitle: Text(context.l10n.settingsVerifyFilesHint),
                   onTap: () async {
                     await ref.read(libraryProvider.notifier).verifyFiles();
                     if (context.mounted) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Files verified')),
+                        SnackBar(content: Text(context.l10n.libraryFilesVerified)),
                       );
                     }
                   },
@@ -295,24 +298,24 @@ class SettingsScreen extends ConsumerWidget {
 
                 ListTile(
                   leading: const Icon(Icons.cleaning_services),
-                  title: const Text('Clean Up Library'),
-                  subtitle: const Text('Remove entries for missing files'),
+                  title: Text(context.l10n.libraryCleanUpTitle),
+                  subtitle: Text(context.l10n.settingsCleanUpHint),
                   onTap: () async {
                     final confirmed = await showDialog<bool>(
                       context: context,
                       builder: (context) => AlertDialog(
-                        title: const Text('Clean Up Library'),
-                        content: const Text(
-                          'Remove entries for files that no longer exist on disk?',
+                        title: Text(context.l10n.libraryCleanUpTitle),
+                        content: Text(
+                          context.l10n.libraryCleanUpBody,
                         ),
                         actions: [
                           TextButton(
                             onPressed: () => Navigator.pop(context, false),
-                            child: const Text('Cancel'),
+                            child: Text(context.l10n.commonCancel),
                           ),
                           TextButton(
                             onPressed: () => Navigator.pop(context, true),
-                            child: const Text('Clean Up'),
+                            child: Text(context.l10n.libraryCleanUp),
                           ),
                         ],
                       ),
@@ -323,7 +326,7 @@ class SettingsScreen extends ConsumerWidget {
                           .cleanupMissingFiles();
                       if (context.mounted) {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Library cleaned up')),
+                          SnackBar(content: Text(context.l10n.libraryCleanedUp)),
                         );
                       }
                     }
@@ -332,19 +335,19 @@ class SettingsScreen extends ConsumerWidget {
 
                 const Divider(height: 32),
 
-                _SectionHeader(title: 'Accounts'),
+                _SectionHeader(title: context.l10n.settingsAccounts),
 
                 _InternetArchiveAccountTile(),
 
                 const Divider(height: 32),
 
-                _SectionHeader(title: 'Sources'),
+                _SectionHeader(title: context.l10n.settingsSources),
 
                 ListTile(
                   leading: const Icon(Icons.cloud_outlined),
-                  title: const Text('ROM sources'),
-                  subtitle: const Text(
-                    'Status of the catalogs that feed this app',
+                  title: Text(context.l10n.settingsRomSources),
+                  subtitle: Text(
+                    context.l10n.settingsRomSourcesHint,
                   ),
                   trailing: const Icon(Icons.chevron_right),
                   onTap: () => Navigator.of(context).push(
@@ -356,7 +359,7 @@ class SettingsScreen extends ConsumerWidget {
 
                 const Divider(height: 32),
 
-                _SectionHeader(title: 'About'),
+                _SectionHeader(title: context.l10n.settingsAbout),
 
                 const _VersionTile(),
 
@@ -366,7 +369,7 @@ class SettingsScreen extends ConsumerWidget {
 
                 ListTile(
                   leading: const Icon(Icons.code),
-                  title: const Text('Source Code'),
+                  title: Text(context.l10n.settingsSourceCode),
                   subtitle: const Text('github.com/caprado/romgi'),
                   trailing: const Icon(Icons.open_in_new),
                   onTap: () => launchUrl(
@@ -381,14 +384,14 @@ class SettingsScreen extends ConsumerWidget {
     );
   }
 
-  String _getThemeModeName(AppThemeMode mode) {
+  String _getThemeModeName(AppLocalizations l10n, AppThemeMode mode) {
     switch (mode) {
       case AppThemeMode.system:
-        return 'System default';
+        return l10n.settingsThemeSystem;
       case AppThemeMode.light:
-        return 'Light';
+        return l10n.settingsThemeLight;
       case AppThemeMode.dark:
-        return 'Dark';
+        return l10n.settingsThemeDark;
     }
   }
 
@@ -400,7 +403,7 @@ class SettingsScreen extends ConsumerWidget {
     showDialog(
       context: context,
       builder: (dialogContext) => AlertDialog(
-        title: const Text('Choose Theme'),
+        title: Text(context.l10n.settingsChooseTheme),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: AppThemeMode.values.map((mode) {
@@ -414,7 +417,7 @@ class SettingsScreen extends ConsumerWidget {
                     ? Theme.of(dialogContext).colorScheme.primary
                     : null,
               ),
-              title: Text(_getThemeModeName(mode)),
+              title: Text(_getThemeModeName(context.l10n, mode)),
               onTap: () {
                 ref.read(settingsProvider.notifier).setThemeMode(mode);
                 Navigator.pop(dialogContext);
@@ -477,10 +480,10 @@ class _VersionTile extends ConsumerWidget {
 
     return ListTile(
       leading: const Icon(Icons.info_outline),
-      title: const Text('Version'),
+      title: Text(context.l10n.settingsVersion),
       subtitle: versionAsync.when(
-        loading: () => const Text('Loading...'),
-        error: (error, stackTrace) => const Text('Unknown'),
+        loading: () => Text(context.l10n.commonLoading),
+        error: (error, stackTrace) => Text(context.l10n.commonUnknown),
         data: (version) => Text(version),
       ),
     );
@@ -501,8 +504,8 @@ class _UpdateTile extends ConsumerWidget {
             _getUpdateIcon(updateState.status),
             color: _getUpdateColor(context, updateState.status),
           ),
-          title: Text(_getUpdateTitle(updateState.status)),
-          subtitle: Text(_getUpdateSubtitle(updateState)),
+          title: Text(_getUpdateTitle(context.l10n, updateState.status)),
+          subtitle: Text(_getUpdateSubtitle(context.l10n, updateState)),
           trailing: _buildTrailingWidget(context, ref, updateState),
           onTap:
               updateState.status == UpdateStatus.idle ||
@@ -548,38 +551,38 @@ class _UpdateTile extends ConsumerWidget {
     }
   }
 
-  String _getUpdateTitle(UpdateStatus status) {
+  String _getUpdateTitle(AppLocalizations l10n, UpdateStatus status) {
     switch (status) {
       case UpdateStatus.idle:
-        return 'Check for Updates';
+        return l10n.updateCheck;
       case UpdateStatus.checking:
-        return 'Checking for Updates...';
+        return l10n.updateChecking;
       case UpdateStatus.available:
-        return 'Update Available';
+        return l10n.updateAvailable;
       case UpdateStatus.downloading:
-        return 'Downloading Update...';
+        return l10n.updateDownloading;
       case UpdateStatus.readyToInstall:
-        return 'Ready to Install';
+        return l10n.updateReady;
       case UpdateStatus.error:
-        return 'Update Check Failed';
+        return l10n.updateFailed;
     }
   }
 
-  String _getUpdateSubtitle(UpdateState state) {
+  String _getUpdateSubtitle(AppLocalizations l10n, UpdateState state) {
     switch (state.status) {
       case UpdateStatus.idle:
-        return 'Tap to check for new versions';
+        return l10n.updateTapToCheck;
       case UpdateStatus.checking:
-        return 'Please wait...';
+        return l10n.updatePleaseWait;
       case UpdateStatus.available:
-        return 'Version ${state.availableUpdate?.version} is available';
+        return l10n.updateVersionAvailable(state.availableUpdate?.version ?? '');
       case UpdateStatus.downloading:
         final progress = (state.downloadProgress * 100).toInt();
-        return 'Downloading... $progress%';
+        return l10n.updateDownloadingProgress(progress);
       case UpdateStatus.readyToInstall:
-        return 'Tap Install to update to ${state.availableUpdate?.version}';
+        return l10n.updateTapInstall(state.availableUpdate?.version ?? '');
       case UpdateStatus.error:
-        return state.errorMessage ?? 'An error occurred';
+        return state.errorMessage ?? l10n.commonErrorOccurred;
     }
   }
 
@@ -598,7 +601,7 @@ class _UpdateTile extends ConsumerWidget {
       case UpdateStatus.available:
         return ElevatedButton(
           onPressed: () => ref.read(updateProvider.notifier).downloadUpdate(),
-          child: const Text('Download'),
+          child: Text(context.l10n.commonDownload),
         );
       case UpdateStatus.downloading:
         return IconButton(
@@ -608,7 +611,7 @@ class _UpdateTile extends ConsumerWidget {
       case UpdateStatus.readyToInstall:
         return ElevatedButton(
           onPressed: () => ref.read(updateProvider.notifier).installUpdate(),
-          child: const Text('Install'),
+          child: Text(context.l10n.settingsInstall),
         );
       case UpdateStatus.error:
         return IconButton(
@@ -628,38 +631,38 @@ class _InternetArchiveAccountTile extends ConsumerWidget {
     final usernameAsync = ref.watch(iaUsernameProvider);
 
     return isLoggedInAsync.when(
-      loading: () => const ListTile(
+      loading: () => ListTile(
         leading: Icon(Icons.account_circle),
         title: Text('Internet Archive'),
-        subtitle: Text('Checking...'),
+        subtitle: Text(context.l10n.settingsChecking),
       ),
       error: (error, stackTrace) => ListTile(
         leading: const Icon(Icons.account_circle),
         title: const Text('Internet Archive'),
-        subtitle: const Text('Not logged in'),
+        subtitle: Text(context.l10n.settingsNotLoggedIn),
         trailing: const Icon(Icons.chevron_right),
         onTap: () => _openLogin(context, ref),
       ),
       data: (isLoggedIn) {
         if (isLoggedIn) {
-          final username = usernameAsync.valueOrNull ?? 'Unknown';
+          final username = usernameAsync.valueOrNull ?? context.l10n.commonUnknown;
           return ListTile(
             leading: Icon(
               Icons.account_circle,
               color: Theme.of(context).colorScheme.primary,
             ),
             title: const Text('Internet Archive'),
-            subtitle: Text('Logged in as $username'),
+            subtitle: Text(context.l10n.settingsLoggedInAs(username)),
             trailing: TextButton(
               onPressed: () => _logout(context, ref),
-              child: const Text('Logout'),
+              child: Text(context.l10n.settingsLogout),
             ),
           );
         } else {
           return ListTile(
             leading: const Icon(Icons.account_circle),
             title: const Text('Internet Archive'),
-            subtitle: const Text('Login to download protected files'),
+            subtitle: Text(context.l10n.settingsIaLoginHint),
             trailing: const Icon(Icons.chevron_right),
             onTap: () => _openLogin(context, ref),
           );
@@ -681,18 +684,18 @@ class _InternetArchiveAccountTile extends ConsumerWidget {
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Logout'),
-        content: const Text(
-          'Are you sure you want to logout from Internet Archive?',
+        title: Text(context.l10n.settingsLogout),
+        content: Text(
+          context.l10n.settingsLogoutConfirm,
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: const Text('Cancel'),
+            child: Text(context.l10n.commonCancel),
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, true),
-            child: const Text('Logout'),
+            child: Text(context.l10n.settingsLogout),
           ),
         ],
       ),
@@ -706,7 +709,7 @@ class _InternetArchiveAccountTile extends ConsumerWidget {
 
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Logged out from Internet Archive')),
+          SnackBar(content: Text(context.l10n.settingsLoggedOut)),
         );
       }
     }
@@ -734,15 +737,15 @@ class _DatabaseInfoTile extends ConsumerWidget {
     final updateAvailableAsync = ref.watch(dbUpdateAvailableProvider);
 
     return localVersionAsync.when(
-      loading: () => const ListTile(
+      loading: () => ListTile(
         leading: Icon(Icons.storage),
-        title: Text('ROM Database'),
-        subtitle: Text('Loading...'),
+        title: Text(context.l10n.settingsRomDatabase),
+        subtitle: Text(context.l10n.commonLoading),
       ),
       error: (error, stack) => ListTile(
         leading: const Icon(Icons.storage),
-        title: const Text('ROM Database'),
-        subtitle: const Text('Error loading database info'),
+        title: Text(context.l10n.settingsRomDatabase),
+        subtitle: Text(context.l10n.settingsDatabaseError),
         trailing: IconButton(
           icon: const Icon(Icons.refresh),
           onPressed: () => ref.invalidate(localDbVersionProvider),
@@ -752,14 +755,14 @@ class _DatabaseInfoTile extends ConsumerWidget {
         if (localVersion == null) {
           return ListTile(
             leading: const Icon(Icons.storage),
-            title: const Text('ROM Database'),
-            subtitle: const Text('Not installed'),
+            title: Text(context.l10n.settingsRomDatabase),
+            subtitle: Text(context.l10n.settingsNotInstalled),
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
                 FilledButton(
                   onPressed: () => _showUpdateDialog(context, ref, null),
-                  child: const Text('Download'),
+                  child: Text(context.l10n.commonDownload),
                 ),
                 PopupMenuButton<String>(
                   icon: const Icon(Icons.more_vert),
@@ -769,11 +772,11 @@ class _DatabaseInfoTile extends ConsumerWidget {
                     }
                   },
                   itemBuilder: (context) => [
-                    const PopupMenuItem(
+                    PopupMenuItem(
                       value: 'delete',
                       child: ListTile(
-                        leading: Icon(Icons.delete_outline, color: Colors.red),
-                        title: Text('Delete & Reset'),
+                        leading: const Icon(Icons.delete_outline, color: Colors.red),
+                        title: Text(context.l10n.settingsDeleteReset),
                         contentPadding: EdgeInsets.zero,
                       ),
                     ),
@@ -791,9 +794,12 @@ class _DatabaseInfoTile extends ConsumerWidget {
             Icons.storage,
             color: hasUpdate ? Theme.of(context).colorScheme.primary : null,
           ),
-          title: const Text('ROM Database'),
+          title: Text(context.l10n.settingsRomDatabase),
           subtitle: Text(
-            'Version ${localVersion.version} - ${_formatNumber(localVersion.entries)} entries',
+            context.l10n.settingsDatabaseVersion(
+              localVersion.version,
+              _formatNumber(localVersion.entries),
+            ),
           ),
           trailing: Row(
             mainAxisSize: MainAxisSize.min,
@@ -805,7 +811,7 @@ class _DatabaseInfoTile extends ConsumerWidget {
                     ref,
                     updateAvailableAsync.valueOrNull,
                   ),
-                  child: const Text('Update'),
+                  child: Text(context.l10n.settingsUpdate),
                 )
               else
                 IconButton(
@@ -823,11 +829,11 @@ class _DatabaseInfoTile extends ConsumerWidget {
                   }
                 },
                 itemBuilder: (context) => [
-                  const PopupMenuItem(
+                  PopupMenuItem(
                     value: 'delete',
                     child: ListTile(
-                      leading: Icon(Icons.delete_outline, color: Colors.red),
-                      title: Text('Delete Database'),
+                      leading: const Icon(Icons.delete_outline, color: Colors.red),
+                      title: Text(context.l10n.settingsDeleteDatabase),
                       contentPadding: EdgeInsets.zero,
                     ),
                   ),
@@ -844,19 +850,19 @@ class _DatabaseInfoTile extends ConsumerWidget {
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Delete Database'),
-        content: const Text(
-          'This will delete the ROM database. You will need to download it again to browse ROMs.\n\nThis can help fix issues with a corrupted database.',
+        title: Text(context.l10n.settingsDeleteDatabase),
+        content: Text(
+          context.l10n.settingsDeleteDatabaseBody,
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: const Text('Cancel'),
+            child: Text(context.l10n.commonCancel),
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, true),
             style: TextButton.styleFrom(foregroundColor: Colors.red),
-            child: const Text('Delete'),
+            child: Text(context.l10n.commonDelete),
           ),
         ],
       ),
@@ -870,7 +876,7 @@ class _DatabaseInfoTile extends ConsumerWidget {
 
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Database deleted')),
+          SnackBar(content: Text(context.l10n.settingsDatabaseDeleted)),
         );
       }
     }
@@ -920,7 +926,11 @@ class _DatabaseUpdateDialogState extends ConsumerState<_DatabaseUpdateDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(_isDownloading ? 'Updating Database' : 'Update Database'),
+      title: Text(
+        _isDownloading
+            ? context.l10n.settingsDatabaseUpdating
+            : context.l10n.settingsDatabaseUpdate,
+      ),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -938,15 +948,17 @@ class _DatabaseUpdateDialogState extends ConsumerState<_DatabaseUpdateDialog> {
             Text('${(_progress * 100).toInt()}%'),
           ] else if (widget.newVersion != null) ...[
             Text(
-              'A new database version is available.',
+              context.l10n.settingsDatabaseNewVersion,
             ),
             const SizedBox(height: 8),
             Text(
-              'Size: ${(widget.newVersion!.size / 1024 / 1024).toStringAsFixed(1)} MB',
+              context.l10n.settingsDatabaseSize(
+                (widget.newVersion!.size / 1024 / 1024).toStringAsFixed(1),
+              ),
               style: Theme.of(context).textTheme.bodySmall,
             ),
           ] else ...[
-            const Text('Download the ROM database to browse and search games.'),
+            Text(context.l10n.settingsDatabaseDownloadPrompt),
           ],
         ],
       ),
@@ -954,12 +966,12 @@ class _DatabaseUpdateDialogState extends ConsumerState<_DatabaseUpdateDialog> {
         if (!_isDownloading)
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel'),
+            child: Text(context.l10n.commonCancel),
           ),
         if (!_isDownloading)
           FilledButton(
             onPressed: _startDownload,
-            child: const Text('Download'),
+            child: Text(context.l10n.commonDownload),
           ),
       ],
     );
@@ -985,13 +997,13 @@ class _DatabaseUpdateDialogState extends ConsumerState<_DatabaseUpdateDialog> {
       if (mounted) {
         Navigator.pop(context);
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Database updated successfully')),
+          SnackBar(content: Text(context.l10n.settingsDatabaseUpdated)),
         );
       }
     } catch (e) {
       setState(() {
         _isDownloading = false;
-        _error = 'Download failed: $e';
+        _error = context.l10n.settingsDatabaseDownloadFailed('$e');
       });
     }
   }
@@ -1009,10 +1021,9 @@ class _MetadataSection extends ConsumerWidget {
       children: [
         SwitchListTile(
           secondary: const Icon(Icons.image_outlined),
-          title: const Text('Show game metadata'),
-          subtitle: const Text(
-            'Descriptions, screenshots and artwork on game pages '
-            '(ScreenScraper, SteamGridDB)',
+          title: Text(context.l10n.settingsShowMetadata),
+          subtitle: Text(
+            context.l10n.settingsMetadataSubtitle,
           ),
           value: settings.metadataEnabled,
           onChanged: (value) =>
@@ -1073,7 +1084,7 @@ class _MetadataProviderTileState extends ConsumerState<_MetadataProviderTile> {
       (field) => !field.optional && (credentials[field.key] ?? '').isEmpty,
     );
     if (missing) {
-      setState(() => _message = 'Fill in all required fields');
+      setState(() => _message = context.l10n.settingsFillRequired);
       return;
     }
     await ref.read(gameMetadataServiceProvider).setCredentials(
@@ -1084,7 +1095,7 @@ class _MetadataProviderTileState extends ConsumerState<_MetadataProviderTile> {
       controller.clear();
     }
     _invalidateConfigured();
-    if (mounted) setState(() => _message = 'Credentials saved');
+    if (mounted) setState(() => _message = context.l10n.settingsCredentialsSaved);
   }
 
   Future<void> _test() async {
@@ -1097,14 +1108,14 @@ class _MetadataProviderTileState extends ConsumerState<_MetadataProviderTile> {
     if (!mounted) return;
     setState(() {
       _testing = false;
-      _message = error ?? 'Connected successfully';
+      _message = error ?? context.l10n.settingsConnected;
     });
   }
 
   Future<void> _clear() async {
     await ref.read(gameMetadataServiceProvider).clearCredentials(_providerId);
     _invalidateConfigured();
-    if (mounted) setState(() => _message = 'Credentials cleared');
+    if (mounted) setState(() => _message = context.l10n.settingsCredentialsCleared);
   }
 
   @override
@@ -1134,7 +1145,11 @@ class _MetadataProviderTileState extends ConsumerState<_MetadataProviderTile> {
               enableSuggestions: false,
               decoration: InputDecoration(
                 labelText:
-                    field.optional ? '${field.label} (optional)' : field.label,
+                    field.optional
+                        ? context.l10n.settingsFieldOptional(
+                            _fieldLabel(context.l10n, field),
+                          )
+                        : _fieldLabel(context.l10n, field),
                 border: const OutlineInputBorder(),
                 suffixIcon: field.obscure
                     ? IconButton(
@@ -1155,7 +1170,7 @@ class _MetadataProviderTileState extends ConsumerState<_MetadataProviderTile> {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Row(
             children: [
-              FilledButton(onPressed: _save, child: const Text('Save')),
+              FilledButton(onPressed: _save, child: Text(context.l10n.commonSave)),
               const SizedBox(width: 8),
               OutlinedButton(
                 onPressed: _testing ? null : _test,
@@ -1165,12 +1180,12 @@ class _MetadataProviderTileState extends ConsumerState<_MetadataProviderTile> {
                         height: 16,
                         child: CircularProgressIndicator(strokeWidth: 2),
                       )
-                    : const Text('Test'),
+                    : Text(context.l10n.settingsTest),
               ),
               const Spacer(),
               configured.maybeWhen(
                 data: (ok) => ok
-                    ? TextButton(onPressed: _clear, child: const Text('Clear'))
+                    ? TextButton(onPressed: _clear, child: Text(context.l10n.commonClear))
                     : const SizedBox.shrink(),
                 orElse: () => const SizedBox.shrink(),
               ),
@@ -1191,7 +1206,7 @@ class _MetadataProviderTileState extends ConsumerState<_MetadataProviderTile> {
                 ),
                 const SizedBox(width: 6),
                 Text(
-                  ok ? 'Credentials saved' : 'No credentials saved',
+                  ok ? context.l10n.settingsCredentialsSaved : context.l10n.settingsNoCredentials,
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
               ],
@@ -1240,7 +1255,7 @@ class _DebridSectionState extends ConsumerState<_DebridSection> {
         .setCredentials(providerId: providerId, apiKey: key);
     _keyController.clear();
     ref.invalidate(debridConfiguredProvider);
-    if (mounted) setState(() => _message = 'API key saved');
+    if (mounted) setState(() => _message = context.l10n.settingsApiKeySaved);
   }
 
   Future<void> _test() async {
@@ -1252,14 +1267,14 @@ class _DebridSectionState extends ConsumerState<_DebridSection> {
     if (!mounted) return;
     setState(() {
       _testing = false;
-      _message = error ?? 'Connected successfully';
+      _message = error ?? context.l10n.settingsConnected;
     });
   }
 
   Future<void> _clear() async {
     await ref.read(debridServiceProvider).clearCredentials();
     ref.invalidate(debridConfiguredProvider);
-    if (mounted) setState(() => _message = 'API key cleared');
+    if (mounted) setState(() => _message = context.l10n.settingsApiKeyCleared);
   }
 
   @override
@@ -1276,9 +1291,9 @@ class _DebridSectionState extends ConsumerState<_DebridSection> {
       children: [
         SwitchListTile(
           secondary: const Icon(Icons.bolt),
-          title: const Text('Use debrid service'),
-          subtitle: const Text(
-            'Resolve cached torrents to fast direct links (TorBox, Real-Debrid)',
+          title: Text(context.l10n.settingsUseDebrid),
+          subtitle: Text(
+            context.l10n.settingsUseDebridHint,
           ),
           value: settings.debridEnabled,
           onChanged: (value) =>
@@ -1287,7 +1302,7 @@ class _DebridSectionState extends ConsumerState<_DebridSection> {
         if (settings.debridEnabled) ...[
           ListTile(
             leading: const Icon(Icons.cloud_outlined),
-            title: const Text('Provider'),
+            title: Text(context.l10n.settingsProvider),
             trailing: DropdownButton<String>(
               value: settings.debridProviderId,
               items: providers
@@ -1310,7 +1325,7 @@ class _DebridSectionState extends ConsumerState<_DebridSection> {
               autocorrect: false,
               enableSuggestions: false,
               decoration: InputDecoration(
-                labelText: '${selected.name} API key',
+                labelText: context.l10n.settingsDebridApiKey(selected.name),
                 helperText: selected.apiKeyHelp,
                 border: const OutlineInputBorder(),
                 suffixIcon: IconButton(
@@ -1326,7 +1341,7 @@ class _DebridSectionState extends ConsumerState<_DebridSection> {
             child: Row(
               children: [
                 FilledButton(
-                    onPressed: _saveKey, child: const Text('Save key')),
+                    onPressed: _saveKey, child: Text(context.l10n.settingsSaveKey)),
                 const SizedBox(width: 8),
                 OutlinedButton(
                   onPressed: _testing ? null : _test,
@@ -1336,13 +1351,13 @@ class _DebridSectionState extends ConsumerState<_DebridSection> {
                           height: 16,
                           child: CircularProgressIndicator(strokeWidth: 2),
                         )
-                      : const Text('Test'),
+                      : Text(context.l10n.settingsTest),
                 ),
                 const Spacer(),
                 configured.maybeWhen(
                   data: (ok) => ok
                       ? TextButton(
-                          onPressed: _clear, child: const Text('Clear'))
+                          onPressed: _clear, child: Text(context.l10n.commonClear))
                       : const SizedBox.shrink(),
                   orElse: () => const SizedBox.shrink(),
                 ),
@@ -1363,7 +1378,7 @@ class _DebridSectionState extends ConsumerState<_DebridSection> {
                   ),
                   const SizedBox(width: 6),
                   Text(
-                    ok ? 'API key saved' : 'No API key saved',
+                    ok ? context.l10n.settingsApiKeySaved : context.l10n.settingsNoApiKey,
                     style: Theme.of(context).textTheme.bodySmall,
                   ),
                 ],
@@ -1382,5 +1397,18 @@ class _DebridSectionState extends ConsumerState<_DebridSection> {
         ],
       ],
     );
+  }
+}
+
+String _fieldLabel(AppLocalizations l10n, CredentialField field) {
+  switch (field.key) {
+    case 'username':
+      return l10n.settingsFieldUsername;
+    case 'password':
+      return l10n.settingsFieldPassword;
+    case 'apiKey':
+      return l10n.settingsFieldApiKey;
+    default:
+      return field.label;
   }
 }

@@ -82,6 +82,10 @@
   "@commonContinue": {
     "description": "Button to proceed"
   },
+  "commonDelete": "Delete",
+  "@commonDelete": {
+    "description": "Dialog button"
+  },
   "commonDownload": "Download",
   "@commonDownload": {
     "description": "Button starting a download"
@@ -90,9 +94,17 @@
   "@commonDownloaded": {
     "description": "Badge on games already downloaded"
   },
+  "commonErrorOccurred": "An error occurred",
+  "@commonErrorOccurred": {
+    "description": "Generic error"
+  },
   "commonFilters": "Filters",
   "@commonFilters": {
     "description": "Button/tooltip opening the filter sheet"
+  },
+  "commonLoading": "Loading...",
+  "@commonLoading": {
+    "description": "Placeholder while loading"
   },
   "commonRemove": "Remove",
   "@commonRemove": {
@@ -101,6 +113,10 @@
   "commonRetry": "Retry",
   "@commonRetry": {
     "description": "Button to retry a failed action"
+  },
+  "commonSave": "Save",
+  "@commonSave": {
+    "description": "Button"
   },
   "commonSkip": "Skip",
   "@commonSkip": {
@@ -113,6 +129,10 @@
   "commonTryAgainTooltip": "Try again",
   "@commonTryAgainTooltip": {
     "description": "Tooltip of the retry icon"
+  },
+  "commonUnknown": "Unknown",
+  "@commonUnknown": {
+    "description": "Unknown value"
   },
   "commonView": "View",
   "@commonView": {
@@ -620,6 +640,344 @@
   "@navSettings": {
     "description": "Navigation tab: settings"
   },
+  "settingsAbout": "About",
+  "@settingsAbout": {
+    "description": "Section header"
+  },
+  "settingsAccounts": "Accounts",
+  "@settingsAccounts": {
+    "description": "Section header"
+  },
+  "settingsApiKeyCleared": "API key cleared",
+  "@settingsApiKeyCleared": {
+    "description": "Status message"
+  },
+  "settingsApiKeySaved": "API key saved",
+  "@settingsApiKeySaved": {
+    "description": "Status message"
+  },
+  "settingsAppearance": "Appearance",
+  "@settingsAppearance": {
+    "description": "Section header"
+  },
+  "settingsAutoExtract": "Auto-extract",
+  "@settingsAutoExtract": {
+    "description": "Per-platform switch"
+  },
+  "settingsChecking": "Checking...",
+  "@settingsChecking": {
+    "description": "Account status while loading"
+  },
+  "settingsChooseTheme": "Choose Theme",
+  "@settingsChooseTheme": {
+    "description": "Dialog title"
+  },
+  "settingsCleanUpHint": "Remove entries for missing files",
+  "@settingsCleanUpHint": {
+    "description": "Settings tile subtitle"
+  },
+  "settingsConcurrentCount": "{count, plural, =1{1 download at a time} other{{count} downloads at a time}}",
+  "@settingsConcurrentCount": {
+    "description": "Concurrent downloads subtitle",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "settingsConcurrentDownloads": "Concurrent Downloads",
+  "@settingsConcurrentDownloads": {
+    "description": "Settings tile"
+  },
+  "settingsConcurrentUnlimited": "Unlimited concurrent downloads",
+  "@settingsConcurrentUnlimited": {
+    "description": "Concurrent downloads subtitle"
+  },
+  "settingsConnected": "Connected successfully",
+  "@settingsConnected": {
+    "description": "Connection test result"
+  },
+  "settingsCredentialsCleared": "Credentials cleared",
+  "@settingsCredentialsCleared": {
+    "description": "Status message"
+  },
+  "settingsCredentialsSaved": "Credentials saved",
+  "@settingsCredentialsSaved": {
+    "description": "Status message"
+  },
+  "settingsDatabaseDeleted": "Database deleted",
+  "@settingsDatabaseDeleted": {
+    "description": "Snackbar"
+  },
+  "settingsDatabaseDownloadFailed": "Download failed: {error}",
+  "@settingsDatabaseDownloadFailed": {
+    "description": "Database download error",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsDatabaseDownloadPrompt": "Download the ROM database to browse and search games.",
+  "@settingsDatabaseDownloadPrompt": {
+    "description": "Update dialog body when not installed"
+  },
+  "settingsDatabaseError": "Error loading database info",
+  "@settingsDatabaseError": {
+    "description": "Settings tile subtitle"
+  },
+  "settingsDatabaseNewVersion": "A new database version is available.",
+  "@settingsDatabaseNewVersion": {
+    "description": "Update dialog body"
+  },
+  "settingsDatabaseSize": "Size: {size} MB",
+  "@settingsDatabaseSize": {
+    "description": "Database download size",
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsDatabaseUpdate": "Update Database",
+  "@settingsDatabaseUpdate": {
+    "description": "Dialog title"
+  },
+  "settingsDatabaseUpdated": "Database updated successfully",
+  "@settingsDatabaseUpdated": {
+    "description": "Snackbar"
+  },
+  "settingsDatabaseUpdating": "Updating Database",
+  "@settingsDatabaseUpdating": {
+    "description": "Dialog title"
+  },
+  "settingsDatabaseVersion": "Version {version} - {entries} entries",
+  "@settingsDatabaseVersion": {
+    "description": "ROM database subtitle; entries is already formatted (e.g. 241K)",
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "entries": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsDebridApiKey": "{provider} API key",
+  "@settingsDebridApiKey": {
+    "description": "Debrid key field label",
+    "placeholders": {
+      "provider": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsDebridService": "Debrid Service",
+  "@settingsDebridService": {
+    "description": "Section header"
+  },
+  "settingsDefaultLocation": "Default Location",
+  "@settingsDefaultLocation": {
+    "description": "Settings tile"
+  },
+  "settingsDeleteDatabase": "Delete Database",
+  "@settingsDeleteDatabase": {
+    "description": "Menu item / dialog title"
+  },
+  "settingsDeleteDatabaseBody": "This will delete the ROM database. You will need to download it again to browse ROMs.\n\nThis can help fix issues with a corrupted database.",
+  "@settingsDeleteDatabaseBody": {
+    "description": "Delete database dialog body"
+  },
+  "settingsDeleteReset": "Delete & Reset",
+  "@settingsDeleteReset": {
+    "description": "Menu item"
+  },
+  "settingsDisableAutoExtract": "Disable Auto-Extract",
+  "@settingsDisableAutoExtract": {
+    "description": "Settings switch"
+  },
+  "settingsDisableAutoExtractHint": "Keep downloaded archives as-is without extracting",
+  "@settingsDisableAutoExtractHint": {
+    "description": "Settings switch subtitle"
+  },
+  "settingsDisableTorrents": "Disable Torrents",
+  "@settingsDisableTorrents": {
+    "description": "Settings switch"
+  },
+  "settingsDisableTorrentsHint": "Only use direct downloads (hides torrent-only sources)",
+  "@settingsDisableTorrentsHint": {
+    "description": "Settings switch subtitle"
+  },
+  "settingsDownloadLocations": "Download Locations",
+  "@settingsDownloadLocations": {
+    "description": "Section header"
+  },
+  "settingsFieldApiKey": "API key",
+  "@settingsFieldApiKey": {
+    "description": "Credential field"
+  },
+  "settingsFieldOptional": "{label} (optional)",
+  "@settingsFieldOptional": {
+    "description": "Label of an optional credential field",
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsFieldPassword": "Password",
+  "@settingsFieldPassword": {
+    "description": "Credential field"
+  },
+  "settingsFieldUsername": "Username",
+  "@settingsFieldUsername": {
+    "description": "Credential field"
+  },
+  "settingsFillRequired": "Fill in all required fields",
+  "@settingsFillRequired": {
+    "description": "Validation message"
+  },
+  "settingsGameMetadata": "Game Metadata",
+  "@settingsGameMetadata": {
+    "description": "Section header"
+  },
+  "settingsIaLoginHint": "Login to download protected files",
+  "@settingsIaLoginHint": {
+    "description": "Internet Archive tile subtitle"
+  },
+  "settingsInstall": "Install",
+  "@settingsInstall": {
+    "description": "Button installing an app update"
+  },
+  "settingsLoggedInAs": "Logged in as {username}",
+  "@settingsLoggedInAs": {
+    "description": "Account subtitle",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsLoggedOut": "Logged out from Internet Archive",
+  "@settingsLoggedOut": {
+    "description": "Snackbar"
+  },
+  "settingsLogout": "Logout",
+  "@settingsLogout": {
+    "description": "Button/dialog title"
+  },
+  "settingsLogoutConfirm": "Are you sure you want to logout from Internet Archive?",
+  "@settingsLogoutConfirm": {
+    "description": "Logout confirmation"
+  },
+  "settingsMetadataSubtitle": "Descriptions, screenshots and artwork on game pages (ScreenScraper, SteamGridDB)",
+  "@settingsMetadataSubtitle": {
+    "description": "Metadata switch subtitle"
+  },
+  "settingsNoApiKey": "No API key saved",
+  "@settingsNoApiKey": {
+    "description": "Status message"
+  },
+  "settingsNoCredentials": "No credentials saved",
+  "@settingsNoCredentials": {
+    "description": "Status message"
+  },
+  "settingsNotInstalled": "Not installed",
+  "@settingsNotInstalled": {
+    "description": "Database status"
+  },
+  "settingsNotLoggedIn": "Not logged in",
+  "@settingsNotLoggedIn": {
+    "description": "Account status"
+  },
+  "settingsPlatformLocations": "Platform-Specific Locations",
+  "@settingsPlatformLocations": {
+    "description": "Settings tile"
+  },
+  "settingsPlatformLocationsHint": "Override download location for specific platforms",
+  "@settingsPlatformLocationsHint": {
+    "description": "Settings tile subtitle"
+  },
+  "settingsPlatformsError": "Failed to load platforms",
+  "@settingsPlatformsError": {
+    "description": "Error"
+  },
+  "settingsProvider": "Provider",
+  "@settingsProvider": {
+    "description": "Debrid provider picker"
+  },
+  "settingsRomDatabase": "ROM Database",
+  "@settingsRomDatabase": {
+    "description": "Settings tile"
+  },
+  "settingsRomSources": "ROM sources",
+  "@settingsRomSources": {
+    "description": "Settings tile"
+  },
+  "settingsRomSourcesHint": "Status of the catalogs that feed this app",
+  "@settingsRomSourcesHint": {
+    "description": "Settings tile subtitle"
+  },
+  "settingsSaveKey": "Save key",
+  "@settingsSaveKey": {
+    "description": "Button"
+  },
+  "settingsShowMetadata": "Show game metadata",
+  "@settingsShowMetadata": {
+    "description": "Settings switch"
+  },
+  "settingsSourceCode": "Source Code",
+  "@settingsSourceCode": {
+    "description": "Settings tile"
+  },
+  "settingsSources": "Sources",
+  "@settingsSources": {
+    "description": "Section header"
+  },
+  "settingsTest": "Test",
+  "@settingsTest": {
+    "description": "Button testing a connection"
+  },
+  "settingsTheme": "Theme",
+  "@settingsTheme": {
+    "description": "Settings tile"
+  },
+  "settingsThemeDark": "Dark",
+  "@settingsThemeDark": {
+    "description": "Theme option"
+  },
+  "settingsThemeLight": "Light",
+  "@settingsThemeLight": {
+    "description": "Theme option"
+  },
+  "settingsThemeSystem": "System default",
+  "@settingsThemeSystem": {
+    "description": "Theme/language option following the device"
+  },
+  "settingsUpdate": "Update",
+  "@settingsUpdate": {
+    "description": "Button"
+  },
+  "settingsUseDebrid": "Use debrid service",
+  "@settingsUseDebrid": {
+    "description": "Settings switch"
+  },
+  "settingsUseDebridHint": "Resolve cached torrents to fast direct links (TorBox, Real-Debrid)",
+  "@settingsUseDebridHint": {
+    "description": "Settings switch subtitle"
+  },
+  "settingsUsingDefault": "Using default",
+  "@settingsUsingDefault": {
+    "description": "Platform folder subtitle when not overridden"
+  },
+  "settingsVerifyFilesHint": "Check if downloaded files still exist",
+  "@settingsVerifyFilesHint": {
+    "description": "Settings tile subtitle"
+  },
+  "settingsVersion": "Version",
+  "@settingsVersion": {
+    "description": "Settings tile"
+  },
   "statusCachingDebrid": "Caching on debrid...",
   "@statusCachingDebrid": {
     "description": "Download status shown under a download"
@@ -668,9 +1026,68 @@
   "@storagePermissionTitle": {
     "description": "Title of the dialog explaining the storage permission"
   },
+  "updateAvailable": "Update Available",
+  "@updateAvailable": {
+    "description": "Update tile title"
+  },
   "updateAvailableSnack": "Update available: v{version}",
   "@updateAvailableSnack": {
     "description": "Snackbar shown at startup when a newer app version exists",
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "updateCheck": "Check for Updates",
+  "@updateCheck": {
+    "description": "Update tile title"
+  },
+  "updateChecking": "Checking for Updates...",
+  "@updateChecking": {
+    "description": "Update tile title"
+  },
+  "updateDownloading": "Downloading Update...",
+  "@updateDownloading": {
+    "description": "Update tile title"
+  },
+  "updateDownloadingProgress": "Downloading... {progress}%",
+  "@updateDownloadingProgress": {
+    "description": "Update download progress",
+    "placeholders": {
+      "progress": {
+        "type": "int"
+      }
+    }
+  },
+  "updateFailed": "Update Check Failed",
+  "@updateFailed": {
+    "description": "Update tile title"
+  },
+  "updatePleaseWait": "Please wait...",
+  "@updatePleaseWait": {
+    "description": "Update tile subtitle"
+  },
+  "updateReady": "Ready to Install",
+  "@updateReady": {
+    "description": "Update tile title"
+  },
+  "updateTapInstall": "Tap Install to update to {version}",
+  "@updateTapInstall": {
+    "description": "Update subtitle",
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "updateTapToCheck": "Tap to check for new versions",
+  "@updateTapToCheck": {
+    "description": "Update tile subtitle"
+  },
+  "updateVersionAvailable": "Version {version} is available",
+  "@updateVersionAvailable": {
+    "description": "Update subtitle",
     "placeholders": {
       "version": {
         "type": "String"

@@ -206,6 +206,12 @@ abstract class AppLocalizations {
   /// **'Continue'**
   String get commonContinue;
 
+  /// Dialog button
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get commonDelete;
+
   /// Button starting a download
   ///
   /// In en, this message translates to:
@@ -218,11 +224,23 @@ abstract class AppLocalizations {
   /// **'Downloaded'**
   String get commonDownloaded;
 
+  /// Generic error
+  ///
+  /// In en, this message translates to:
+  /// **'An error occurred'**
+  String get commonErrorOccurred;
+
   /// Button/tooltip opening the filter sheet
   ///
   /// In en, this message translates to:
   /// **'Filters'**
   String get commonFilters;
+
+  /// Placeholder while loading
+  ///
+  /// In en, this message translates to:
+  /// **'Loading...'**
+  String get commonLoading;
 
   /// Tooltip removing an item
   ///
@@ -235,6 +253,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Retry'**
   String get commonRetry;
+
+  /// Button
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get commonSave;
 
   /// Button to skip an optional step
   ///
@@ -253,6 +277,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Try again'**
   String get commonTryAgainTooltip;
+
+  /// Unknown value
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown'**
+  String get commonUnknown;
 
   /// Snackbar action jumping to the related tab
   ///
@@ -824,6 +854,456 @@ abstract class AppLocalizations {
   /// **'Settings'**
   String get navSettings;
 
+  /// Section header
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get settingsAbout;
+
+  /// Section header
+  ///
+  /// In en, this message translates to:
+  /// **'Accounts'**
+  String get settingsAccounts;
+
+  /// Status message
+  ///
+  /// In en, this message translates to:
+  /// **'API key cleared'**
+  String get settingsApiKeyCleared;
+
+  /// Status message
+  ///
+  /// In en, this message translates to:
+  /// **'API key saved'**
+  String get settingsApiKeySaved;
+
+  /// Section header
+  ///
+  /// In en, this message translates to:
+  /// **'Appearance'**
+  String get settingsAppearance;
+
+  /// Per-platform switch
+  ///
+  /// In en, this message translates to:
+  /// **'Auto-extract'**
+  String get settingsAutoExtract;
+
+  /// Account status while loading
+  ///
+  /// In en, this message translates to:
+  /// **'Checking...'**
+  String get settingsChecking;
+
+  /// Dialog title
+  ///
+  /// In en, this message translates to:
+  /// **'Choose Theme'**
+  String get settingsChooseTheme;
+
+  /// Settings tile subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Remove entries for missing files'**
+  String get settingsCleanUpHint;
+
+  /// Concurrent downloads subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 download at a time} other{{count} downloads at a time}}'**
+  String settingsConcurrentCount(int count);
+
+  /// Settings tile
+  ///
+  /// In en, this message translates to:
+  /// **'Concurrent Downloads'**
+  String get settingsConcurrentDownloads;
+
+  /// Concurrent downloads subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Unlimited concurrent downloads'**
+  String get settingsConcurrentUnlimited;
+
+  /// Connection test result
+  ///
+  /// In en, this message translates to:
+  /// **'Connected successfully'**
+  String get settingsConnected;
+
+  /// Status message
+  ///
+  /// In en, this message translates to:
+  /// **'Credentials cleared'**
+  String get settingsCredentialsCleared;
+
+  /// Status message
+  ///
+  /// In en, this message translates to:
+  /// **'Credentials saved'**
+  String get settingsCredentialsSaved;
+
+  /// Snackbar
+  ///
+  /// In en, this message translates to:
+  /// **'Database deleted'**
+  String get settingsDatabaseDeleted;
+
+  /// Database download error
+  ///
+  /// In en, this message translates to:
+  /// **'Download failed: {error}'**
+  String settingsDatabaseDownloadFailed(String error);
+
+  /// Update dialog body when not installed
+  ///
+  /// In en, this message translates to:
+  /// **'Download the ROM database to browse and search games.'**
+  String get settingsDatabaseDownloadPrompt;
+
+  /// Settings tile subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading database info'**
+  String get settingsDatabaseError;
+
+  /// Update dialog body
+  ///
+  /// In en, this message translates to:
+  /// **'A new database version is available.'**
+  String get settingsDatabaseNewVersion;
+
+  /// Database download size
+  ///
+  /// In en, this message translates to:
+  /// **'Size: {size} MB'**
+  String settingsDatabaseSize(String size);
+
+  /// Dialog title
+  ///
+  /// In en, this message translates to:
+  /// **'Update Database'**
+  String get settingsDatabaseUpdate;
+
+  /// Snackbar
+  ///
+  /// In en, this message translates to:
+  /// **'Database updated successfully'**
+  String get settingsDatabaseUpdated;
+
+  /// Dialog title
+  ///
+  /// In en, this message translates to:
+  /// **'Updating Database'**
+  String get settingsDatabaseUpdating;
+
+  /// ROM database subtitle; entries is already formatted (e.g. 241K)
+  ///
+  /// In en, this message translates to:
+  /// **'Version {version} - {entries} entries'**
+  String settingsDatabaseVersion(String version, String entries);
+
+  /// Debrid key field label
+  ///
+  /// In en, this message translates to:
+  /// **'{provider} API key'**
+  String settingsDebridApiKey(String provider);
+
+  /// Section header
+  ///
+  /// In en, this message translates to:
+  /// **'Debrid Service'**
+  String get settingsDebridService;
+
+  /// Settings tile
+  ///
+  /// In en, this message translates to:
+  /// **'Default Location'**
+  String get settingsDefaultLocation;
+
+  /// Menu item / dialog title
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Database'**
+  String get settingsDeleteDatabase;
+
+  /// Delete database dialog body
+  ///
+  /// In en, this message translates to:
+  /// **'This will delete the ROM database. You will need to download it again to browse ROMs.\n\nThis can help fix issues with a corrupted database.'**
+  String get settingsDeleteDatabaseBody;
+
+  /// Menu item
+  ///
+  /// In en, this message translates to:
+  /// **'Delete & Reset'**
+  String get settingsDeleteReset;
+
+  /// Settings switch
+  ///
+  /// In en, this message translates to:
+  /// **'Disable Auto-Extract'**
+  String get settingsDisableAutoExtract;
+
+  /// Settings switch subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Keep downloaded archives as-is without extracting'**
+  String get settingsDisableAutoExtractHint;
+
+  /// Settings switch
+  ///
+  /// In en, this message translates to:
+  /// **'Disable Torrents'**
+  String get settingsDisableTorrents;
+
+  /// Settings switch subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Only use direct downloads (hides torrent-only sources)'**
+  String get settingsDisableTorrentsHint;
+
+  /// Section header
+  ///
+  /// In en, this message translates to:
+  /// **'Download Locations'**
+  String get settingsDownloadLocations;
+
+  /// Credential field
+  ///
+  /// In en, this message translates to:
+  /// **'API key'**
+  String get settingsFieldApiKey;
+
+  /// Label of an optional credential field
+  ///
+  /// In en, this message translates to:
+  /// **'{label} (optional)'**
+  String settingsFieldOptional(String label);
+
+  /// Credential field
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get settingsFieldPassword;
+
+  /// Credential field
+  ///
+  /// In en, this message translates to:
+  /// **'Username'**
+  String get settingsFieldUsername;
+
+  /// Validation message
+  ///
+  /// In en, this message translates to:
+  /// **'Fill in all required fields'**
+  String get settingsFillRequired;
+
+  /// Section header
+  ///
+  /// In en, this message translates to:
+  /// **'Game Metadata'**
+  String get settingsGameMetadata;
+
+  /// Internet Archive tile subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Login to download protected files'**
+  String get settingsIaLoginHint;
+
+  /// Button installing an app update
+  ///
+  /// In en, this message translates to:
+  /// **'Install'**
+  String get settingsInstall;
+
+  /// Account subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Logged in as {username}'**
+  String settingsLoggedInAs(String username);
+
+  /// Snackbar
+  ///
+  /// In en, this message translates to:
+  /// **'Logged out from Internet Archive'**
+  String get settingsLoggedOut;
+
+  /// Button/dialog title
+  ///
+  /// In en, this message translates to:
+  /// **'Logout'**
+  String get settingsLogout;
+
+  /// Logout confirmation
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to logout from Internet Archive?'**
+  String get settingsLogoutConfirm;
+
+  /// Metadata switch subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Descriptions, screenshots and artwork on game pages (ScreenScraper, SteamGridDB)'**
+  String get settingsMetadataSubtitle;
+
+  /// Status message
+  ///
+  /// In en, this message translates to:
+  /// **'No API key saved'**
+  String get settingsNoApiKey;
+
+  /// Status message
+  ///
+  /// In en, this message translates to:
+  /// **'No credentials saved'**
+  String get settingsNoCredentials;
+
+  /// Database status
+  ///
+  /// In en, this message translates to:
+  /// **'Not installed'**
+  String get settingsNotInstalled;
+
+  /// Account status
+  ///
+  /// In en, this message translates to:
+  /// **'Not logged in'**
+  String get settingsNotLoggedIn;
+
+  /// Settings tile
+  ///
+  /// In en, this message translates to:
+  /// **'Platform-Specific Locations'**
+  String get settingsPlatformLocations;
+
+  /// Settings tile subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Override download location for specific platforms'**
+  String get settingsPlatformLocationsHint;
+
+  /// Error
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load platforms'**
+  String get settingsPlatformsError;
+
+  /// Debrid provider picker
+  ///
+  /// In en, this message translates to:
+  /// **'Provider'**
+  String get settingsProvider;
+
+  /// Settings tile
+  ///
+  /// In en, this message translates to:
+  /// **'ROM Database'**
+  String get settingsRomDatabase;
+
+  /// Settings tile
+  ///
+  /// In en, this message translates to:
+  /// **'ROM sources'**
+  String get settingsRomSources;
+
+  /// Settings tile subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Status of the catalogs that feed this app'**
+  String get settingsRomSourcesHint;
+
+  /// Button
+  ///
+  /// In en, this message translates to:
+  /// **'Save key'**
+  String get settingsSaveKey;
+
+  /// Settings switch
+  ///
+  /// In en, this message translates to:
+  /// **'Show game metadata'**
+  String get settingsShowMetadata;
+
+  /// Settings tile
+  ///
+  /// In en, this message translates to:
+  /// **'Source Code'**
+  String get settingsSourceCode;
+
+  /// Section header
+  ///
+  /// In en, this message translates to:
+  /// **'Sources'**
+  String get settingsSources;
+
+  /// Button testing a connection
+  ///
+  /// In en, this message translates to:
+  /// **'Test'**
+  String get settingsTest;
+
+  /// Settings tile
+  ///
+  /// In en, this message translates to:
+  /// **'Theme'**
+  String get settingsTheme;
+
+  /// Theme option
+  ///
+  /// In en, this message translates to:
+  /// **'Dark'**
+  String get settingsThemeDark;
+
+  /// Theme option
+  ///
+  /// In en, this message translates to:
+  /// **'Light'**
+  String get settingsThemeLight;
+
+  /// Theme/language option following the device
+  ///
+  /// In en, this message translates to:
+  /// **'System default'**
+  String get settingsThemeSystem;
+
+  /// Button
+  ///
+  /// In en, this message translates to:
+  /// **'Update'**
+  String get settingsUpdate;
+
+  /// Settings switch
+  ///
+  /// In en, this message translates to:
+  /// **'Use debrid service'**
+  String get settingsUseDebrid;
+
+  /// Settings switch subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Resolve cached torrents to fast direct links (TorBox, Real-Debrid)'**
+  String get settingsUseDebridHint;
+
+  /// Platform folder subtitle when not overridden
+  ///
+  /// In en, this message translates to:
+  /// **'Using default'**
+  String get settingsUsingDefault;
+
+  /// Settings tile subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Check if downloaded files still exist'**
+  String get settingsVerifyFilesHint;
+
+  /// Settings tile
+  ///
+  /// In en, this message translates to:
+  /// **'Version'**
+  String get settingsVersion;
+
   /// Download status shown under a download
   ///
   /// In en, this message translates to:
@@ -896,11 +1376,77 @@ abstract class AppLocalizations {
   /// **'Storage Permission'**
   String get storagePermissionTitle;
 
+  /// Update tile title
+  ///
+  /// In en, this message translates to:
+  /// **'Update Available'**
+  String get updateAvailable;
+
   /// Snackbar shown at startup when a newer app version exists
   ///
   /// In en, this message translates to:
   /// **'Update available: v{version}'**
   String updateAvailableSnack(String version);
+
+  /// Update tile title
+  ///
+  /// In en, this message translates to:
+  /// **'Check for Updates'**
+  String get updateCheck;
+
+  /// Update tile title
+  ///
+  /// In en, this message translates to:
+  /// **'Checking for Updates...'**
+  String get updateChecking;
+
+  /// Update tile title
+  ///
+  /// In en, this message translates to:
+  /// **'Downloading Update...'**
+  String get updateDownloading;
+
+  /// Update download progress
+  ///
+  /// In en, this message translates to:
+  /// **'Downloading... {progress}%'**
+  String updateDownloadingProgress(int progress);
+
+  /// Update tile title
+  ///
+  /// In en, this message translates to:
+  /// **'Update Check Failed'**
+  String get updateFailed;
+
+  /// Update tile subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Please wait...'**
+  String get updatePleaseWait;
+
+  /// Update tile title
+  ///
+  /// In en, this message translates to:
+  /// **'Ready to Install'**
+  String get updateReady;
+
+  /// Update subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Tap Install to update to {version}'**
+  String updateTapInstall(String version);
+
+  /// Update tile subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to check for new versions'**
+  String get updateTapToCheck;
+
+  /// Update subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Version {version} is available'**
+  String updateVersionAvailable(String version);
 }
 
 class _AppLocalizationsDelegate
