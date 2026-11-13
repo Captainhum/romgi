@@ -1,0 +1,377 @@
+{
+  "@@locale": "en",
+  "browseClearFilters": "Clear filters",
+  "@browseClearFilters": {
+    "description": "Button resetting all filters"
+  },
+  "browseEmptyBody": "Enter a game name or use filters to browse",
+  "@browseEmptyBody": {
+    "description": "Empty state body on the Browse tab"
+  },
+  "browseEmptyTitle": "Search for ROMs",
+  "@browseEmptyTitle": {
+    "description": "Empty state title on the Browse tab"
+  },
+  "browseFeelingLucky": "I'm Feeling Lucky",
+  "@browseFeelingLucky": {
+    "description": "Tooltip of the random game button (playful)"
+  },
+  "browseGridView": "Grid view",
+  "@browseGridView": {
+    "description": "Tooltip to switch to grid layout"
+  },
+  "browseListView": "List view",
+  "@browseListView": {
+    "description": "Tooltip to switch to list layout"
+  },
+  "browseNoEntries": "No entries found in database",
+  "@browseNoEntries": {
+    "description": "Snackbar when the random pick finds no game"
+  },
+  "browseNoResults": "No results found",
+  "@browseNoResults": {
+    "description": "Shown when the search returns nothing"
+  },
+  "browseRandom": "Random",
+  "@browseRandom": {
+    "description": "Button opening a random game"
+  },
+  "browseRecentlyViewed": "Recently Viewed",
+  "@browseRecentlyViewed": {
+    "description": "Header of the recently opened games list"
+  },
+  "browseResultCount": "{count, plural, =1{1 result} other{{count} results}}",
+  "@browseResultCount": {
+    "description": "Number of search results",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "browseResultCountMore": "{count}+ results",
+  "@browseResultCountMore": {
+    "description": "Number of results shown when more pages exist",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "browseSearchHint": "Search ROMs...",
+  "@browseSearchHint": {
+    "description": "Search field placeholder"
+  },
+  "browseUseSearchBar": "Use the search bar above to find more ROMs",
+  "@browseUseSearchBar": {
+    "description": "Hint under the recently viewed list"
+  },
+  "commonCancel": "Cancel",
+  "@commonCancel": {
+    "description": "Dialog button"
+  },
+  "commonClear": "Clear",
+  "@commonClear": {
+    "description": "Button clearing a list or field"
+  },
+  "commonContinue": "Continue",
+  "@commonContinue": {
+    "description": "Button to proceed"
+  },
+  "commonDownload": "Download",
+  "@commonDownload": {
+    "description": "Button starting a download"
+  },
+  "commonDownloaded": "Downloaded",
+  "@commonDownloaded": {
+    "description": "Badge on games already downloaded"
+  },
+  "commonFilters": "Filters",
+  "@commonFilters": {
+    "description": "Button/tooltip opening the filter sheet"
+  },
+  "commonRetry": "Retry",
+  "@commonRetry": {
+    "description": "Button to retry a failed action"
+  },
+  "commonSkip": "Skip",
+  "@commonSkip": {
+    "description": "Button to skip an optional step"
+  },
+  "commonTryAgain": "Try Again",
+  "@commonTryAgain": {
+    "description": "Button on error screens"
+  },
+  "commonTryAgainTooltip": "Try again",
+  "@commonTryAgainTooltip": {
+    "description": "Tooltip of the retry icon"
+  },
+  "commonView": "View",
+  "@commonView": {
+    "description": "Snackbar action jumping to the related tab"
+  },
+  "detailAbout": "About",
+  "@detailAbout": {
+    "description": "Section header of the game description"
+  },
+  "detailAchievements": "{count, plural, =1{1 achievement} other{{count} achievements}}",
+  "@detailAchievements": {
+    "description": "RetroAchievements count chip",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "detailAddToWishlist": "Add to wishlist",
+  "@detailAddToWishlist": {
+    "description": "Tooltip of the favorite button"
+  },
+  "detailAddedToQueue": "Added \"{title}\" to download queue",
+  "@detailAddedToQueue": {
+    "description": "Snackbar after queueing a download",
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "detailAddedToWishlist": "Added to wishlist",
+  "@detailAddedToWishlist": {
+    "description": "Snackbar after adding a favorite"
+  },
+  "detailAllTorrents": "All download links are torrents.\nEnable torrents in Settings to download.",
+  "@detailAllTorrents": {
+    "description": "Shown when torrents are disabled and only torrent links exist"
+  },
+  "detailAlreadyDownloaded": "Already downloaded",
+  "@detailAlreadyDownloaded": {
+    "description": "Banner on a game page when it is in the library"
+  },
+  "detailAlreadyIs": "\"{title}\" is {status}",
+  "@detailAlreadyIs": {
+    "description": "Snackbar when the game is already queued; status is one of detailStatus*",
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "detailDirect": "Direct",
+  "@detailDirect": {
+    "description": "Badge for direct HTTP sources"
+  },
+  "detailDiscGameBody": "Download every disc and generate an .m3u playlist so your emulator can swap discs.",
+  "@detailDiscGameBody": {
+    "description": "Explanation on the multi-disc card. .m3u is a file extension, keep it."
+  },
+  "detailDiscGameTitle": "{count}-disc game",
+  "@detailDiscGameTitle": {
+    "description": "Title of the multi-disc card",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "detailDiscLabel": "Disc {index}",
+  "@detailDiscLabel": {
+    "description": "Chip label for one disc of a set",
+    "placeholders": {
+      "index": {
+        "type": "int"
+      }
+    }
+  },
+  "detailDiscsDuplicate": "{count} already added",
+  "@detailDiscsDuplicate": {
+    "description": "Part of the disc set summary",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "detailDiscsQueued": "{count} queued",
+  "@detailDiscsQueued": {
+    "description": "Part of the disc set summary",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "detailDiscsSummary": "Discs: {parts}",
+  "@detailDiscsSummary": {
+    "description": "Snackbar after queueing a disc set; parts is a comma separated list",
+    "placeholders": {
+      "parts": {
+        "type": "String"
+      }
+    }
+  },
+  "detailDiscsUnavailable": "{count} unavailable",
+  "@detailDiscsUnavailable": {
+    "description": "Part of the disc set summary",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "detailDownloadAllDiscs": "Download all {count} discs",
+  "@detailDownloadAllDiscs": {
+    "description": "Button downloading every disc of a set",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "detailDownloadLinks": "Download Links",
+  "@detailDownloadLinks": {
+    "description": "Section header listing download sources"
+  },
+  "detailLogIn": "Log In",
+  "@detailLogIn": {
+    "description": "Dialog button opening the login page"
+  },
+  "detailLoginAndDownload": "Login & Download",
+  "@detailLoginAndDownload": {
+    "description": "Button for a source that needs login"
+  },
+  "detailLoginPrompt": "This file requires an Internet Archive account to download. Would you like to log in now?",
+  "@detailLoginPrompt": {
+    "description": "Body of the login required dialog"
+  },
+  "detailLoginRequired": "Login Required",
+  "@detailLoginRequired": {
+    "description": "Badge/dialog title for sources needing an Internet Archive account"
+  },
+  "detailNoDiscsAvailable": "No discs available to download",
+  "@detailNoDiscsAvailable": {
+    "description": "Snackbar when no disc of a set has a source"
+  },
+  "detailNoLinks": "No download links available",
+  "@detailNoLinks": {
+    "description": "Shown when a game has no source"
+  },
+  "detailNotFound": "Entry not found",
+  "@detailNotFound": {
+    "description": "Shown when the game page cannot load its entry"
+  },
+  "detailReadMore": "Read more",
+  "@detailReadMore": {
+    "description": "Expands the description"
+  },
+  "detailRemoveFromWishlist": "Remove from wishlist",
+  "@detailRemoveFromWishlist": {
+    "description": "Tooltip of the favorite button"
+  },
+  "detailRemovedFromWishlist": "Removed from wishlist",
+  "@detailRemovedFromWishlist": {
+    "description": "Snackbar after removing a favorite"
+  },
+  "detailShowLess": "Show less",
+  "@detailShowLess": {
+    "description": "Collapses the description"
+  },
+  "detailStatusDownloaded": "already downloaded",
+  "@detailStatusDownloaded": {
+    "description": "Status fragment inserted in detailAlreadyIs"
+  },
+  "detailStatusDownloading": "currently downloading",
+  "@detailStatusDownloading": {
+    "description": "Status fragment inserted in detailAlreadyIs"
+  },
+  "detailStatusInQueue": "in queue",
+  "@detailStatusInQueue": {
+    "description": "Status fragment inserted in detailAlreadyIs"
+  },
+  "detailStatusPaused": "paused in queue",
+  "@detailStatusPaused": {
+    "description": "Status fragment inserted in detailAlreadyIs"
+  },
+  "detailStatusQueued": "already in queue",
+  "@detailStatusQueued": {
+    "description": "Status fragment inserted in detailAlreadyIs"
+  },
+  "detailTorrent": "Torrent",
+  "@detailTorrent": {
+    "description": "Badge for torrent sources"
+  },
+  "filterApply": "Apply Filters",
+  "@filterApply": {
+    "description": "Button applying the selected filters"
+  },
+  "filterClearAll": "Clear all",
+  "@filterClearAll": {
+    "description": "Button resetting every filter"
+  },
+  "filterHasAchievements": "Has Achievements",
+  "@filterHasAchievements": {
+    "description": "Filter chip: only games with RetroAchievements"
+  },
+  "filterPlatforms": "Platforms",
+  "@filterPlatforms": {
+    "description": "Filter section title"
+  },
+  "filterPlatformsError": "Error loading platforms: {error}",
+  "@filterPlatformsError": {
+    "description": "Shown when platforms fail to load",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "filterRegions": "Regions",
+  "@filterRegions": {
+    "description": "Filter section title"
+  },
+  "filterRegionsError": "Error loading regions: {error}",
+  "@filterRegionsError": {
+    "description": "Shown when regions fail to load",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "navBrowse": "Browse",
+  "@navBrowse": {
+    "description": "Navigation tab: catalog search"
+  },
+  "navDownloads": "Downloads",
+  "@navDownloads": {
+    "description": "Navigation tab: download queue"
+  },
+  "navLibrary": "Library",
+  "@navLibrary": {
+    "description": "Navigation tab: downloaded games"
+  },
+  "navSettings": "Settings",
+  "@navSettings": {
+    "description": "Navigation tab: settings"
+  },
+  "storagePermissionBody": "Romgi needs storage access to save ROMs to a location accessible by your file manager and emulators.\n\nOn the next screen, please enable \"Allow access to manage all files\".",
+  "@storagePermissionBody": {
+    "description": "Body of the storage permission dialog. The quoted text is the Android system option name."
+  },
+  "storagePermissionTitle": "Storage Permission",
+  "@storagePermissionTitle": {
+    "description": "Title of the dialog explaining the storage permission"
+  },
+  "updateAvailableSnack": "Update available: v{version}",
+  "@updateAvailableSnack": {
+    "description": "Snackbar shown at startup when a newer app version exists",
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  }
+}
