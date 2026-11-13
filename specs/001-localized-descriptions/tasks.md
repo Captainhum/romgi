@@ -57,7 +57,7 @@
 
 - [x] T011 Run `flutter analyze` and the full `flutter test` suite
 - [x] T012 Build the debug APK (`flutter build apk --debug`)
-- [ ] T013 Run the on-device validation in specs/001-localized-descriptions/quickstart.md on the AYN Thor
+- [ ] T013 (blocked: needs a ScreenScraper developer ID) Run the on-device validation in specs/001-localized-descriptions/quickstart.md on the AYN Thor
 
 ## Dependencies & Execution Order
 

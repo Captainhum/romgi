@@ -40,7 +40,7 @@
 - [x] T020 [US2] Add `appLanguage` to SettingsState + persistence in lib/providers/settings_provider.dart
 - [x] T021 [US2] Add Language tile (System default / English / Français) in lib/screens/settings_screen.dart
 - [x] T022 [US2] Feed the chosen locale to `MaterialApp.locale` and to non-UI code (notifications)
-- [ ] T023 [US2] When feature 001 is merged: make `metadataLanguageProvider` follow `appLanguage`
+- [x] T023 [US2] When feature 001 is merged: make `metadataLanguageProvider` follow `appLanguage`
 
 ## Phase 5: User Story 3 - Contribute a new language without coding (Priority: P2)
 
@@ -50,4 +50,4 @@
 ## Phase 6: Polish
 
 - [x] T026 Build debug APK and install on the AYN Thor
-- [ ] T027 Run the on-device walkthrough in quickstart.md (French layout check on both screens)
+- [x] T027 Run the on-device walkthrough in quickstart.md (French layout check on both screens)

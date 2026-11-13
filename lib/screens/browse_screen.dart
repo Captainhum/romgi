@@ -266,6 +266,10 @@ class _BrowseScreenState extends ConsumerState<BrowseScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Searches started elsewhere (romgi:// links) show up in the field.
+    ref.listen(searchProvider.select((s) => s.query), (_, query) {
+      if (query != _searchController.text) _searchController.text = query;
+    });
     final searchState = ref.watch(searchProvider);
     final isGridView = ref.watch(isGridViewProvider);
     final activeFilterCount =

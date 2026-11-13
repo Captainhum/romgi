@@ -98,6 +98,11 @@ romgi supports a wide range of retro gaming platforms, including:
 - **Sega**: Master System, Genesis/Mega Drive, Saturn, Dreamcast, Game Gear
 - **And many more**: Atari, Neo Geo, TurboGrafx, and other retro platforms
 
+## Opening romgi from other apps
+
+Other apps and frontends can open a game page, a search or a tab with `romgi://`
+links. See [docs/integration.md](docs/integration.md).
+
 ## Translations
 
 romgi is available in English and French, and follows your device language (you can also pick

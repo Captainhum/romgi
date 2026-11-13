@@ -9,6 +9,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'providers/providers.dart';
 import 'screens/screens.dart';
 import 'l10n/l10n.dart';
+import 'services/app_links.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -122,7 +123,32 @@ class _MainNavigationState extends ConsumerState<MainNavigation> {
       notifications.setOnTapCallback(_onNotificationTap);
 
       _checkForUpdates();
+
+      AppLinkReceiver.listen(_onAppLink);
     });
+  }
+
+  /// Opens what a romgi:// link from another app asks for.
+  void _onAppLink(AppLink link) {
+    if (!mounted) return;
+    final navigation = ref.read(navigationTabProvider.notifier);
+    switch (link) {
+      case GameLink(:final slug):
+        navigation.state = NavTab.browse;
+        Navigator.of(context).popUntil((route) => route.isFirst);
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (_) => EntryDetailScreen(slug: slug)),
+        );
+      case SearchLink(:final query, :final platform):
+        navigation.state = NavTab.browse;
+        Navigator.of(context).popUntil((route) => route.isFirst);
+        final search = ref.read(searchProvider.notifier);
+        if (platform != null) search.setSelectedPlatforms([platform]);
+        search.search(query: query);
+      case TabLink(:final tab):
+        Navigator.of(context).popUntil((route) => route.isFirst);
+        navigation.state = tab == 'library' ? NavTab.library : NavTab.downloads;
+    }
   }
 
   Future<void> _checkForUpdates() async {

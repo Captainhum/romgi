@@ -14,6 +14,7 @@ import java.io.File
 
 class MainActivity : FlutterActivity() {
     private var torrentService: TorrentServiceImpl? = null
+    private var linksChannel: MethodChannel? = null
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
@@ -28,6 +29,20 @@ class MainActivity : FlutterActivity() {
             flutterEngine.dartExecutor.binaryMessenger,
         )
         SevenZipHostApi.setUp(flutterEngine.dartExecutor.binaryMessenger, sevenZipService)
+
+        // romgi:// links (docs/integration.md): the launch link is pulled by
+        // Dart once it is ready, later ones are pushed.
+        linksChannel = MethodChannel(flutterEngine.dartExecutor.binaryMessenger, LINKS_CHANNEL)
+            .apply {
+                setMethodCallHandler { call, result ->
+                    if (call.method == "getInitialLink") {
+                        result.success(intent?.data?.takeIf { it.scheme == "romgi" }?.toString())
+                        intent?.data = null
+                    } else {
+                        result.notImplemented()
+                    }
+                }
+            }
 
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, OPEN_CHANNEL)
             .setMethodCallHandler { call, result ->
@@ -76,6 +91,14 @@ class MainActivity : FlutterActivity() {
             }
     }
 
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        val data = intent.data
+        if (data?.scheme == "romgi") {
+            linksChannel?.invokeMethod("onLink", data.toString())
+        }
+    }
+
     override fun onDestroy() {
         torrentService?.shutdown()
         torrentService = null
@@ -84,5 +107,6 @@ class MainActivity : FlutterActivity() {
 
     companion object {
         private const val OPEN_CHANNEL = "com.caprado.romgi/open"
+        private const val LINKS_CHANNEL = "com.caprado.romgi/links"
     }
 }
