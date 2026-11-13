@@ -1,42 +1,35 @@
 <!--
 Sync Impact Report
-- Version change: (template) → 1.0.0
-- Principles defined:
-  I. Upstream-Friendly Fork
-  II. Opt-In and Non-Destructive
-  III. Launcher-Ready Output
-  IV. Tested Logic, Green CI
-  V. Device-Aware Native Work
-- Added sections: Technical Constraints, Development Workflow
-- Removed sections: none
-- Templates:
-  ✅ .specify/templates/plan-template.md (generic "Constitution Check" gate reads from this file; no edit needed)
-  ✅ .specify/templates/spec-template.md (no constitution-specific sections required)
-  ✅ .specify/templates/tasks-template.md (test tasks already supported; Principle IV makes them mandatory for pure logic)
+- Version change: 1.0.0 → 2.0.0 (MAJOR: Principle I redefined)
+- Modified principles: I. Upstream-Friendly Fork → I. Our App, Upstream-Aware;
+  V. Device-Aware Native Work renumbered to VI
+- Added principles: V. Open to Contributors (gen-l10n, translation platform, documented APIs)
+- Modified sections: Development Workflow (branches from main, upstream merged in, ROADMAP.md)
+- Templates: plan/spec/tasks templates unchanged (generic Constitution Check gate)
 - Follow-up TODOs: none
 -->
 
-# Romgi Fork Constitution
+# Romgi Constitution
 
 ## Core Principles
 
-### I. Upstream-Friendly Fork
+### I. Our App, Upstream-Aware
 
-This repository is a fork of caprado/romgi. Every change MUST be shaped so the upstream author
-can adopt it with a single pull request.
+This repository started as a fork of caprado/romgi and is now developed as its own app. Upstream
+remains a valuable source (weekly ROM database updates, fixes), so we keep merging it.
 
-- New behavior lives in new, self-contained files (e.g. `lib/services/chd_*.dart`); edits to
-  existing upstream files are limited to the hook points needed to call the new code.
-- Code MUST follow upstream conventions: Riverpod providers, services under `lib/services/`,
-  native code exposed through Pigeon (`pigeons/`) like `seven_zip` and `torrent`,
-  `flutter_lints` rules.
-- Feature branches start from `upstream/main`; fork-only tooling (Spec Kit files) never goes
-  into a feature branch meant for upstream.
+- `upstream/main` is merged regularly; new behavior lives in new, self-contained files where
+  practical so these merges stay cheap.
+- Code follows the existing conventions: Riverpod providers, services under `lib/services/`,
+  native code exposed through Pigeon (`pigeons/`), `flutter_lints` rules.
+- The original MIT copyright notice is kept, and the README credits caprado/romgi.
+- Upstream adoption is welcome but never a constraint: features are not shrunk or delayed to
+  fit upstream preferences.
 - Commits use Conventional Commits (`feat:`, `fix:`, `chore:`…), in English, and carry no
   AI-tool attribution.
 
-Rationale: a small, isolated diff is the only kind an upstream maintainer will merge, and it
-keeps rebasing on upstream updates cheap.
+Rationale: reusing upstream's database and download engine is worth far more than a rewrite;
+owning the product lets us ship the features we want.
 
 ### II. Opt-In and Non-Destructive
 
@@ -79,7 +72,19 @@ Android frontends all understand without extra configuration.
 Rationale: file-manipulation bugs are silent and destructive; automated tests plus a real-device
 pass are the minimum bar.
 
-### V. Device-Aware Native Work
+### V. Open to Contributors
+
+- Every user-facing string goes through Flutter `gen-l10n` (ARB files under `lib/l10n/`);
+  no hard-coded UI text in new or modified code. English is the template locale.
+- Adding a language MUST require only a new ARB file — no code change — so it can be done from
+  a web translation platform (Weblate) by non-developers.
+- Features meant for other apps (intents, deep links, any future API) MUST be documented in
+  `docs/` with examples, and treated as a stable contract once released.
+
+Rationale: translations and integrations come from other people; the easier we make it for
+them, the more the app improves without us.
+
+### VI. Device-Aware Native Work
 
 - Conversion runs off the UI isolate, inside the existing background/foreground download
   service, with progress reported in the Downloads screen and cancellation supported.
@@ -106,12 +111,11 @@ downloads run.
 ## Development Workflow
 
 - Spec Kit flow per feature: specify → (clarify) → plan → tasks → implement.
-- One feature branch per spec, created from `upstream/main`, pushed to the fork
-  (`origin`, github.com/Captainhum/romgi).
-- `main` on the fork tracks `upstream/main` plus fork-only tooling; upstream updates are merged
-  regularly.
-- When a feature is complete and validated on device, an issue is opened upstream to propose it,
-  then a pull request from the feature branch if the maintainer is interested.
+- One feature branch per spec, created from `main`, merged back into `main` when validated on
+  device; pushed to `origin` (github.com/Captainhum/romgi).
+- `upstream/main` is merged into `main` regularly to pick up database updates and fixes.
+- Upstream may be offered any feature as a pull request; their decision does not block us.
+- Long-term ideas live in `ROADMAP.md`.
 
 ## Governance
 
@@ -123,4 +127,4 @@ Amendments are made by editing this file with a version bump: MAJOR when a princ
 or redefined, MINOR when a principle or section is added or materially expanded, PATCH for
 wording fixes. The Sync Impact Report at the top is updated on each amendment.
 
-**Version**: 1.0.0 | **Ratified**: 2026-11-13 | **Last Amended**: 2026-11-13
+**Version**: 2.0.0 | **Ratified**: 2026-11-13 | **Last Amended**: 2026-11-13
