@@ -10,6 +10,7 @@ import '../utils/utils.dart';
 import '../widgets/widgets.dart';
 import 'internet_archive_login_screen.dart';
 import '../l10n/l10n.dart';
+import '../widgets/disc_group_sheet.dart';
 
 final entryProvider = FutureProvider.family<RomEntry?, String>((
   ref,
@@ -501,8 +502,15 @@ class _DiscGroupSection extends ConsumerWidget {
               width: double.infinity,
               child: FilledButton.icon(
                 icon: const Icon(Icons.download),
-                label: Text(context.l10n.detailDownloadAllDiscs(group.members.length)),
-                onPressed: () => _downloadAll(context, ref),
+                label: Text(
+                  context.l10n.detailDownloadFullGame(group.members.length),
+                ),
+                onPressed: () => downloadDiscGroup(
+                  context,
+                  ref,
+                  group,
+                  sourcePriority: kKnownSourcePriority,
+                ),
               ),
             ),
           ],
@@ -511,51 +519,6 @@ class _DiscGroupSection extends ConsumerWidget {
     );
   }
 
-  Future<void> _downloadAll(BuildContext context, WidgetRef ref) async {
-    final iaLoggedIn = await ref.read(iaLoggedInProvider.future);
-    if (!context.mounted) return;
-    final torrentsDisabled = ref.read(settingsProvider).torrentsDisabled;
-
-    final result = await ref.read(downloadProvider.notifier).addDiscGroup(
-          group,
-          prefs: LinkResolverPrefs(
-            isIaLoggedIn: iaLoggedIn,
-            torrentsDisabled: torrentsDisabled,
-          ),
-          sourcePriority: kKnownSourcePriority,
-        );
-
-    if (!context.mounted) return;
-    ScaffoldMessenger.of(context).clearSnackBars();
-
-    final parts = <String>[];
-    final l10n = context.l10n;
-    if (result.added > 0) parts.add(l10n.detailDiscsQueued(result.added));
-    if (result.duplicates > 0) {
-      parts.add(l10n.detailDiscsDuplicate(result.duplicates));
-    }
-    if (result.skipped > 0) parts.add(l10n.detailDiscsUnavailable(result.skipped));
-    final message = parts.isEmpty
-        ? context.l10n.detailNoDiscsAvailable
-        : l10n.detailDiscsSummary(parts.join(', '));
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-        duration: const Duration(seconds: 5),
-        action: result.added > 0
-            ? SnackBarAction(
-                label: context.l10n.commonView,
-                onPressed: () {
-                  ref.read(navigationTabProvider.notifier).state =
-                      NavTab.downloads;
-                  Navigator.of(context).popUntil((route) => route.isFirst);
-                },
-              )
-            : null,
-      ),
-    );
-  }
 }
 
 class _MetadataCard extends StatefulWidget {
@@ -998,7 +961,67 @@ class _DownloadLinkCard extends ConsumerWidget {
     );
   }
 
+  /// For a disc of a multi-disc set, offers the full game instead. Returns
+  /// true when the full-game flow took over.
+  Future<bool> _offerFullGame(BuildContext context, WidgetRef ref) async {
+    if (!ref.read(settingsProvider).discSetPrompt) return false;
+    final group = await ref.read(entryGroupProvider(entry.slug).future);
+    if (group == null || !group.isDisc || group.members.length < 2) {
+      return false;
+    }
+    if (!context.mounted) return false;
+
+    var dontAsk = false;
+    final full = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => StatefulBuilder(
+        builder: (dialogContext, setState) => AlertDialog(
+          title: Text(context.l10n.promptSetTitle(group.members.length)),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(context.l10n.promptSetBody),
+              CheckboxListTile(
+                contentPadding: EdgeInsets.zero,
+                value: dontAsk,
+                onChanged: (value) => setState(() => dontAsk = value!),
+                title: Text(context.l10n.promptSetDontAsk),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(dialogContext, false),
+              child: Text(context.l10n.promptSetOnlyThis),
+            ),
+            FilledButton(
+              onPressed: () => Navigator.pop(dialogContext, true),
+              child: Text(context.l10n.promptSetFull),
+            ),
+          ],
+        ),
+      ),
+    );
+    if (full == null) return true; // dismissed: do nothing
+    if (dontAsk) {
+      await ref.read(settingsProvider.notifier).setDiscSetPrompt(false);
+    }
+    if (full && context.mounted) {
+      await downloadDiscGroup(
+        context,
+        ref,
+        group,
+        sourcePriority: kKnownSourcePriority,
+      );
+    }
+    return full;
+  }
+
   Future<void> _startDownload(BuildContext context, WidgetRef ref) async {
+    if (await _offerFullGame(context, ref)) return;
+    if (!context.mounted) return;
+
     final requiresLogin = link.requiresAuth;
 
     if (requiresLogin) {

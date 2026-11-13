@@ -404,6 +404,12 @@ abstract class AppLocalizations {
   /// **'Download all {count} discs'**
   String detailDownloadAllDiscs(int count);
 
+  /// Main button of the multi-disc card
+  ///
+  /// In en, this message translates to:
+  /// **'Download full game ({count} discs)'**
+  String detailDownloadFullGame(int count);
+
   /// Section header listing download sources
   ///
   /// In en, this message translates to:
@@ -854,6 +860,12 @@ abstract class AppLocalizations {
   /// **'Library cleaned up'**
   String get libraryCleanedUp;
 
+  /// Library action grouping the discs of a multi-disc game behind one .m3u
+  ///
+  /// In en, this message translates to:
+  /// **'Create playlist'**
+  String get libraryCreatePlaylist;
+
   /// Delete dialog body
   ///
   /// In en, this message translates to:
@@ -955,6 +967,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Platform'**
   String get libraryPlatform;
+
+  /// Snackbar after organizing a set
+  ///
+  /// In en, this message translates to:
+  /// **'Playlist created: {title}.m3u'**
+  String libraryPlaylistCreated(String title);
+
+  /// Snackbar when some discs are not downloaded; discs is a list
+  ///
+  /// In en, this message translates to:
+  /// **'Missing discs: {discs}'**
+  String libraryPlaylistMissing(String discs);
 
   /// Dialog button: keeps the file
   ///
@@ -1093,6 +1117,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Keeps downloads running in background'**
   String get notifServiceChannelDesc;
+
+  /// Body of the single-disc dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Download the full game so every disc and the playlist are ready, or only this disc?'**
+  String get promptSetBody;
+
+  /// Dialog checkbox
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t ask again'**
+  String get promptSetDontAsk;
+
+  /// Dialog button
+  ///
+  /// In en, this message translates to:
+  /// **'Full game'**
+  String get promptSetFull;
+
+  /// Dialog button
+  ///
+  /// In en, this message translates to:
+  /// **'Only this disc'**
+  String get promptSetOnlyThis;
+
+  /// Dialog shown before downloading a single disc of a set
+  ///
+  /// In en, this message translates to:
+  /// **'This game has {count} discs'**
+  String promptSetTitle(int count);
 
   /// Section header
   ///
@@ -1309,6 +1363,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Only use direct downloads (hides torrent-only sources)'**
   String get settingsDisableTorrentsHint;
+
+  /// Settings switch
+  ///
+  /// In en, this message translates to:
+  /// **'Offer the full game for multi-disc games'**
+  String get settingsDiscSetPrompt;
+
+  /// Settings switch subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Ask before downloading a single disc of a set'**
+  String get settingsDiscSetPromptHint;
 
   /// Section header
   ///
@@ -1615,6 +1681,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{size} MB'**
   String setupSizeMb(String size);
+
+  /// Confirm button with total size
+  ///
+  /// In en, this message translates to:
+  /// **'Download {size}'**
+  String sheetConfirm(String size);
+
+  /// Explanation under the checkbox. Keep .hidden and .m3u as is.
+  ///
+  /// In en, this message translates to:
+  /// **'Discs go into a hidden .hidden folder and an .m3u file lets the emulator swap discs, so frontends like iiSU or ES-DE show the game once.'**
+  String get sheetHiddenHelp;
+
+  /// Checkbox in the multi-disc sheet
+  ///
+  /// In en, this message translates to:
+  /// **'Single entry in launchers'**
+  String get sheetHiddenOption;
+
+  /// Warning in the multi-disc sheet
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 disc has no source: the playlist will be incomplete.} other{{count} discs have no source: the playlist will be incomplete.}}'**
+  String sheetMissingDiscs(int count);
+
+  /// Header above the file preview
+  ///
+  /// In en, this message translates to:
+  /// **'Files created in {path}:'**
+  String sheetResultIn(String path);
+
+  /// Title of the multi-disc confirmation sheet
+  ///
+  /// In en, this message translates to:
+  /// **'{title} — full game ({count} discs)'**
+  String sheetTitle(String title, int count);
+
+  /// Disc row without any download link
+  ///
+  /// In en, this message translates to:
+  /// **'No source available'**
+  String get sheetUnavailable;
+
+  /// Size in gigabytes
+  ///
+  /// In en, this message translates to:
+  /// **'{size} GB'**
+  String sizeGb(String size);
+
+  /// Size in megabytes
+  ///
+  /// In en, this message translates to:
+  /// **'{size} MB'**
+  String sizeMb(String size);
 
   /// Status line fragment; when is a relative time
   ///

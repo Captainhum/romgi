@@ -200,6 +200,11 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String detailDownloadFullGame(int count) {
+    return 'Download full game ($count discs)';
+  }
+
+  @override
   String get detailDownloadLinks => 'Download Links';
 
   @override
@@ -473,6 +478,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get libraryCleanedUp => 'Library cleaned up';
 
   @override
+  String get libraryCreatePlaylist => 'Create playlist';
+
+  @override
   String libraryDeleteConfirm(String title) {
     return 'Delete \"$title\"?';
   }
@@ -530,6 +538,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get libraryPlatform => 'Platform';
+
+  @override
+  String libraryPlaylistCreated(String title) {
+    return 'Playlist created: $title.m3u';
+  }
+
+  @override
+  String libraryPlaylistMissing(String discs) {
+    return 'Missing discs: $discs';
+  }
 
   @override
   String get libraryRemoveFromLibrary => 'Remove from Library';
@@ -604,6 +622,24 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get notifServiceChannelDesc => 'Keeps downloads running in background';
+
+  @override
+  String get promptSetBody =>
+      'Download the full game so every disc and the playlist are ready, or only this disc?';
+
+  @override
+  String get promptSetDontAsk => 'Don\'t ask again';
+
+  @override
+  String get promptSetFull => 'Full game';
+
+  @override
+  String get promptSetOnlyThis => 'Only this disc';
+
+  @override
+  String promptSetTitle(int count) {
+    return 'This game has $count discs';
+  }
 
   @override
   String get settingsAbout => 'About';
@@ -733,6 +769,14 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get settingsDisableTorrentsHint =>
       'Only use direct downloads (hides torrent-only sources)';
+
+  @override
+  String get settingsDiscSetPrompt =>
+      'Offer the full game for multi-disc games';
+
+  @override
+  String get settingsDiscSetPromptHint =>
+      'Ask before downloading a single disc of a set';
 
   @override
   String get settingsDownloadLocations => 'Download Locations';
@@ -896,6 +940,52 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String setupSizeMb(String size) {
+    return '$size MB';
+  }
+
+  @override
+  String sheetConfirm(String size) {
+    return 'Download $size';
+  }
+
+  @override
+  String get sheetHiddenHelp =>
+      'Discs go into a hidden .hidden folder and an .m3u file lets the emulator swap discs, so frontends like iiSU or ES-DE show the game once.';
+
+  @override
+  String get sheetHiddenOption => 'Single entry in launchers';
+
+  @override
+  String sheetMissingDiscs(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count discs have no source: the playlist will be incomplete.',
+      one: '1 disc has no source: the playlist will be incomplete.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String sheetResultIn(String path) {
+    return 'Files created in $path:';
+  }
+
+  @override
+  String sheetTitle(String title, int count) {
+    return '$title — full game ($count discs)';
+  }
+
+  @override
+  String get sheetUnavailable => 'No source available';
+
+  @override
+  String sizeGb(String size) {
+    return '$size GB';
+  }
+
+  @override
+  String sizeMb(String size) {
     return '$size MB';
   }
 

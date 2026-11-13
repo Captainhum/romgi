@@ -202,6 +202,11 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
+  String detailDownloadFullGame(int count) {
+    return 'Télécharger le jeu complet ($count disques)';
+  }
+
+  @override
   String get detailDownloadLinks => 'Liens de téléchargement';
 
   @override
@@ -477,6 +482,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get libraryCleanedUp => 'Bibliothèque nettoyée';
 
   @override
+  String get libraryCreatePlaylist => 'Créer la playlist';
+
+  @override
   String libraryDeleteConfirm(String title) {
     return 'Supprimer « $title » ?';
   }
@@ -534,6 +542,16 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get libraryPlatform => 'Plateforme';
+
+  @override
+  String libraryPlaylistCreated(String title) {
+    return 'Playlist créée : $title.m3u';
+  }
+
+  @override
+  String libraryPlaylistMissing(String discs) {
+    return 'Disques manquants : $discs';
+  }
 
   @override
   String get libraryRemoveFromLibrary => 'Retirer de la bibliothèque';
@@ -612,6 +630,24 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get notifServiceChannelDesc =>
       'Garde les téléchargements actifs en arrière-plan';
+
+  @override
+  String get promptSetBody =>
+      'Télécharger le jeu complet pour avoir tous les disques et la playlist, ou seulement ce disque ?';
+
+  @override
+  String get promptSetDontAsk => 'Ne plus demander';
+
+  @override
+  String get promptSetFull => 'Jeu complet';
+
+  @override
+  String get promptSetOnlyThis => 'Seulement ce disque';
+
+  @override
+  String promptSetTitle(int count) {
+    return 'Ce jeu a $count disques';
+  }
 
   @override
   String get settingsAbout => 'À propos';
@@ -744,6 +780,14 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get settingsDisableTorrentsHint =>
       'Utiliser uniquement les téléchargements directs (masque les sources torrent)';
+
+  @override
+  String get settingsDiscSetPrompt =>
+      'Proposer le jeu complet pour les jeux multi-disques';
+
+  @override
+  String get settingsDiscSetPromptHint =>
+      'Demander avant de télécharger un seul disque d\'un jeu';
 
   @override
   String get settingsDownloadLocations => 'Dossiers de téléchargement';
@@ -908,6 +952,53 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String setupSizeMb(String size) {
+    return '$size Mo';
+  }
+
+  @override
+  String sheetConfirm(String size) {
+    return 'Télécharger $size';
+  }
+
+  @override
+  String get sheetHiddenHelp =>
+      'Les disques vont dans un dossier caché .hidden et un fichier .m3u permet à l\'émulateur de changer de disque : les launchers comme iiSU ou ES-DE affichent le jeu une seule fois.';
+
+  @override
+  String get sheetHiddenOption => 'Une seule entrée dans le launcher';
+
+  @override
+  String sheetMissingDiscs(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other:
+          '$count disques n\'ont pas de source : la playlist sera incomplète.',
+      one: '1 disque n\'a pas de source : la playlist sera incomplète.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String sheetResultIn(String path) {
+    return 'Fichiers créés dans $path :';
+  }
+
+  @override
+  String sheetTitle(String title, int count) {
+    return '$title — jeu complet ($count disques)';
+  }
+
+  @override
+  String get sheetUnavailable => 'Aucune source disponible';
+
+  @override
+  String sizeGb(String size) {
+    return '$size Go';
+  }
+
+  @override
+  String sizeMb(String size) {
     return '$size Mo';
   }
 

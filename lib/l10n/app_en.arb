@@ -267,6 +267,15 @@
       }
     }
   },
+  "detailDownloadFullGame": "Download full game ({count} discs)",
+  "@detailDownloadFullGame": {
+    "description": "Main button of the multi-disc card",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "detailDownloadLinks": "Download Links",
   "@detailDownloadLinks": {
     "description": "Section header listing download sources"
@@ -610,6 +619,10 @@
   "@libraryCleanedUp": {
     "description": "Snackbar after clean up"
   },
+  "libraryCreatePlaylist": "Create playlist",
+  "@libraryCreatePlaylist": {
+    "description": "Library action grouping the discs of a multi-disc game behind one .m3u"
+  },
   "libraryDeleteConfirm": "Delete \"{title}\"?",
   "@libraryDeleteConfirm": {
     "description": "Delete dialog body",
@@ -697,6 +710,24 @@
   "libraryPlatform": "Platform",
   "@libraryPlatform": {
     "description": "Info row label"
+  },
+  "libraryPlaylistCreated": "Playlist created: {title}.m3u",
+  "@libraryPlaylistCreated": {
+    "description": "Snackbar after organizing a set",
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "libraryPlaylistMissing": "Missing discs: {discs}",
+  "@libraryPlaylistMissing": {
+    "description": "Snackbar when some discs are not downloaded; discs is a list",
+    "placeholders": {
+      "discs": {
+        "type": "String"
+      }
+    }
   },
   "libraryRemoveFromLibrary": "Remove from Library",
   "@libraryRemoveFromLibrary": {
@@ -799,6 +830,31 @@
   "notifServiceChannelDesc": "Keeps downloads running in background",
   "@notifServiceChannelDesc": {
     "description": "Foreground service channel description"
+  },
+  "promptSetBody": "Download the full game so every disc and the playlist are ready, or only this disc?",
+  "@promptSetBody": {
+    "description": "Body of the single-disc dialog"
+  },
+  "promptSetDontAsk": "Don't ask again",
+  "@promptSetDontAsk": {
+    "description": "Dialog checkbox"
+  },
+  "promptSetFull": "Full game",
+  "@promptSetFull": {
+    "description": "Dialog button"
+  },
+  "promptSetOnlyThis": "Only this disc",
+  "@promptSetOnlyThis": {
+    "description": "Dialog button"
+  },
+  "promptSetTitle": "This game has {count} discs",
+  "@promptSetTitle": {
+    "description": "Dialog shown before downloading a single disc of a set",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "settingsAbout": "About",
   "@settingsAbout": {
@@ -970,6 +1026,14 @@
   },
   "settingsDisableTorrentsHint": "Only use direct downloads (hides torrent-only sources)",
   "@settingsDisableTorrentsHint": {
+    "description": "Settings switch subtitle"
+  },
+  "settingsDiscSetPrompt": "Offer the full game for multi-disc games",
+  "@settingsDiscSetPrompt": {
+    "description": "Settings switch"
+  },
+  "settingsDiscSetPromptHint": "Ask before downloading a single disc of a set",
+  "@settingsDiscSetPromptHint": {
     "description": "Settings switch subtitle"
   },
   "settingsDownloadLocations": "Download Locations",
@@ -1184,6 +1248,75 @@
   },
   "setupSizeMb": "{size} MB",
   "@setupSizeMb": {
+    "description": "Size in megabytes",
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "sheetConfirm": "Download {size}",
+  "@sheetConfirm": {
+    "description": "Confirm button with total size",
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "sheetHiddenHelp": "Discs go into a hidden .hidden folder and an .m3u file lets the emulator swap discs, so frontends like iiSU or ES-DE show the game once.",
+  "@sheetHiddenHelp": {
+    "description": "Explanation under the checkbox. Keep .hidden and .m3u as is."
+  },
+  "sheetHiddenOption": "Single entry in launchers",
+  "@sheetHiddenOption": {
+    "description": "Checkbox in the multi-disc sheet"
+  },
+  "sheetMissingDiscs": "{count, plural, =1{1 disc has no source: the playlist will be incomplete.} other{{count} discs have no source: the playlist will be incomplete.}}",
+  "@sheetMissingDiscs": {
+    "description": "Warning in the multi-disc sheet",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "sheetResultIn": "Files created in {path}:",
+  "@sheetResultIn": {
+    "description": "Header above the file preview",
+    "placeholders": {
+      "path": {
+        "type": "String"
+      }
+    }
+  },
+  "sheetTitle": "{title} — full game ({count} discs)",
+  "@sheetTitle": {
+    "description": "Title of the multi-disc confirmation sheet",
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "sheetUnavailable": "No source available",
+  "@sheetUnavailable": {
+    "description": "Disc row without any download link"
+  },
+  "sizeGb": "{size} GB",
+  "@sizeGb": {
+    "description": "Size in gigabytes",
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "sizeMb": "{size} MB",
+  "@sizeMb": {
     "description": "Size in megabytes",
     "placeholders": {
       "size": {

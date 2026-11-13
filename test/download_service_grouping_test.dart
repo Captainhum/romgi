@@ -68,6 +68,7 @@ class FakeDatabaseService extends Fake implements DatabaseService {
     int? groupIndex,
     String? groupTitle,
     int? groupTotal,
+    bool? groupHidden,
   }) async {
     final task = rows[id];
     if (task == null) return;
@@ -77,6 +78,7 @@ class FakeDatabaseService extends Fake implements DatabaseService {
       groupIndex: groupIndex,
       groupTitle: groupTitle,
       groupTotal: groupTotal,
+      groupHidden: groupHidden,
     );
   }
 }

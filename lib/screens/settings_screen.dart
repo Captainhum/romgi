@@ -102,6 +102,16 @@ class SettingsScreen extends ConsumerWidget {
                   },
                 ),
 
+                SwitchListTile(
+                  secondary: const Icon(Icons.album),
+                  title: Text(context.l10n.settingsDiscSetPrompt),
+                  subtitle: Text(context.l10n.settingsDiscSetPromptHint),
+                  value: settings.discSetPrompt,
+                  onChanged: (value) {
+                    ref.read(settingsProvider.notifier).setDiscSetPrompt(value);
+                  },
+                ),
+
                 const Divider(height: 32),
 
                 _SectionHeader(title: context.l10n.settingsDebridService),

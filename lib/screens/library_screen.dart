@@ -393,6 +393,12 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen>
       return;
     }
 
+    final group = item.groupHidden
+        ? null
+        : await ref.read(romDatabaseProvider).getEntryGroup(item.slug);
+    final canGroup =
+        group != null && group.isDisc && group.members.length > 1;
+
     // Show file info dialog with Open with option
     if (mounted) {
       showDialog(
@@ -422,6 +428,14 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen>
             ],
           ),
           actions: [
+            if (canGroup)
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(dialogContext);
+                  _createPlaylist(group);
+                },
+                child: Text(context.l10n.libraryCreatePlaylist),
+              ),
             TextButton(
               onPressed: () => Navigator.pop(dialogContext),
               child: Text(context.l10n.commonClose),
@@ -465,6 +479,23 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen>
           ),
           Text(value),
         ],
+      ),
+    );
+  }
+
+  Future<void> _createPlaylist(EntryGroup group) async {
+    final missing = await ref
+        .read(downloadProvider.notifier)
+        .organizeExistingGroup(group);
+    await ref.read(libraryProvider.notifier).refresh();
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          missing.isEmpty
+              ? context.l10n.libraryPlaylistCreated(group.title)
+              : context.l10n.libraryPlaylistMissing(missing.join(', ')),
+        ),
       ),
     );
   }
