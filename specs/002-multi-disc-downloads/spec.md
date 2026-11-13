@@ -187,5 +187,6 @@ playlist" on the game in the Library and check the resulting layout.
 - CHD conversion is out of scope (feature 004); the sheet is designed so a "Convert to CHD"
   option can be added later.
 - The option's initial default (before the user ever chooses) is ON, because the action is
-  explicit and the sheet explains the result; this is a deliberate exception to "off by default"
-  in constitution principle II, recorded for the plan's Constitution Check.
+  explicit and the sheet explains the result. Confirmed by the project owner on 2026-11-13; this
+  is a deliberate exception to "off by default" in constitution principle II, to be recorded in
+  the plan's Complexity Tracking.
