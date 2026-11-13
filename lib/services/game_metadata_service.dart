@@ -89,7 +89,7 @@ class GameMetadataService {
     if (provider == null || !provider.isConfigured(creds)) {
       return 'No credentials set';
     }
-    return provider.validateCredentials(creds!);
+    return provider.validateCredentials(creds ?? const {});
   }
 
   static String cleanTitle(String title) => title
@@ -105,7 +105,7 @@ class GameMetadataService {
     final configured = <GameMetadataProvider, Map<String, String>>{};
     for (final provider in _registry.providers) {
       final creds = await _readCreds(provider.info.id);
-      if (provider.isConfigured(creds)) configured[provider] = creds!;
+      if (provider.isConfigured(creds)) configured[provider] = creds ?? const {};
     }
     if (configured.isEmpty) return null;
 

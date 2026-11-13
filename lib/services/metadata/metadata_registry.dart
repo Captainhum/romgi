@@ -1,11 +1,13 @@
 import 'metadata_provider.dart';
 import 'screenscraper_provider.dart';
 import 'steamgriddb_provider.dart';
+import 'wikipedia_provider.dart';
 
 class MetadataProviderRegistry {
   MetadataProviderRegistry({List<GameMetadataProvider>? providers})
       : _providers =
-            providers ?? [ScreenScraperProvider(), SteamGridDbProvider()];
+            providers ??
+            [ScreenScraperProvider(), SteamGridDbProvider(), WikipediaProvider()];
 
   final List<GameMetadataProvider> _providers;
 

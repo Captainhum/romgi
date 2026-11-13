@@ -1339,6 +1339,10 @@
   "@settingsVersion": {
     "description": "Settings tile"
   },
+  "settingsWikipediaHint": "No account needed. Game descriptions in your language when Wikipedia has an article.",
+  "@settingsWikipediaHint": {
+    "description": "Settings note under the Wikipedia metadata source"
+  },
   "setupChecking": "Checking database...",
   "@setupChecking": {
     "description": "Setup screen status"

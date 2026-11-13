@@ -1232,6 +1232,13 @@ class _MetadataProviderTileState extends ConsumerState<_MetadataProviderTile> {
 
   @override
   Widget build(BuildContext context) {
+    if (widget.provider.credentialFields.isEmpty) {
+      return ListTile(
+        leading: const Icon(Icons.menu_book_outlined),
+        title: Text(widget.provider.info.name),
+        subtitle: Text(context.l10n.settingsWikipediaHint),
+      );
+    }
     final configured =
         ref.watch(metadataProviderConfiguredProvider(_providerId));
 

@@ -24,6 +24,9 @@ Concept inspired by [pkgi-psp](https://github.com/bucanero/pkgi-psp), [Kekatsu-D
 - **Custom Download Paths** - Set default or per-platform download locations
 - **Internet Archive Support** - Persistent login for protected Internet Archive items
 - **Source Status** - See per-catalog health (online / down / unknown) in Settings
+- **Game Descriptions** - From Wikipedia in your language (no account needed), or ScreenScraper
+- **CHD Conversion** - Convert CD games (CUE/BIN, GDI, ISO) to CHD on the device, same output as `chdman`
+- **Multi-Disc Games** - One entry per game in frontends: discs in `.hidden/` plus an `.m3u`
 
 ## Quick Setup
 

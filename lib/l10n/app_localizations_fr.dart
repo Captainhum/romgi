@@ -1022,6 +1022,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settingsVersion => 'Version';
 
   @override
+  String get settingsWikipediaHint =>
+      'Aucun compte nécessaire. Descriptions des jeux dans ta langue quand Wikipédia a un article.';
+
+  @override
   String get setupChecking => 'Vérification de la base…';
 
   @override

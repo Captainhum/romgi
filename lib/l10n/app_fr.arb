@@ -278,6 +278,7 @@
   "settingsUsingDefault": "Dossier par défaut",
   "settingsVerifyFilesHint": "Vérifier que les fichiers téléchargés existent toujours",
   "settingsVersion": "Version",
+  "settingsWikipediaHint": "Aucun compte nécessaire. Descriptions des jeux dans ta langue quand Wikipédia a un article.",
   "setupChecking": "Vérification de la base…",
   "setupDownloadBody": "La base du catalogue doit être téléchargée pour parcourir et rechercher des jeux.",
   "setupDownloadButton": "Télécharger la base",

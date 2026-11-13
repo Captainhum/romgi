@@ -1766,6 +1766,12 @@ abstract class AppLocalizations {
   /// **'Version'**
   String get settingsVersion;
 
+  /// Settings note under the Wikipedia metadata source
+  ///
+  /// In en, this message translates to:
+  /// **'No account needed. Game descriptions in your language when Wikipedia has an article.'**
+  String get settingsWikipediaHint;
+
   /// Setup screen status
   ///
   /// In en, this message translates to:

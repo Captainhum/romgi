@@ -1009,6 +1009,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsVersion => 'Version';
 
   @override
+  String get settingsWikipediaHint =>
+      'No account needed. Game descriptions in your language when Wikipedia has an article.';
+
+  @override
   String get setupChecking => 'Checking database...';
 
   @override
