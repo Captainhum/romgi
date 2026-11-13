@@ -168,6 +168,17 @@ class SettingsScreen extends ConsumerWidget {
                   },
                 ),
 
+                SwitchListTile(
+                  secondary: const Icon(Icons.drive_file_rename_outline),
+                  title: Text(context.l10n.settingsEsdeFolders),
+                  subtitle: Text(context.l10n.settingsEsdeFoldersHint),
+                  isThreeLine: true,
+                  value: settings.esdeFolderNames,
+                  onChanged: (value) => ref
+                      .read(settingsProvider.notifier)
+                      .setEsdeFolderNames(value),
+                ),
+
                 const Divider(),
 
                 Padding(

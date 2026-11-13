@@ -1526,6 +1526,18 @@ abstract class AppLocalizations {
   /// **'Download Locations'**
   String get settingsDownloadLocations;
 
+  /// Settings switch
+  ///
+  /// In en, this message translates to:
+  /// **'Frontend folder names (ES-DE, iiSU…)'**
+  String get settingsEsdeFolders;
+
+  /// Settings switch subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Each console goes in the folder frontends expect (psx, snes, gba…). Pick your ROMs folder as the default location so iiSU, ES-DE or Daijishō find new games by themselves.'**
+  String get settingsEsdeFoldersHint;
+
   /// Credential field
   ///
   /// In en, this message translates to:

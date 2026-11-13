@@ -892,6 +892,14 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settingsDownloadLocations => 'Dossiers de téléchargement';
 
   @override
+  String get settingsEsdeFolders =>
+      'Noms de dossiers des launchers (ES-DE, iiSU…)';
+
+  @override
+  String get settingsEsdeFoldersHint =>
+      'Chaque console va dans le dossier attendu par les launchers (psx, snes, gba…). Choisis ton dossier ROMs comme dossier par défaut : iiSU, ES-DE ou Daijishō trouveront les nouveaux jeux tout seuls.';
+
+  @override
   String get settingsFieldApiKey => 'Clé API';
 
   @override

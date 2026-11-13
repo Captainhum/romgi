@@ -21,7 +21,9 @@ All four planned features shipped (see `specs/001`–`004`):
 
 - ~~**Integration API**~~ — done: `romgi://` links, see docs/integration.md. Next: let a
   link pre-select a source and open the confirmation directly.
-- **Frontend integration (iiSU, ES-DE, Daijishō…)** — trigger a library refresh after a
-  download; investigate what each frontend allows.
+- ~~**Frontend folders**~~ — done: "Frontend folder names" setting puts each console in the
+  ES-DE / iiSU folder (`psx`, `snes`…) under the chosen ROMs root.
+- **Frontend refresh** — iiSU (1.2.0) exposes no intent or receiver to trigger a rescan, so
+  the user still refreshes its library by hand. Revisit if iiSU or ES-DE add one.
 - **Own app identity** — new name and application ID so it installs next to the official romgi,
   with credit to the original project kept in the README.

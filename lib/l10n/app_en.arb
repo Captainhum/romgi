@@ -1169,6 +1169,14 @@
   "@settingsDownloadLocations": {
     "description": "Section header"
   },
+  "settingsEsdeFolders": "Frontend folder names (ES-DE, iiSU…)",
+  "@settingsEsdeFolders": {
+    "description": "Settings switch"
+  },
+  "settingsEsdeFoldersHint": "Each console goes in the folder frontends expect (psx, snes, gba…). Pick your ROMs folder as the default location so iiSU, ES-DE or Daijishō find new games by themselves.",
+  "@settingsEsdeFoldersHint": {
+    "description": "Settings switch subtitle"
+  },
   "settingsFieldApiKey": "API key",
   "@settingsFieldApiKey": {
     "description": "Credential field"

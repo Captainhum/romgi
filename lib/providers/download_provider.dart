@@ -21,6 +21,7 @@ final storageServiceProvider = Provider<StorageService>((ref) {
   if (!settings.isLoading) {
     storage.setCustomDownloadPath(settings.defaultDownloadPath);
     storage.setPlatformPaths(settings.platformPaths);
+    storage.esdeFolderNames = settings.esdeFolderNames;
   }
 
   return storage;

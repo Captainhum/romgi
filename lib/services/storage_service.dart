@@ -5,12 +5,18 @@ import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+import '../utils/frontend_folders.dart';
+
 class StorageService {
   static const String _defaultRomFolder = 'Roms';
   static const String defaultAndroidPath = '/storage/emulated/0/Download/Roms';
 
   String? _customDownloadPath;
   Map<String, String> _platformPaths = {};
+
+  /// Name platform folders like ES-DE / iiSU (`psx`, `snes`…) instead of
+  /// romgi's ids.
+  bool esdeFolderNames = false;
 
   Future<bool> hasStoragePermission() async {
     if (!Platform.isAndroid) return true;
@@ -109,7 +115,10 @@ class StorageService {
     // Fall back to base directory with platform subfolder
     final baseDirectory = await getDownloadDirectory();
     final defaultPlatformDirectory = Directory(
-      path.join(baseDirectory.path, platform),
+      path.join(
+        baseDirectory.path,
+        platformFolderName(platform, esde: esdeFolderNames),
+      ),
     );
     if (!await defaultPlatformDirectory.exists()) {
       await defaultPlatformDirectory.create(recursive: true);

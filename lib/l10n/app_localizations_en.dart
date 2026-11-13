@@ -880,6 +880,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsDownloadLocations => 'Download Locations';
 
   @override
+  String get settingsEsdeFolders => 'Frontend folder names (ES-DE, iiSU…)';
+
+  @override
+  String get settingsEsdeFoldersHint =>
+      'Each console goes in the folder frontends expect (psx, snes, gba…). Pick your ROMs folder as the default location so iiSU, ES-DE or Daijishō find new games by themselves.';
+
+  @override
   String get settingsFieldApiKey => 'API key';
 
   @override

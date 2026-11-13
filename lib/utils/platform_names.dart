@@ -106,6 +106,9 @@ class PlatformNames {
     'fbneo': 'FinalBurn Neo',
   };
 
+  /// Every platform id with a display name.
+  static Iterable<String> get knownIds => _names.keys;
+
   static String getDisplayName(String platformId) {
     final lowerId = platformId.toLowerCase();
     return _names[lowerId] ?? platformId.toUpperCase();

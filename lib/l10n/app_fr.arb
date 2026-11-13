@@ -238,6 +238,8 @@
   "settingsDiscSetPrompt": "Proposer le jeu complet pour les jeux multi-disques",
   "settingsDiscSetPromptHint": "Demander avant de télécharger un seul disque d'un jeu",
   "settingsDownloadLocations": "Dossiers de téléchargement",
+  "settingsEsdeFolders": "Noms de dossiers des launchers (ES-DE, iiSU…)",
+  "settingsEsdeFoldersHint": "Chaque console va dans le dossier attendu par les launchers (psx, snes, gba…). Choisis ton dossier ROMs comme dossier par défaut : iiSU, ES-DE ou Daijishō trouveront les nouveaux jeux tout seuls.",
   "settingsFieldApiKey": "Clé API",
   "settingsFieldOptional": "{label} (facultatif)",
   "settingsFieldPassword": "Mot de passe",

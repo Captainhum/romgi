@@ -17,6 +17,9 @@ class SettingsState {
   final bool autoExtractDisabled;
   final Set<String> extractDisabledPlatforms;
 
+  /// Platform folders named like ES-DE / iiSU instead of romgi's ids.
+  final bool esdeFolderNames;
+
   /// Convert downloaded CD games to CHD (off by default).
   final bool chdEnabled;
   final Set<String> chdDisabledPlatforms;
@@ -44,6 +47,7 @@ class SettingsState {
     this.torrentsDisabled = false,
     this.autoExtractDisabled = false,
     this.extractDisabledPlatforms = const {},
+    this.esdeFolderNames = false,
     this.chdEnabled = false,
     this.chdDisabledPlatforms = const {},
     this.debridEnabled = false,
@@ -76,6 +80,7 @@ class SettingsState {
     bool? torrentsDisabled,
     bool? autoExtractDisabled,
     Set<String>? extractDisabledPlatforms,
+    bool? esdeFolderNames,
     bool? chdEnabled,
     Set<String>? chdDisabledPlatforms,
     bool? debridEnabled,
@@ -101,6 +106,7 @@ class SettingsState {
       autoExtractDisabled: autoExtractDisabled ?? this.autoExtractDisabled,
       extractDisabledPlatforms:
           extractDisabledPlatforms ?? this.extractDisabledPlatforms,
+      esdeFolderNames: esdeFolderNames ?? this.esdeFolderNames,
       chdEnabled: chdEnabled ?? this.chdEnabled,
       chdDisabledPlatforms: chdDisabledPlatforms ?? this.chdDisabledPlatforms,
       debridEnabled: debridEnabled ?? this.debridEnabled,
@@ -143,6 +149,7 @@ class SettingsNotifier extends StateNotifier<SettingsState> {
   static const String _keyTorrentsDisabled = 'torrents_disabled';
   static const String _keyAutoExtractDisabled = 'auto_extract_disabled';
   static const String _keyChdEnabled = 'chd_enabled';
+  static const String _keyEsdeFolderNames = 'esde_folder_names';
   static const String _keyChdDisabledPlatforms = 'chd_disabled_platform_';
   static const String _keyExtractDisabledPlatforms =
       'extract_disabled_platform_';
@@ -212,6 +219,7 @@ class SettingsNotifier extends StateNotifier<SettingsState> {
       torrentsDisabled: torrentsDisabled,
       autoExtractDisabled: autoExtractDisabled,
       extractDisabledPlatforms: extractDisabledPlatforms,
+      esdeFolderNames: prefs.getBool(_keyEsdeFolderNames) ?? false,
       chdEnabled: prefs.getBool(_keyChdEnabled) ?? false,
       chdDisabledPlatforms: chdDisabledPlatforms,
       debridEnabled: debridEnabled,
@@ -293,6 +301,12 @@ class SettingsNotifier extends StateNotifier<SettingsState> {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setStringList(_keyDefaultRegions, regions);
     state = state.copyWith(defaultRegions: regions);
+  }
+
+  Future<void> setEsdeFolderNames(bool value) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_keyEsdeFolderNames, value);
+    state = state.copyWith(esdeFolderNames: value);
   }
 
   Future<void> setChdEnabled(bool value) async {
