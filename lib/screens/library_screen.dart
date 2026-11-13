@@ -303,12 +303,13 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen>
               },
               onRemove: () async {
                 final messenger = ScaffoldMessenger.of(context);
+                final removed = context.l10n.detailRemovedFromWishlist;
                 await ref
                     .read(favoritesProvider.notifier)
                     .removeFavorite(item.slug);
                 if (mounted) {
                   messenger.showSnackBar(
-                    SnackBar(content: Text(context.l10n.detailRemovedFromWishlist)),
+                    SnackBar(content: Text(removed)),
                   );
                 }
               },
