@@ -71,6 +71,11 @@ void main() {
     expect(await verifyChd(out), isNot(ChdStatus.ok));
   });
 
+  test('reports free space for an existing folder', () {
+    expect(freeBytes(dir.path), greaterThan(0));
+    expect(freeBytes('${dir.path}/missing/folder'), isNull);
+  });
+
   test('cancelling removes the partial output', () async {
     final out = '${dir.path}/game.chd';
     final token = ChdCancelToken()..cancel();

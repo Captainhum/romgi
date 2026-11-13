@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../models/models.dart';
 import '../providers/providers.dart';
+import '../services/chd_converter.dart';
 import '../utils/utils.dart';
 import 'entry_detail_screen.dart';
 import '../l10n/l10n.dart';
@@ -398,6 +399,8 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen>
         : await ref.read(romDatabaseProvider).getEntryGroup(item.slug);
     final canGroup =
         group != null && group.isDisc && group.members.length > 1;
+    final canConvert = ChdConverter.supportsPlatform(item.platform) &&
+        await ChdConverter.findSource(item.filePath!) != null;
 
     // Show file info dialog with Open with option
     if (mounted) {
@@ -428,6 +431,14 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen>
             ],
           ),
           actions: [
+            if (canConvert)
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(dialogContext);
+                  _convertToChd(item);
+                },
+                child: Text(context.l10n.libraryConvertChd),
+              ),
             if (canGroup)
               TextButton(
                 onPressed: () {
@@ -481,6 +492,36 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen>
         ],
       ),
     );
+  }
+
+  Future<void> _convertToChd(DownloadTask item) async {
+    ref.read(navigationTabProvider.notifier).state = NavTab.downloads;
+    final error =
+        await ref.read(downloadProvider.notifier).convertToChd(item);
+    await ref.read(libraryProvider.notifier).refresh();
+    if (!mounted || error == ChdConversionError.cancelled) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          error == null
+              ? context.l10n.libraryConvertedChd
+              : context.l10n.chdConversionFailed(_chdReason(error)),
+        ),
+      ),
+    );
+  }
+
+  String _chdReason(ChdConversionError error) {
+    final l10n = context.l10n;
+    return switch (error) {
+      ChdConversionError.noSpace => l10n.chdErrorNoSpace('?'),
+      ChdConversionError.badInput => l10n.chdErrorBadInput,
+      ChdConversionError.failed => l10n.chdErrorFailed,
+      ChdConversionError.verifyFailed => l10n.chdErrorVerify,
+      ChdConversionError.alreadyExists => l10n.chdErrorExists,
+      ChdConversionError.notConvertible => l10n.chdErrorNotConvertible,
+      ChdConversionError.cancelled => l10n.chdErrorCancelled,
+    };
   }
 
   Future<void> _createPlaylist(EntryGroup group) async {

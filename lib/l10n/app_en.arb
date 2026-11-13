@@ -66,6 +66,48 @@
   "@browseUseSearchBar": {
     "description": "Hint under the recently viewed list"
   },
+  "chdConversionFailed": "CHD conversion skipped: {reason}. The original files are kept.",
+  "@chdConversionFailed": {
+    "description": "Shown when a conversion fails; reason is one of chdError*",
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "chdErrorBadInput": "the disc files are incomplete or unreadable",
+  "@chdErrorBadInput": {
+    "description": "Reason a CHD conversion did not run"
+  },
+  "chdErrorCancelled": "cancelled",
+  "@chdErrorCancelled": {
+    "description": "Reason a CHD conversion did not run"
+  },
+  "chdErrorExists": "a CHD with the same name already exists",
+  "@chdErrorExists": {
+    "description": "Reason a CHD conversion did not run"
+  },
+  "chdErrorFailed": "compression failed",
+  "@chdErrorFailed": {
+    "description": "Reason a CHD conversion did not run"
+  },
+  "chdErrorNoSpace": "not enough free space ({size} needed)",
+  "@chdErrorNoSpace": {
+    "description": "Reason a CHD conversion did not run",
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "chdErrorNotConvertible": "no disc image to convert",
+  "@chdErrorNotConvertible": {
+    "description": "Reason a CHD conversion did not run"
+  },
+  "chdErrorVerify": "the CHD failed verification",
+  "@chdErrorVerify": {
+    "description": "Reason a CHD conversion did not run"
+  },
   "commonCancel": "Cancel",
   "@commonCancel": {
     "description": "Dialog button"
@@ -357,6 +399,10 @@
   "@detailTorrent": {
     "description": "Badge for torrent sources"
   },
+  "downloadsCancelConversion": "Cancel conversion",
+  "@downloadsCancelConversion": {
+    "description": "Tooltip of the button stopping a CHD conversion"
+  },
   "downloadsClearCompleted": "Clear completed",
   "@downloadsClearCompleted": {
     "description": "Menu item removing completed downloads from the list"
@@ -364,6 +410,15 @@
   "downloadsContactingTrackers": "Contacting trackers…",
   "@downloadsContactingTrackers": {
     "description": "Torrent status before peers are found"
+  },
+  "downloadsConvertingProgress": "Converting to CHD… {percent}%",
+  "@downloadsConvertingProgress": {
+    "description": "Progress text during CHD conversion",
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
   },
   "downloadsEmptyBody": "Browse ROMs and tap download to get started",
   "@downloadsEmptyBody": {
@@ -628,6 +683,14 @@
   "@libraryCleanedUp": {
     "description": "Snackbar after clean up"
   },
+  "libraryConvertChd": "Convert to CHD",
+  "@libraryConvertChd": {
+    "description": "Library action"
+  },
+  "libraryConvertedChd": "Converted to CHD",
+  "@libraryConvertedChd": {
+    "description": "Snackbar after a successful conversion"
+  },
   "libraryCreatePlaylist": "Create playlist",
   "@libraryCreatePlaylist": {
     "description": "Library action grouping the discs of a multi-disc game behind one .m3u"
@@ -820,6 +883,10 @@
   "@notifChannelProgressDesc": {
     "description": "Android notification channel description"
   },
+  "notifConverting": "Converting to CHD",
+  "@notifConverting": {
+    "description": "Notification title while a game is converted to CHD"
+  },
   "notifDownloading": "Downloading",
   "@notifDownloading": {
     "description": "Notification title"
@@ -888,6 +955,18 @@
   "settingsAutoExtract": "Auto-extract",
   "@settingsAutoExtract": {
     "description": "Per-platform switch"
+  },
+  "settingsChdEnabled": "Convert CD games to CHD",
+  "@settingsChdEnabled": {
+    "description": "Settings switch"
+  },
+  "settingsChdEnabledHint": "After download, CUE/BIN, GDI and ISO discs become one compressed .chd file (PlayStation, Saturn, Dreamcast, Sega CD…). The originals are deleted only after the CHD is verified.",
+  "@settingsChdEnabledHint": {
+    "description": "Settings switch subtitle"
+  },
+  "settingsChdPlatform": "CHD",
+  "@settingsChdPlatform": {
+    "description": "Per-platform switch label for CHD conversion (keep short)"
   },
   "settingsChecking": "Checking...",
   "@settingsChecking": {
@@ -1264,6 +1343,10 @@
       }
     }
   },
+  "sheetChdNote": "Discs will be converted to CHD after download.",
+  "@sheetChdNote": {
+    "description": "Note in the multi-disc sheet when CHD conversion is on"
+  },
   "sheetConfirm": "Download {size}",
   "@sheetConfirm": {
     "description": "Confirm button with total size",
@@ -1408,6 +1491,10 @@
   "statusCompleted": "Completed",
   "@statusCompleted": {
     "description": "Download status shown under a download"
+  },
+  "statusConverting": "Converting to CHD...",
+  "@statusConverting": {
+    "description": "Download status while converting to CHD"
   },
   "statusDownloading": "Downloading...",
   "@statusDownloading": {

@@ -34,6 +34,20 @@ external int _verify(
   Pointer<Int32> cancel,
 );
 
+@Native<Int64 Function(Pointer<Utf8>)>(symbol: 'romgi_free_bytes')
+external int _freeBytes(Pointer<Utf8> path);
+
+/// Free bytes on the volume holding [path], or null when unknown.
+int? freeBytes(String path) {
+  final native = path.toNativeUtf8();
+  try {
+    final bytes = _freeBytes(native);
+    return bytes < 0 ? null : bytes;
+  } finally {
+    malloc.free(native);
+  }
+}
+
 /// Lets the caller stop a running [createCdChd] or [verifyChd].
 class ChdCancelToken {
   Pointer<Int32>? _flag;

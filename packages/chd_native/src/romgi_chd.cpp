@@ -15,6 +15,7 @@
 #include "chd_shim.h"
 
 #include <algorithm>
+#include <sys/statvfs.h>
 #include <cstdio>
 #include <memory>
 #include <vector>
@@ -128,6 +129,12 @@ int32_t romgi_chd_verify(const char* chd_path, double* progress,
     }
     report(progress, 1.0);
     return ROMGI_CHD_OK;
+}
+
+int64_t romgi_free_bytes(const char* path) {
+    struct statvfs stats;
+    if (statvfs(path, &stats) != 0) return -1;
+    return int64_t(stats.f_bavail) * int64_t(stats.f_frsize);
 }
 
 } // extern "C"

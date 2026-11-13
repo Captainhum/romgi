@@ -97,7 +97,8 @@ class DownloadState {
     final downloading = activeDownloads.where(
       (download) =>
           download.status == DownloadStatus.downloading ||
-          download.status == DownloadStatus.extracting,
+          download.status == DownloadStatus.extracting ||
+          download.status == DownloadStatus.converting,
     );
     return downloading.isNotEmpty ? downloading.first : null;
   }
@@ -107,7 +108,8 @@ class DownloadState {
         .where(
           (download) =>
               download.status == DownloadStatus.downloading ||
-              download.status == DownloadStatus.extracting,
+              download.status == DownloadStatus.extracting ||
+              download.status == DownloadStatus.converting,
         )
         .toList();
   }
@@ -244,6 +246,15 @@ class DownloadNotifier extends StateNotifier<DownloadState> {
     return result;
   }
 
+  void cancelConversion(String id) => _service.cancelConversion(id);
+
+  /// See [DownloadService.convertToChd].
+  Future<ChdConversionError?> convertToChd(DownloadTask task) async {
+    final (_, error) = await _service.convertToChd(task);
+    await refresh();
+    return error;
+  }
+
   /// See [DownloadService.organizeExistingGroup].
   Future<List<String>> organizeExistingGroup(EntryGroup group) async {
     final missing = await _service.organizeExistingGroup(group);
@@ -301,6 +312,8 @@ final downloadProvider = StateNotifierProvider<DownloadNotifier, DownloadState>(
   final debridService = ref.watch(debridServiceProvider);
   service.shouldExtractForPlatform =
       (platform) => settings.shouldExtractForPlatform(platform);
+  service.shouldConvertToChd =
+      (platform) => settings.shouldConvertToChd(platform);
   service.getLinkResolverPrefs = () => LinkResolverPrefs(
         torrentsDisabled: settings.torrentsDisabled,
         debridEnabled:

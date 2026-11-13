@@ -265,11 +265,12 @@ class DatabaseService {
     final db = await database;
     final maps = await db.query(
       'downloads',
-      where: 'status IN (?, ?, ?, ?)',
+      where: 'status IN (?, ?, ?, ?, ?)',
       whereArgs: [
         DownloadStatus.pending.index,
         DownloadStatus.downloading.index,
         DownloadStatus.extracting.index,
+        DownloadStatus.converting.index,
         DownloadStatus.paused.index,
       ],
       orderBy: 'created_at ASC',

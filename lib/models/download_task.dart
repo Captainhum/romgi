@@ -7,6 +7,8 @@ enum DownloadStatus {
   extracting,
   completed,
   failed,
+  // Appended last: the status is stored by index.
+  converting,
 }
 
 class DownloadTask {
@@ -222,6 +224,8 @@ class DownloadTask {
         return 'Completed';
       case DownloadStatus.failed:
         return 'Failed';
+      case DownloadStatus.converting:
+        return 'Converting to CHD...';
     }
   }
 

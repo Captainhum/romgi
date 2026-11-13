@@ -191,6 +191,34 @@ class NotificationService with WidgetsBindingObserver {
     );
   }
 
+  Future<void> showConverting({
+    required String title,
+    required double progress,
+  }) async {
+    final androidDetails = AndroidNotificationDetails(
+      _downloadChannelId,
+      _downloadChannelName,
+      channelDescription: _downloadChannelDesc,
+      importance: Importance.low,
+      priority: Priority.low,
+      ongoing: true,
+      autoCancel: false,
+      showProgress: true,
+      maxProgress: 100,
+      progress: (progress * 100).round(),
+      onlyAlertOnce: true,
+      icon: '@mipmap/ic_launcher',
+    );
+
+    await _notifications.show(
+      _progressNotificationId,
+      appL10n.notifConverting,
+      title,
+      NotificationDetails(android: androidDetails),
+      payload: 'downloads',
+    );
+  }
+
   Future<void> showDownloadComplete({
     required String title,
     required String platform,
@@ -271,6 +299,9 @@ class NotificationService with WidgetsBindingObserver {
         break;
       case DownloadStatus.extracting:
         await showExtracting(title: task.title);
+        break;
+      case DownloadStatus.converting:
+        await showConverting(title: task.title, progress: task.progress);
         break;
       case DownloadStatus.completed:
         await showDownloadComplete(title: task.title, platform: task.platform);

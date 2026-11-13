@@ -1093,7 +1093,8 @@ class _DownloadLinkCard extends ConsumerWidget {
       final statusMsg = switch (existingTask.status) {
         DownloadStatus.completed => context.l10n.detailStatusDownloaded,
         DownloadStatus.downloading ||
-        DownloadStatus.extracting => context.l10n.detailStatusDownloading,
+        DownloadStatus.extracting ||
+        DownloadStatus.converting => context.l10n.detailStatusDownloading,
         DownloadStatus.pending => context.l10n.detailStatusQueued,
         DownloadStatus.paused => context.l10n.detailStatusPaused,
         DownloadStatus.failed => context.l10n.detailStatusInQueue, // shouldn't happen

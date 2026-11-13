@@ -26,6 +26,9 @@ int32_t romgi_chd_create_cd(const char* cue_path, const char* chd_path,
 int32_t romgi_chd_verify(const char* chd_path, double* progress,
                          const int32_t* cancel);
 
+// Free bytes available to the app on the volume holding [path], or -1.
+int64_t romgi_free_bytes(const char* path);
+
 #ifdef __cplusplus
 }
 #endif

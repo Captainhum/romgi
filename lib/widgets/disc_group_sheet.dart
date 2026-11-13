@@ -181,6 +181,18 @@ class _DiscGroupSheetState extends ConsumerState<DiscGroupSheet> {
                   title: Text(l10n.sheetHiddenOption),
                   subtitle: Text(l10n.sheetHiddenHelp),
                 ),
+                if (ref
+                    .watch(settingsProvider)
+                    .shouldConvertToChd(widget.group.platform)) ...[
+                  Row(
+                    children: [
+                      const Icon(Icons.compress, size: 18),
+                      const SizedBox(width: 8),
+                      Expanded(child: Text(l10n.sheetChdNote)),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                ],
                 const SizedBox(height: 8),
                 Text(l10n.sheetResultIn(dir.path),
                     style: theme.textTheme.labelLarge),

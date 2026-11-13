@@ -63,6 +63,35 @@ class AppLocalizationsFr extends AppLocalizations {
       'Utilise la barre de recherche ci-dessus pour trouver d\'autres ROM';
 
   @override
+  String chdConversionFailed(String reason) {
+    return 'Conversion CHD non effectuée : $reason. Les fichiers d\'origine sont conservés.';
+  }
+
+  @override
+  String get chdErrorBadInput =>
+      'les fichiers du disque sont incomplets ou illisibles';
+
+  @override
+  String get chdErrorCancelled => 'annulée';
+
+  @override
+  String get chdErrorExists => 'un CHD du même nom existe déjà';
+
+  @override
+  String get chdErrorFailed => 'la compression a échoué';
+
+  @override
+  String chdErrorNoSpace(String size) {
+    return 'espace libre insuffisant ($size nécessaires)';
+  }
+
+  @override
+  String get chdErrorNotConvertible => 'aucune image disque à convertir';
+
+  @override
+  String get chdErrorVerify => 'le CHD n\'a pas passé la vérification';
+
+  @override
   String get commonCancel => 'Annuler';
 
   @override
@@ -274,10 +303,18 @@ class AppLocalizationsFr extends AppLocalizations {
   String get detailTorrent => 'Torrent';
 
   @override
+  String get downloadsCancelConversion => 'Annuler la conversion';
+
+  @override
   String get downloadsClearCompleted => 'Effacer les terminés';
 
   @override
   String get downloadsContactingTrackers => 'Contact des trackers…';
+
+  @override
+  String downloadsConvertingProgress(int percent) {
+    return 'Conversion en CHD… $percent %';
+  }
 
   @override
   String get downloadsEmptyBody =>
@@ -493,6 +530,12 @@ class AppLocalizationsFr extends AppLocalizations {
   String get libraryCleanedUp => 'Bibliothèque nettoyée';
 
   @override
+  String get libraryConvertChd => 'Convertir en CHD';
+
+  @override
+  String get libraryConvertedChd => 'Converti en CHD';
+
+  @override
   String get libraryCreatePlaylist => 'Créer la playlist';
 
   @override
@@ -627,6 +670,9 @@ class AppLocalizationsFr extends AppLocalizations {
       'Affiche la progression des téléchargements';
 
   @override
+  String get notifConverting => 'Conversion en CHD';
+
+  @override
   String get notifDownloading => 'Téléchargement';
 
   @override
@@ -677,6 +723,16 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settingsAutoExtract => 'Extraction auto';
+
+  @override
+  String get settingsChdEnabled => 'Convertir les jeux CD en CHD';
+
+  @override
+  String get settingsChdEnabledHint =>
+      'Après le téléchargement, les disques CUE/BIN, GDI et ISO deviennent un seul fichier .chd compressé (PlayStation, Saturn, Dreamcast, Sega CD…). Les originaux ne sont supprimés qu\'une fois le CHD vérifié.';
+
+  @override
+  String get settingsChdPlatform => 'CHD';
 
   @override
   String get settingsChecking => 'Vérification…';
@@ -967,6 +1023,10 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
+  String get sheetChdNote =>
+      'Les disques seront convertis en CHD après le téléchargement.';
+
+  @override
   String sheetConfirm(String size) {
     return 'Télécharger $size';
   }
@@ -1059,6 +1119,9 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get statusCompleted => 'Terminé';
+
+  @override
+  String get statusConverting => 'Conversion en CHD…';
 
   @override
   String get statusDownloading => 'Téléchargement…';

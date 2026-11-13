@@ -182,6 +182,54 @@ abstract class AppLocalizations {
   /// **'Use the search bar above to find more ROMs'**
   String get browseUseSearchBar;
 
+  /// Shown when a conversion fails; reason is one of chdError*
+  ///
+  /// In en, this message translates to:
+  /// **'CHD conversion skipped: {reason}. The original files are kept.'**
+  String chdConversionFailed(String reason);
+
+  /// Reason a CHD conversion did not run
+  ///
+  /// In en, this message translates to:
+  /// **'the disc files are incomplete or unreadable'**
+  String get chdErrorBadInput;
+
+  /// Reason a CHD conversion did not run
+  ///
+  /// In en, this message translates to:
+  /// **'cancelled'**
+  String get chdErrorCancelled;
+
+  /// Reason a CHD conversion did not run
+  ///
+  /// In en, this message translates to:
+  /// **'a CHD with the same name already exists'**
+  String get chdErrorExists;
+
+  /// Reason a CHD conversion did not run
+  ///
+  /// In en, this message translates to:
+  /// **'compression failed'**
+  String get chdErrorFailed;
+
+  /// Reason a CHD conversion did not run
+  ///
+  /// In en, this message translates to:
+  /// **'not enough free space ({size} needed)'**
+  String chdErrorNoSpace(String size);
+
+  /// Reason a CHD conversion did not run
+  ///
+  /// In en, this message translates to:
+  /// **'no disc image to convert'**
+  String get chdErrorNotConvertible;
+
+  /// Reason a CHD conversion did not run
+  ///
+  /// In en, this message translates to:
+  /// **'the CHD failed verification'**
+  String get chdErrorVerify;
+
   /// Dialog button
   ///
   /// In en, this message translates to:
@@ -524,6 +572,12 @@ abstract class AppLocalizations {
   /// **'Torrent'**
   String get detailTorrent;
 
+  /// Tooltip of the button stopping a CHD conversion
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel conversion'**
+  String get downloadsCancelConversion;
+
   /// Menu item removing completed downloads from the list
   ///
   /// In en, this message translates to:
@@ -535,6 +589,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Contacting trackers…'**
   String get downloadsContactingTrackers;
+
+  /// Progress text during CHD conversion
+  ///
+  /// In en, this message translates to:
+  /// **'Converting to CHD… {percent}%'**
+  String downloadsConvertingProgress(int percent);
 
   /// Empty state body
   ///
@@ -866,6 +926,18 @@ abstract class AppLocalizations {
   /// **'Library cleaned up'**
   String get libraryCleanedUp;
 
+  /// Library action
+  ///
+  /// In en, this message translates to:
+  /// **'Convert to CHD'**
+  String get libraryConvertChd;
+
+  /// Snackbar after a successful conversion
+  ///
+  /// In en, this message translates to:
+  /// **'Converted to CHD'**
+  String get libraryConvertedChd;
+
   /// Library action grouping the discs of a multi-disc game behind one .m3u
   ///
   /// In en, this message translates to:
@@ -1094,6 +1166,12 @@ abstract class AppLocalizations {
   /// **'Shows download progress'**
   String get notifChannelProgressDesc;
 
+  /// Notification title while a game is converted to CHD
+  ///
+  /// In en, this message translates to:
+  /// **'Converting to CHD'**
+  String get notifConverting;
+
   /// Notification title
   ///
   /// In en, this message translates to:
@@ -1189,6 +1267,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Auto-extract'**
   String get settingsAutoExtract;
+
+  /// Settings switch
+  ///
+  /// In en, this message translates to:
+  /// **'Convert CD games to CHD'**
+  String get settingsChdEnabled;
+
+  /// Settings switch subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'After download, CUE/BIN, GDI and ISO discs become one compressed .chd file (PlayStation, Saturn, Dreamcast, Sega CD…). The originals are deleted only after the CHD is verified.'**
+  String get settingsChdEnabledHint;
+
+  /// Per-platform switch label for CHD conversion (keep short)
+  ///
+  /// In en, this message translates to:
+  /// **'CHD'**
+  String get settingsChdPlatform;
 
   /// Account status while loading
   ///
@@ -1688,6 +1784,12 @@ abstract class AppLocalizations {
   /// **'{size} MB'**
   String setupSizeMb(String size);
 
+  /// Note in the multi-disc sheet when CHD conversion is on
+  ///
+  /// In en, this message translates to:
+  /// **'Discs will be converted to CHD after download.'**
+  String get sheetChdNote;
+
   /// Confirm button with total size
   ///
   /// In en, this message translates to:
@@ -1813,6 +1915,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Completed'**
   String get statusCompleted;
+
+  /// Download status while converting to CHD
+  ///
+  /// In en, this message translates to:
+  /// **'Converting to CHD...'**
+  String get statusConverting;
 
   /// Download status shown under a download
   ///

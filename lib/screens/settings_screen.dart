@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../providers/providers.dart';
+import '../services/chd_converter.dart';
 import '../services/metadata/metadata_provider.dart';
 import '../services/rom_database_service.dart';
 import '../services/storage_service.dart';
@@ -99,6 +100,17 @@ class SettingsScreen extends ConsumerWidget {
                     ref
                         .read(settingsProvider.notifier)
                         .setAutoExtractDisabled(value);
+                  },
+                ),
+
+                SwitchListTile(
+                  secondary: const Icon(Icons.compress),
+                  title: Text(context.l10n.settingsChdEnabled),
+                  subtitle: Text(context.l10n.settingsChdEnabledHint),
+                  isThreeLine: true,
+                  value: settings.chdEnabled,
+                  onChanged: (value) {
+                    ref.read(settingsProvider.notifier).setChdEnabled(value);
                   },
                 ),
 
@@ -247,6 +259,42 @@ class SettingsScreen extends ConsumerWidget {
                                               : null,
                                         ),
                                   ),
+                                  if (ChdConverter.supportsPlatform(
+                                    platform.id,
+                                  )) ...[
+                                    const SizedBox(width: 16),
+                                    SizedBox(
+                                      height: 24,
+                                      width: 36,
+                                      child: FittedBox(
+                                        child: Switch(
+                                          value: !settings.chdDisabledPlatforms
+                                              .contains(platform.id),
+                                          onChanged: settings.chdEnabled
+                                              ? (value) => ref
+                                                  .read(settingsProvider
+                                                      .notifier)
+                                                  .setPlatformChdDisabled(
+                                                    platform.id,
+                                                    !value,
+                                                  )
+                                              : null,
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(width: 6),
+                                    Text(
+                                      context.l10n.settingsChdPlatform,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodySmall
+                                          ?.copyWith(
+                                            color: settings.chdEnabled
+                                                ? null
+                                                : Colors.grey,
+                                          ),
+                                    ),
+                                  ],
                                 ],
                               ),
                             ],

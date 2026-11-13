@@ -203,13 +203,22 @@ class _CurrentDownloadTile extends ConsumerWidget {
                     ],
                   ),
                 ),
-                // Pause button
-                IconButton(
-                  icon: const Icon(Icons.pause),
-                  onPressed: () {
-                    ref.read(downloadProvider.notifier).pauseDownload(task.id);
-                  },
-                ),
+                // Pause button, or cancel while converting to CHD
+                if (task.status == DownloadStatus.converting)
+                  IconButton(
+                    icon: const Icon(Icons.close),
+                    tooltip: context.l10n.downloadsCancelConversion,
+                    onPressed: () => ref
+                        .read(downloadProvider.notifier)
+                        .cancelConversion(task.id),
+                  )
+                else
+                  IconButton(
+                    icon: const Icon(Icons.pause),
+                    onPressed: () {
+                      ref.read(downloadProvider.notifier).pauseDownload(task.id);
+                    },
+                  ),
               ],
             ),
             const SizedBox(height: 12),
@@ -235,7 +244,11 @@ class _CurrentDownloadTile extends ConsumerWidget {
                           : context.l10n.downloadsContactingTrackers
                       : task.status == DownloadStatus.extracting
                           ? context.l10n.downloadsExtracting
-                          : task.progressText,
+                          : task.status == DownloadStatus.converting
+                              ? context.l10n.downloadsConvertingProgress(
+                                  (task.progress * 100).round(),
+                                )
+                              : task.progressText,
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
                 Row(
@@ -511,6 +524,8 @@ String _statusLabel(AppLocalizations l10n, DownloadTask task) {
       return l10n.statusPaused;
     case DownloadStatus.extracting:
       return l10n.statusExtracting;
+    case DownloadStatus.converting:
+      return l10n.statusConverting;
     case DownloadStatus.completed:
       return l10n.statusCompleted;
     case DownloadStatus.failed:

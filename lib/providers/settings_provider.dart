@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../services/chd_converter.dart';
+
 enum AppThemeMode { system, light, dark }
 
 class SettingsState {
@@ -14,6 +16,10 @@ class SettingsState {
   final bool torrentsDisabled;
   final bool autoExtractDisabled;
   final Set<String> extractDisabledPlatforms;
+
+  /// Convert downloaded CD games to CHD (off by default).
+  final bool chdEnabled;
+  final Set<String> chdDisabledPlatforms;
   final bool debridEnabled;
   final String debridProviderId;
   final bool metadataEnabled;
@@ -38,6 +44,8 @@ class SettingsState {
     this.torrentsDisabled = false,
     this.autoExtractDisabled = false,
     this.extractDisabledPlatforms = const {},
+    this.chdEnabled = false,
+    this.chdDisabledPlatforms = const {},
     this.debridEnabled = false,
     this.debridProviderId = 'torbox',
     this.metadataEnabled = true,
@@ -52,6 +60,11 @@ class SettingsState {
     return !extractDisabledPlatforms.contains(platform);
   }
 
+  bool shouldConvertToChd(String platform) =>
+      chdEnabled &&
+      ChdConverter.supportsPlatform(platform) &&
+      !chdDisabledPlatforms.contains(platform);
+
   SettingsState copyWith({
     String? defaultDownloadPath,
     bool clearDefaultPath = false,
@@ -63,6 +76,8 @@ class SettingsState {
     bool? torrentsDisabled,
     bool? autoExtractDisabled,
     Set<String>? extractDisabledPlatforms,
+    bool? chdEnabled,
+    Set<String>? chdDisabledPlatforms,
     bool? debridEnabled,
     String? debridProviderId,
     bool? metadataEnabled,
@@ -86,6 +101,8 @@ class SettingsState {
       autoExtractDisabled: autoExtractDisabled ?? this.autoExtractDisabled,
       extractDisabledPlatforms:
           extractDisabledPlatforms ?? this.extractDisabledPlatforms,
+      chdEnabled: chdEnabled ?? this.chdEnabled,
+      chdDisabledPlatforms: chdDisabledPlatforms ?? this.chdDisabledPlatforms,
       debridEnabled: debridEnabled ?? this.debridEnabled,
       debridProviderId: debridProviderId ?? this.debridProviderId,
       metadataEnabled: metadataEnabled ?? this.metadataEnabled,
@@ -125,6 +142,8 @@ class SettingsNotifier extends StateNotifier<SettingsState> {
   static const String _keyMaxConcurrentDownloads = 'max_concurrent_downloads';
   static const String _keyTorrentsDisabled = 'torrents_disabled';
   static const String _keyAutoExtractDisabled = 'auto_extract_disabled';
+  static const String _keyChdEnabled = 'chd_enabled';
+  static const String _keyChdDisabledPlatforms = 'chd_disabled_platform_';
   static const String _keyExtractDisabledPlatforms =
       'extract_disabled_platform_';
   static const String _keyDebridEnabled = 'debrid_enabled';
@@ -168,11 +187,15 @@ class SettingsNotifier extends StateNotifier<SettingsState> {
     // Load platform-specific paths
     final platformPaths = <String, String>{};
     final extractDisabledPlatforms = <String>{};
+    final chdDisabledPlatforms = <String>{};
     for (final key in prefs.getKeys()) {
       if (key.startsWith(_keyPlatformPaths)) {
         final platform = key.replaceFirst(_keyPlatformPaths, '');
         final path = prefs.getString(key);
         if (path != null) platformPaths[platform] = path;
+      } else if (key.startsWith(_keyChdDisabledPlatforms)) {
+        final platform = key.replaceFirst(_keyChdDisabledPlatforms, '');
+        if (prefs.getBool(key) == true) chdDisabledPlatforms.add(platform);
       } else if (key.startsWith(_keyExtractDisabledPlatforms)) {
         final platform = key.replaceFirst(_keyExtractDisabledPlatforms, '');
         if (prefs.getBool(key) == true) extractDisabledPlatforms.add(platform);
@@ -189,6 +212,8 @@ class SettingsNotifier extends StateNotifier<SettingsState> {
       torrentsDisabled: torrentsDisabled,
       autoExtractDisabled: autoExtractDisabled,
       extractDisabledPlatforms: extractDisabledPlatforms,
+      chdEnabled: prefs.getBool(_keyChdEnabled) ?? false,
+      chdDisabledPlatforms: chdDisabledPlatforms,
       debridEnabled: debridEnabled,
       debridProviderId: debridProviderId,
       metadataEnabled: metadataEnabled,
@@ -268,6 +293,26 @@ class SettingsNotifier extends StateNotifier<SettingsState> {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setStringList(_keyDefaultRegions, regions);
     state = state.copyWith(defaultRegions: regions);
+  }
+
+  Future<void> setChdEnabled(bool value) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_keyChdEnabled, value);
+    state = state.copyWith(chdEnabled: value);
+  }
+
+  Future<void> setPlatformChdDisabled(String platform, bool disabled) async {
+    final prefs = await SharedPreferences.getInstance();
+    final key = '$_keyChdDisabledPlatforms$platform';
+    final updated = Set<String>.from(state.chdDisabledPlatforms);
+    if (disabled) {
+      await prefs.setBool(key, true);
+      updated.add(platform);
+    } else {
+      await prefs.remove(key);
+      updated.remove(platform);
+    }
+    state = state.copyWith(chdDisabledPlatforms: updated);
   }
 
   Future<void> setPlatformExtractDisabled(String platform, bool disabled) async {

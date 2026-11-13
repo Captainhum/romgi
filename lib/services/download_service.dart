@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:chd_native/chd_native.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_foreground_task/flutter_foreground_task.dart';
 import 'package:native_dio_adapter/native_dio_adapter.dart';
@@ -10,6 +11,7 @@ import 'package:uuid/uuid.dart';
 
 import '../models/models.dart';
 import '../torrent/torrent_api.g.dart';
+import 'chd_converter.dart';
 import 'database_service.dart';
 import 'debrid_service.dart';
 import 'host_adapter.dart';
@@ -55,6 +57,10 @@ class DownloadService {
   final DebridService? _debrid;
   late final PlaylistWriter _playlistWriter;
   bool Function(String platform) shouldExtractForPlatform = (_) => true;
+  bool Function(String platform) shouldConvertToChd = (_) => false;
+
+  final ChdConverter _chd = ChdConverter();
+  final Map<String, ChdCancelToken> _conversionTokens = {};
   final Dio _dio;
   Dio? _nativeDio;
   final _uuid = const Uuid();
@@ -187,6 +193,32 @@ class DownloadService {
     for (final task in downloading) {
       final updated = task.copyWith(status: DownloadStatus.pending);
       await _db.updateDownload(updated);
+    }
+
+    // A conversion cut short by the app being killed: drop the partial CHD
+    // (the originals are only removed after a verified CHD exists).
+    for (final task in await _db.getDownloadsByStatus(
+      DownloadStatus.converting,
+    )) {
+      var path = task.filePath;
+      if (path != null) {
+        final source = await ChdConverter.findSource(path);
+        if (source != null) {
+          try {
+            await File(await ChdConverter.outputFor(path, source)).delete();
+          } catch (_) {}
+        } else if (await File(p.setExtension(path, '.chd')).exists()) {
+          path = p.setExtension(path, '.chd');
+        } else if (await File('$path.chd').exists()) {
+          path = '$path.chd';
+        }
+      }
+      await _db.updateDownload(task.copyWith(
+        status: DownloadStatus.completed,
+        progress: 1.0,
+        filePath: path,
+        error: task.error,
+      ));
     }
 
     final extracting = await _db.getDownloadsByStatus(
@@ -363,6 +395,108 @@ class DownloadService {
       await _backfillGroupMetadata(task, group, member, hidden: true);
     }
     return const [];
+  }
+
+  /// Converts a completed disc download to CHD when enabled for its
+  /// platform. Returns the task as it ends up (CHD path on success, original
+  /// files and a notification on failure).
+  Future<DownloadTask> _maybeConvert(DownloadTask task) async {
+    if (task.status != DownloadStatus.completed ||
+        task.filePath == null ||
+        !shouldConvertToChd(task.platform) ||
+        await ChdConverter.findSource(task.filePath!) == null) {
+      return task;
+    }
+    final (converted, _) = await _convertTask(task);
+    return converted;
+  }
+
+  /// Converts [task]'s files to CHD whatever the settings say (Library
+  /// action). Returns the updated task and the failure, if any.
+  Future<(DownloadTask, ChdConversionError?)> convertToChd(
+    DownloadTask task,
+  ) async {
+    final (converted, error) = await _convertTask(task);
+    await _maybeWritePlaylist(converted);
+    return (converted, error);
+  }
+
+  void cancelConversion(String taskId) => _conversionTokens[taskId]?.cancel();
+
+  Future<(DownloadTask, ChdConversionError?)> _convertTask(
+    DownloadTask task,
+  ) async {
+    final token = ChdCancelToken();
+    _conversionTokens[task.id] = token;
+    final wasActive = _activeTasks.containsKey(task.id);
+    var current = task.copyWith(
+      status: DownloadStatus.converting,
+      progress: 0,
+      error: task.error,
+    );
+    _activeTasks[task.id] = current;
+    await _db.updateDownload(current);
+    _downloadController.add(current);
+    await _startForegroundTask(task.title);
+    await _notifications.updateForTask(current);
+
+    var lastUpdate = DateTime.fromMillisecondsSinceEpoch(0);
+    ChdConversionError? failure;
+    String? newPath;
+    try {
+      newPath = await _chd.convert(
+        task.filePath!,
+        cancelToken: token,
+        onProgress: (progress) {
+          current = current.copyWith(progress: progress, error: current.error);
+          _activeTasks[task.id] = current;
+          _downloadController.add(current);
+          final now = DateTime.now();
+          if (now.difference(lastUpdate) > const Duration(seconds: 1)) {
+            lastUpdate = now;
+            _notifications.updateForTask(current);
+          }
+        },
+      );
+    } on ChdConversionException catch (e) {
+      failure = e.error;
+      if (e.error != ChdConversionError.cancelled) {
+        await _notifications.showDownloadFailed(
+          title: task.title,
+          error: appL10n.chdConversionFailed(_chdErrorText(e)),
+        );
+      }
+    } finally {
+      _conversionTokens.remove(task.id);
+      if (!wasActive) _activeTasks.remove(task.id);
+    }
+
+    final done = task.copyWith(
+      status: DownloadStatus.completed,
+      progress: 1.0,
+      filePath: newPath ?? task.filePath,
+      error: task.error,
+    );
+    await _db.updateDownload(done);
+    _downloadController.add(done);
+    if (failure == null) await _notifications.updateForTask(done);
+    if (_activeTasks.isEmpty) await _stopForegroundTask();
+    return (done, failure);
+  }
+
+  static String _chdErrorText(ChdConversionException e) {
+    final l10n = appL10n;
+    return switch (e.error) {
+      ChdConversionError.noSpace => l10n.chdErrorNoSpace(
+          '${((e.neededBytes ?? 0) / 1048576).ceil()} MB',
+        ),
+      ChdConversionError.badInput => l10n.chdErrorBadInput,
+      ChdConversionError.failed => l10n.chdErrorFailed,
+      ChdConversionError.verifyFailed => l10n.chdErrorVerify,
+      ChdConversionError.alreadyExists => l10n.chdErrorExists,
+      ChdConversionError.notConvertible => l10n.chdErrorNotConvertible,
+      ChdConversionError.cancelled => l10n.chdErrorCancelled,
+    };
   }
 
   Future<void> _maybeWritePlaylist(DownloadTask task) =>
@@ -1005,7 +1139,7 @@ class DownloadService {
     await _db.updateDownload(updatedTask);
     _downloadController.add(updatedTask);
     await _notifications.updateForTask(updatedTask);
-    await _maybeWritePlaylist(updatedTask);
+    await _maybeWritePlaylist(await _maybeConvert(updatedTask));
   }
 
   Future<void> _failTask(DownloadTask task, String error) async {
@@ -1092,7 +1226,7 @@ class DownloadService {
       _activeTasks.remove(task.id);
       await _db.updateDownload(completed);
       _downloadController.add(completed);
-      await _maybeWritePlaylist(completed);
+      await _maybeWritePlaylist(await _maybeConvert(completed));
       _processQueue();
       return;
     }
@@ -1316,7 +1450,7 @@ class DownloadService {
     await _db.updateDownload(completed);
     _downloadController.add(completed);
     await _updateNotifications();
-    await _maybeWritePlaylist(completed);
+    await _maybeWritePlaylist(await _maybeConvert(completed));
     _processQueue();
   }
 
