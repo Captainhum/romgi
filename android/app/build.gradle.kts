@@ -51,7 +51,6 @@ android {
             // Installs next to the release build so it can be tested on a
             // device that already has romgi.
             applicationIdSuffix = ".dev"
-            versionNameSuffix = "-dev"
             manifestPlaceholders["appLabel"] = "romgi dev"
 
             // Debug also bundles x86_64 so we can run on the Windows
