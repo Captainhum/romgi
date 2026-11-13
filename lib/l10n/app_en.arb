@@ -74,6 +74,10 @@
   "@commonClear": {
     "description": "Button clearing a list or field"
   },
+  "commonClose": "Close",
+  "@commonClose": {
+    "description": "Dialog button"
+  },
   "commonContinue": "Continue",
   "@commonContinue": {
     "description": "Button to proceed"
@@ -89,6 +93,10 @@
   "commonFilters": "Filters",
   "@commonFilters": {
     "description": "Button/tooltip opening the filter sheet"
+  },
+  "commonRemove": "Remove",
+  "@commonRemove": {
+    "description": "Tooltip removing an item"
   },
   "commonRetry": "Retry",
   "@commonRetry": {
@@ -303,6 +311,103 @@
   "@detailTorrent": {
     "description": "Badge for torrent sources"
   },
+  "downloadsClearCompleted": "Clear completed",
+  "@downloadsClearCompleted": {
+    "description": "Menu item removing completed downloads from the list"
+  },
+  "downloadsContactingTrackers": "Contacting trackers…",
+  "@downloadsContactingTrackers": {
+    "description": "Torrent status before peers are found"
+  },
+  "downloadsEmptyBody": "Browse ROMs and tap download to get started",
+  "@downloadsEmptyBody": {
+    "description": "Empty state body"
+  },
+  "downloadsEmptyTitle": "No downloads yet",
+  "@downloadsEmptyTitle": {
+    "description": "Empty state title"
+  },
+  "downloadsExtracting": "Extracting…",
+  "@downloadsExtracting": {
+    "description": "Status while an archive is extracted"
+  },
+  "downloadsFailed": "Download failed",
+  "@downloadsFailed": {
+    "description": "Generic download error"
+  },
+  "downloadsIaLoginRequired": "Internet Archive login required",
+  "@downloadsIaLoginRequired": {
+    "description": "Error shown when a download needs an Internet Archive login"
+  },
+  "downloadsLoggedInRetrying": "Logged in! Retrying download...",
+  "@downloadsLoggedInRetrying": {
+    "description": "Snackbar after logging in from a failed download"
+  },
+  "downloadsLogin": "Login",
+  "@downloadsLogin": {
+    "description": "Button opening the Internet Archive login"
+  },
+  "downloadsPausedSuffix": "Paused",
+  "@downloadsPausedSuffix": {
+    "description": "Appended to a queued item that is paused"
+  },
+  "downloadsPeersConnected": "{count, plural, =1{1 peer connected} other{{count} peers connected}}",
+  "@downloadsPeersConnected": {
+    "description": "Torrent peers while fetching metadata",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "downloadsPeersSeeds": "{peers, plural, =1{1 peer} other{{peers} peers}} • {seeds, plural, =1{1 seed} other{{seeds} seeds}}",
+  "@downloadsPeersSeeds": {
+    "description": "Torrent swarm summary",
+    "placeholders": {
+      "peers": {
+        "type": "int"
+      },
+      "seeds": {
+        "type": "int"
+      }
+    }
+  },
+  "downloadsSectionCompleted": "Completed ({count})",
+  "@downloadsSectionCompleted": {
+    "description": "Downloads section header with item count",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "downloadsSectionDownloading": "Downloading ({count})",
+  "@downloadsSectionDownloading": {
+    "description": "Downloads section header with item count",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "downloadsSectionFailed": "Failed ({count})",
+  "@downloadsSectionFailed": {
+    "description": "Downloads section header with item count",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "downloadsSectionQueue": "Queue ({count})",
+  "@downloadsSectionQueue": {
+    "description": "Downloads section header with item count",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "filterApply": "Apply Filters",
   "@filterApply": {
     "description": "Button applying the selected filters"
@@ -341,6 +446,164 @@
       }
     }
   },
+  "libraryAll": "All",
+  "@libraryAll": {
+    "description": "Platform filter chip showing every platform"
+  },
+  "libraryCleanUp": "Clean Up",
+  "@libraryCleanUp": {
+    "description": "Confirm button / menu item"
+  },
+  "libraryCleanUpBody": "Remove entries for files that no longer exist on disk?",
+  "@libraryCleanUpBody": {
+    "description": "Clean up confirmation"
+  },
+  "libraryCleanUpTitle": "Clean Up Library",
+  "@libraryCleanUpTitle": {
+    "description": "Dialog/menu title"
+  },
+  "libraryCleanedUp": "Library cleaned up",
+  "@libraryCleanedUp": {
+    "description": "Snackbar after clean up"
+  },
+  "libraryDeleteConfirm": "Delete \"{title}\"?",
+  "@libraryDeleteConfirm": {
+    "description": "Delete dialog body",
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "libraryDeleteFile": "Delete File",
+  "@libraryDeleteFile": {
+    "description": "Dialog button: deletes the file"
+  },
+  "libraryDeleteTitle": "Delete ROM",
+  "@libraryDeleteTitle": {
+    "description": "Dialog title"
+  },
+  "libraryDeleted": "ROM deleted",
+  "@libraryDeleted": {
+    "description": "Snackbar"
+  },
+  "libraryEmpty": "Your library is empty",
+  "@libraryEmpty": {
+    "description": "Empty state title"
+  },
+  "libraryEmptyHint": "Downloaded ROMs will appear here",
+  "@libraryEmptyHint": {
+    "description": "Empty state body"
+  },
+  "libraryFileMissing": "File no longer exists",
+  "@libraryFileMissing": {
+    "description": "Error snackbar"
+  },
+  "libraryFilesVerified": "Files verified",
+  "@libraryFilesVerified": {
+    "description": "Snackbar after verifying files"
+  },
+  "libraryFormat": "Format",
+  "@libraryFormat": {
+    "description": "Info row label"
+  },
+  "libraryMissing": "Missing",
+  "@libraryMissing": {
+    "description": "Badge on items whose file is gone"
+  },
+  "libraryNoPlatformRoms": "No {platform} ROMs",
+  "@libraryNoPlatformRoms": {
+    "description": "Empty state for a platform filter",
+    "placeholders": {
+      "platform": {
+        "type": "String"
+      }
+    }
+  },
+  "libraryNoResults": "No results for \"{query}\"",
+  "@libraryNoResults": {
+    "description": "Library search empty state",
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
+  },
+  "libraryOpenError": "Could not open file: {error}",
+  "@libraryOpenError": {
+    "description": "Error snackbar",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "libraryOpenWith": "Open with...",
+  "@libraryOpenWith": {
+    "description": "Button opening the file in another app"
+  },
+  "libraryPath": "Path:",
+  "@libraryPath": {
+    "description": "Info row label"
+  },
+  "libraryPathNotFound": "File path not found",
+  "@libraryPathNotFound": {
+    "description": "Error snackbar"
+  },
+  "libraryPlatform": "Platform",
+  "@libraryPlatform": {
+    "description": "Info row label"
+  },
+  "libraryRemoveFromLibrary": "Remove from Library",
+  "@libraryRemoveFromLibrary": {
+    "description": "Dialog button: keeps the file"
+  },
+  "libraryRemoved": "Removed from library",
+  "@libraryRemoved": {
+    "description": "Snackbar"
+  },
+  "librarySearchHint": "Search library...",
+  "@librarySearchHint": {
+    "description": "Library search placeholder"
+  },
+  "librarySize": "Size",
+  "@librarySize": {
+    "description": "Info row label"
+  },
+  "libraryTabDownloaded": "Downloaded ({count})",
+  "@libraryTabDownloaded": {
+    "description": "Tab with item count",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "libraryTabWishlist": "Wishlist ({count})",
+  "@libraryTabWishlist": {
+    "description": "Tab with item count",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "libraryVerifyFiles": "Verify Files",
+  "@libraryVerifyFiles": {
+    "description": "Menu item / settings entry"
+  },
+  "libraryWishlistEmpty": "Your wishlist is empty",
+  "@libraryWishlistEmpty": {
+    "description": "Empty state title"
+  },
+  "libraryWishlistError": "Failed to load wishlist",
+  "@libraryWishlistError": {
+    "description": "Error state"
+  },
+  "libraryWishlistHint": "Tap the heart icon on any ROM to add it here",
+  "@libraryWishlistHint": {
+    "description": "Empty state body"
+  },
   "navBrowse": "Browse",
   "@navBrowse": {
     "description": "Navigation tab: catalog search"
@@ -356,6 +619,46 @@
   "navSettings": "Settings",
   "@navSettings": {
     "description": "Navigation tab: settings"
+  },
+  "statusCachingDebrid": "Caching on debrid...",
+  "@statusCachingDebrid": {
+    "description": "Download status shown under a download"
+  },
+  "statusCompleted": "Completed",
+  "@statusCompleted": {
+    "description": "Download status shown under a download"
+  },
+  "statusDownloading": "Downloading...",
+  "@statusDownloading": {
+    "description": "Download status shown under a download"
+  },
+  "statusDownloadingTorrent": "Downloading (Torrent)",
+  "@statusDownloadingTorrent": {
+    "description": "Download status shown under a download"
+  },
+  "statusExtracting": "Extracting...",
+  "@statusExtracting": {
+    "description": "Download status shown under a download"
+  },
+  "statusFailed": "Failed",
+  "@statusFailed": {
+    "description": "Download status shown under a download"
+  },
+  "statusFindingPeers": "Finding peers...",
+  "@statusFindingPeers": {
+    "description": "Download status shown under a download"
+  },
+  "statusPaused": "Paused",
+  "@statusPaused": {
+    "description": "Download status shown under a download"
+  },
+  "statusResolvingDebrid": "Resolving via debrid...",
+  "@statusResolvingDebrid": {
+    "description": "Download status shown under a download"
+  },
+  "statusWaiting": "Waiting...",
+  "@statusWaiting": {
+    "description": "Download status shown under a download"
   },
   "storagePermissionBody": "Romgi needs storage access to save ROMs to a location accessible by your file manager and emulators.\n\nOn the next screen, please enable \"Allow access to manage all files\".",
   "@storagePermissionBody": {

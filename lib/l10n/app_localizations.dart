@@ -194,6 +194,12 @@ abstract class AppLocalizations {
   /// **'Clear'**
   String get commonClear;
 
+  /// Dialog button
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get commonClose;
+
   /// Button to proceed
   ///
   /// In en, this message translates to:
@@ -217,6 +223,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Filters'**
   String get commonFilters;
+
+  /// Tooltip removing an item
+  ///
+  /// In en, this message translates to:
+  /// **'Remove'**
+  String get commonRemove;
 
   /// Button to retry a failed action
   ///
@@ -458,6 +470,102 @@ abstract class AppLocalizations {
   /// **'Torrent'**
   String get detailTorrent;
 
+  /// Menu item removing completed downloads from the list
+  ///
+  /// In en, this message translates to:
+  /// **'Clear completed'**
+  String get downloadsClearCompleted;
+
+  /// Torrent status before peers are found
+  ///
+  /// In en, this message translates to:
+  /// **'Contacting trackers…'**
+  String get downloadsContactingTrackers;
+
+  /// Empty state body
+  ///
+  /// In en, this message translates to:
+  /// **'Browse ROMs and tap download to get started'**
+  String get downloadsEmptyBody;
+
+  /// Empty state title
+  ///
+  /// In en, this message translates to:
+  /// **'No downloads yet'**
+  String get downloadsEmptyTitle;
+
+  /// Status while an archive is extracted
+  ///
+  /// In en, this message translates to:
+  /// **'Extracting…'**
+  String get downloadsExtracting;
+
+  /// Generic download error
+  ///
+  /// In en, this message translates to:
+  /// **'Download failed'**
+  String get downloadsFailed;
+
+  /// Error shown when a download needs an Internet Archive login
+  ///
+  /// In en, this message translates to:
+  /// **'Internet Archive login required'**
+  String get downloadsIaLoginRequired;
+
+  /// Snackbar after logging in from a failed download
+  ///
+  /// In en, this message translates to:
+  /// **'Logged in! Retrying download...'**
+  String get downloadsLoggedInRetrying;
+
+  /// Button opening the Internet Archive login
+  ///
+  /// In en, this message translates to:
+  /// **'Login'**
+  String get downloadsLogin;
+
+  /// Appended to a queued item that is paused
+  ///
+  /// In en, this message translates to:
+  /// **'Paused'**
+  String get downloadsPausedSuffix;
+
+  /// Torrent peers while fetching metadata
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 peer connected} other{{count} peers connected}}'**
+  String downloadsPeersConnected(int count);
+
+  /// Torrent swarm summary
+  ///
+  /// In en, this message translates to:
+  /// **'{peers, plural, =1{1 peer} other{{peers} peers}} • {seeds, plural, =1{1 seed} other{{seeds} seeds}}'**
+  String downloadsPeersSeeds(int peers, int seeds);
+
+  /// Downloads section header with item count
+  ///
+  /// In en, this message translates to:
+  /// **'Completed ({count})'**
+  String downloadsSectionCompleted(int count);
+
+  /// Downloads section header with item count
+  ///
+  /// In en, this message translates to:
+  /// **'Downloading ({count})'**
+  String downloadsSectionDownloading(int count);
+
+  /// Downloads section header with item count
+  ///
+  /// In en, this message translates to:
+  /// **'Failed ({count})'**
+  String downloadsSectionFailed(int count);
+
+  /// Downloads section header with item count
+  ///
+  /// In en, this message translates to:
+  /// **'Queue ({count})'**
+  String downloadsSectionQueue(int count);
+
   /// Button applying the selected filters
   ///
   /// In en, this message translates to:
@@ -500,6 +608,198 @@ abstract class AppLocalizations {
   /// **'Error loading regions: {error}'**
   String filterRegionsError(String error);
 
+  /// Platform filter chip showing every platform
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get libraryAll;
+
+  /// Confirm button / menu item
+  ///
+  /// In en, this message translates to:
+  /// **'Clean Up'**
+  String get libraryCleanUp;
+
+  /// Clean up confirmation
+  ///
+  /// In en, this message translates to:
+  /// **'Remove entries for files that no longer exist on disk?'**
+  String get libraryCleanUpBody;
+
+  /// Dialog/menu title
+  ///
+  /// In en, this message translates to:
+  /// **'Clean Up Library'**
+  String get libraryCleanUpTitle;
+
+  /// Snackbar after clean up
+  ///
+  /// In en, this message translates to:
+  /// **'Library cleaned up'**
+  String get libraryCleanedUp;
+
+  /// Delete dialog body
+  ///
+  /// In en, this message translates to:
+  /// **'Delete \"{title}\"?'**
+  String libraryDeleteConfirm(String title);
+
+  /// Dialog button: deletes the file
+  ///
+  /// In en, this message translates to:
+  /// **'Delete File'**
+  String get libraryDeleteFile;
+
+  /// Dialog title
+  ///
+  /// In en, this message translates to:
+  /// **'Delete ROM'**
+  String get libraryDeleteTitle;
+
+  /// Snackbar
+  ///
+  /// In en, this message translates to:
+  /// **'ROM deleted'**
+  String get libraryDeleted;
+
+  /// Empty state title
+  ///
+  /// In en, this message translates to:
+  /// **'Your library is empty'**
+  String get libraryEmpty;
+
+  /// Empty state body
+  ///
+  /// In en, this message translates to:
+  /// **'Downloaded ROMs will appear here'**
+  String get libraryEmptyHint;
+
+  /// Error snackbar
+  ///
+  /// In en, this message translates to:
+  /// **'File no longer exists'**
+  String get libraryFileMissing;
+
+  /// Snackbar after verifying files
+  ///
+  /// In en, this message translates to:
+  /// **'Files verified'**
+  String get libraryFilesVerified;
+
+  /// Info row label
+  ///
+  /// In en, this message translates to:
+  /// **'Format'**
+  String get libraryFormat;
+
+  /// Badge on items whose file is gone
+  ///
+  /// In en, this message translates to:
+  /// **'Missing'**
+  String get libraryMissing;
+
+  /// Empty state for a platform filter
+  ///
+  /// In en, this message translates to:
+  /// **'No {platform} ROMs'**
+  String libraryNoPlatformRoms(String platform);
+
+  /// Library search empty state
+  ///
+  /// In en, this message translates to:
+  /// **'No results for \"{query}\"'**
+  String libraryNoResults(String query);
+
+  /// Error snackbar
+  ///
+  /// In en, this message translates to:
+  /// **'Could not open file: {error}'**
+  String libraryOpenError(String error);
+
+  /// Button opening the file in another app
+  ///
+  /// In en, this message translates to:
+  /// **'Open with...'**
+  String get libraryOpenWith;
+
+  /// Info row label
+  ///
+  /// In en, this message translates to:
+  /// **'Path:'**
+  String get libraryPath;
+
+  /// Error snackbar
+  ///
+  /// In en, this message translates to:
+  /// **'File path not found'**
+  String get libraryPathNotFound;
+
+  /// Info row label
+  ///
+  /// In en, this message translates to:
+  /// **'Platform'**
+  String get libraryPlatform;
+
+  /// Dialog button: keeps the file
+  ///
+  /// In en, this message translates to:
+  /// **'Remove from Library'**
+  String get libraryRemoveFromLibrary;
+
+  /// Snackbar
+  ///
+  /// In en, this message translates to:
+  /// **'Removed from library'**
+  String get libraryRemoved;
+
+  /// Library search placeholder
+  ///
+  /// In en, this message translates to:
+  /// **'Search library...'**
+  String get librarySearchHint;
+
+  /// Info row label
+  ///
+  /// In en, this message translates to:
+  /// **'Size'**
+  String get librarySize;
+
+  /// Tab with item count
+  ///
+  /// In en, this message translates to:
+  /// **'Downloaded ({count})'**
+  String libraryTabDownloaded(int count);
+
+  /// Tab with item count
+  ///
+  /// In en, this message translates to:
+  /// **'Wishlist ({count})'**
+  String libraryTabWishlist(int count);
+
+  /// Menu item / settings entry
+  ///
+  /// In en, this message translates to:
+  /// **'Verify Files'**
+  String get libraryVerifyFiles;
+
+  /// Empty state title
+  ///
+  /// In en, this message translates to:
+  /// **'Your wishlist is empty'**
+  String get libraryWishlistEmpty;
+
+  /// Error state
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load wishlist'**
+  String get libraryWishlistError;
+
+  /// Empty state body
+  ///
+  /// In en, this message translates to:
+  /// **'Tap the heart icon on any ROM to add it here'**
+  String get libraryWishlistHint;
+
   /// Navigation tab: catalog search
   ///
   /// In en, this message translates to:
@@ -523,6 +823,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Settings'**
   String get navSettings;
+
+  /// Download status shown under a download
+  ///
+  /// In en, this message translates to:
+  /// **'Caching on debrid...'**
+  String get statusCachingDebrid;
+
+  /// Download status shown under a download
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get statusCompleted;
+
+  /// Download status shown under a download
+  ///
+  /// In en, this message translates to:
+  /// **'Downloading...'**
+  String get statusDownloading;
+
+  /// Download status shown under a download
+  ///
+  /// In en, this message translates to:
+  /// **'Downloading (Torrent)'**
+  String get statusDownloadingTorrent;
+
+  /// Download status shown under a download
+  ///
+  /// In en, this message translates to:
+  /// **'Extracting...'**
+  String get statusExtracting;
+
+  /// Download status shown under a download
+  ///
+  /// In en, this message translates to:
+  /// **'Failed'**
+  String get statusFailed;
+
+  /// Download status shown under a download
+  ///
+  /// In en, this message translates to:
+  /// **'Finding peers...'**
+  String get statusFindingPeers;
+
+  /// Download status shown under a download
+  ///
+  /// In en, this message translates to:
+  /// **'Paused'**
+  String get statusPaused;
+
+  /// Download status shown under a download
+  ///
+  /// In en, this message translates to:
+  /// **'Resolving via debrid...'**
+  String get statusResolvingDebrid;
+
+  /// Download status shown under a download
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting...'**
+  String get statusWaiting;
 
   /// Body of the storage permission dialog. The quoted text is the Android system option name.
   ///

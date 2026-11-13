@@ -69,6 +69,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get commonClear => 'Effacer';
 
   @override
+  String get commonClose => 'Fermer';
+
+  @override
   String get commonContinue => 'Continuer';
 
   @override
@@ -79,6 +82,9 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get commonFilters => 'Filtres';
+
+  @override
+  String get commonRemove => 'Supprimer';
 
   @override
   String get commonRetry => 'Réessayer';
@@ -231,6 +237,85 @@ class AppLocalizationsFr extends AppLocalizations {
   String get detailTorrent => 'Torrent';
 
   @override
+  String get downloadsClearCompleted => 'Effacer les terminés';
+
+  @override
+  String get downloadsContactingTrackers => 'Contact des trackers…';
+
+  @override
+  String get downloadsEmptyBody =>
+      'Parcours le catalogue et appuie sur Télécharger pour commencer';
+
+  @override
+  String get downloadsEmptyTitle => 'Aucun téléchargement';
+
+  @override
+  String get downloadsExtracting => 'Extraction…';
+
+  @override
+  String get downloadsFailed => 'Échec du téléchargement';
+
+  @override
+  String get downloadsIaLoginRequired => 'Connexion Internet Archive requise';
+
+  @override
+  String get downloadsLoggedInRetrying => 'Connecté ! Nouvelle tentative…';
+
+  @override
+  String get downloadsLogin => 'Connexion';
+
+  @override
+  String get downloadsPausedSuffix => 'En pause';
+
+  @override
+  String downloadsPeersConnected(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count pairs connectés',
+      one: '1 pair connecté',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String downloadsPeersSeeds(int peers, int seeds) {
+    String _temp0 = intl.Intl.pluralLogic(
+      peers,
+      locale: localeName,
+      other: '$peers pairs',
+      one: '1 pair',
+    );
+    String _temp1 = intl.Intl.pluralLogic(
+      seeds,
+      locale: localeName,
+      other: '$seeds sources',
+      one: '1 source',
+    );
+    return '$_temp0 • $_temp1';
+  }
+
+  @override
+  String downloadsSectionCompleted(int count) {
+    return 'Terminés ($count)';
+  }
+
+  @override
+  String downloadsSectionDownloading(int count) {
+    return 'En cours ($count)';
+  }
+
+  @override
+  String downloadsSectionFailed(int count) {
+    return 'Échecs ($count)';
+  }
+
+  @override
+  String downloadsSectionQueue(int count) {
+    return 'File d\'attente ($count)';
+  }
+
+  @override
   String get filterApply => 'Appliquer les filtres';
 
   @override
@@ -256,6 +341,117 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
+  String get libraryAll => 'Tous';
+
+  @override
+  String get libraryCleanUp => 'Nettoyer';
+
+  @override
+  String get libraryCleanUpBody =>
+      'Retirer les entrées dont les fichiers n\'existent plus ?';
+
+  @override
+  String get libraryCleanUpTitle => 'Nettoyer la bibliothèque';
+
+  @override
+  String get libraryCleanedUp => 'Bibliothèque nettoyée';
+
+  @override
+  String libraryDeleteConfirm(String title) {
+    return 'Supprimer « $title » ?';
+  }
+
+  @override
+  String get libraryDeleteFile => 'Supprimer le fichier';
+
+  @override
+  String get libraryDeleteTitle => 'Supprimer le jeu';
+
+  @override
+  String get libraryDeleted => 'Jeu supprimé';
+
+  @override
+  String get libraryEmpty => 'Ta bibliothèque est vide';
+
+  @override
+  String get libraryEmptyHint => 'Les jeux téléchargés apparaîtront ici';
+
+  @override
+  String get libraryFileMissing => 'Le fichier n\'existe plus';
+
+  @override
+  String get libraryFilesVerified => 'Fichiers vérifiés';
+
+  @override
+  String get libraryFormat => 'Format';
+
+  @override
+  String get libraryMissing => 'Manquant';
+
+  @override
+  String libraryNoPlatformRoms(String platform) {
+    return 'Aucun jeu $platform';
+  }
+
+  @override
+  String libraryNoResults(String query) {
+    return 'Aucun résultat pour « $query »';
+  }
+
+  @override
+  String libraryOpenError(String error) {
+    return 'Impossible d\'ouvrir le fichier : $error';
+  }
+
+  @override
+  String get libraryOpenWith => 'Ouvrir avec…';
+
+  @override
+  String get libraryPath => 'Chemin :';
+
+  @override
+  String get libraryPathNotFound => 'Chemin du fichier introuvable';
+
+  @override
+  String get libraryPlatform => 'Plateforme';
+
+  @override
+  String get libraryRemoveFromLibrary => 'Retirer de la bibliothèque';
+
+  @override
+  String get libraryRemoved => 'Retiré de la bibliothèque';
+
+  @override
+  String get librarySearchHint => 'Rechercher dans la bibliothèque…';
+
+  @override
+  String get librarySize => 'Taille';
+
+  @override
+  String libraryTabDownloaded(int count) {
+    return 'Téléchargés ($count)';
+  }
+
+  @override
+  String libraryTabWishlist(int count) {
+    return 'Souhaits ($count)';
+  }
+
+  @override
+  String get libraryVerifyFiles => 'Vérifier les fichiers';
+
+  @override
+  String get libraryWishlistEmpty => 'Ta liste de souhaits est vide';
+
+  @override
+  String get libraryWishlistError =>
+      'Impossible de charger la liste de souhaits';
+
+  @override
+  String get libraryWishlistHint =>
+      'Appuie sur le cœur d\'un jeu pour l\'ajouter ici';
+
+  @override
   String get navBrowse => 'Parcourir';
 
   @override
@@ -266,6 +462,36 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get navSettings => 'Réglages';
+
+  @override
+  String get statusCachingDebrid => 'Mise en cache sur le debrid…';
+
+  @override
+  String get statusCompleted => 'Terminé';
+
+  @override
+  String get statusDownloading => 'Téléchargement…';
+
+  @override
+  String get statusDownloadingTorrent => 'Téléchargement (torrent)';
+
+  @override
+  String get statusExtracting => 'Extraction…';
+
+  @override
+  String get statusFailed => 'Échec';
+
+  @override
+  String get statusFindingPeers => 'Recherche de pairs…';
+
+  @override
+  String get statusPaused => 'En pause';
+
+  @override
+  String get statusResolvingDebrid => 'Résolution via le debrid…';
+
+  @override
+  String get statusWaiting => 'En attente…';
 
   @override
   String get storagePermissionBody =>

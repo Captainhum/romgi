@@ -67,6 +67,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get commonClear => 'Clear';
 
   @override
+  String get commonClose => 'Close';
+
+  @override
   String get commonContinue => 'Continue';
 
   @override
@@ -77,6 +80,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get commonFilters => 'Filters';
+
+  @override
+  String get commonRemove => 'Remove';
 
   @override
   String get commonRetry => 'Retry';
@@ -228,6 +234,85 @@ class AppLocalizationsEn extends AppLocalizations {
   String get detailTorrent => 'Torrent';
 
   @override
+  String get downloadsClearCompleted => 'Clear completed';
+
+  @override
+  String get downloadsContactingTrackers => 'Contacting trackers…';
+
+  @override
+  String get downloadsEmptyBody =>
+      'Browse ROMs and tap download to get started';
+
+  @override
+  String get downloadsEmptyTitle => 'No downloads yet';
+
+  @override
+  String get downloadsExtracting => 'Extracting…';
+
+  @override
+  String get downloadsFailed => 'Download failed';
+
+  @override
+  String get downloadsIaLoginRequired => 'Internet Archive login required';
+
+  @override
+  String get downloadsLoggedInRetrying => 'Logged in! Retrying download...';
+
+  @override
+  String get downloadsLogin => 'Login';
+
+  @override
+  String get downloadsPausedSuffix => 'Paused';
+
+  @override
+  String downloadsPeersConnected(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count peers connected',
+      one: '1 peer connected',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String downloadsPeersSeeds(int peers, int seeds) {
+    String _temp0 = intl.Intl.pluralLogic(
+      peers,
+      locale: localeName,
+      other: '$peers peers',
+      one: '1 peer',
+    );
+    String _temp1 = intl.Intl.pluralLogic(
+      seeds,
+      locale: localeName,
+      other: '$seeds seeds',
+      one: '1 seed',
+    );
+    return '$_temp0 • $_temp1';
+  }
+
+  @override
+  String downloadsSectionCompleted(int count) {
+    return 'Completed ($count)';
+  }
+
+  @override
+  String downloadsSectionDownloading(int count) {
+    return 'Downloading ($count)';
+  }
+
+  @override
+  String downloadsSectionFailed(int count) {
+    return 'Failed ($count)';
+  }
+
+  @override
+  String downloadsSectionQueue(int count) {
+    return 'Queue ($count)';
+  }
+
+  @override
   String get filterApply => 'Apply Filters';
 
   @override
@@ -253,6 +338,116 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get libraryAll => 'All';
+
+  @override
+  String get libraryCleanUp => 'Clean Up';
+
+  @override
+  String get libraryCleanUpBody =>
+      'Remove entries for files that no longer exist on disk?';
+
+  @override
+  String get libraryCleanUpTitle => 'Clean Up Library';
+
+  @override
+  String get libraryCleanedUp => 'Library cleaned up';
+
+  @override
+  String libraryDeleteConfirm(String title) {
+    return 'Delete \"$title\"?';
+  }
+
+  @override
+  String get libraryDeleteFile => 'Delete File';
+
+  @override
+  String get libraryDeleteTitle => 'Delete ROM';
+
+  @override
+  String get libraryDeleted => 'ROM deleted';
+
+  @override
+  String get libraryEmpty => 'Your library is empty';
+
+  @override
+  String get libraryEmptyHint => 'Downloaded ROMs will appear here';
+
+  @override
+  String get libraryFileMissing => 'File no longer exists';
+
+  @override
+  String get libraryFilesVerified => 'Files verified';
+
+  @override
+  String get libraryFormat => 'Format';
+
+  @override
+  String get libraryMissing => 'Missing';
+
+  @override
+  String libraryNoPlatformRoms(String platform) {
+    return 'No $platform ROMs';
+  }
+
+  @override
+  String libraryNoResults(String query) {
+    return 'No results for \"$query\"';
+  }
+
+  @override
+  String libraryOpenError(String error) {
+    return 'Could not open file: $error';
+  }
+
+  @override
+  String get libraryOpenWith => 'Open with...';
+
+  @override
+  String get libraryPath => 'Path:';
+
+  @override
+  String get libraryPathNotFound => 'File path not found';
+
+  @override
+  String get libraryPlatform => 'Platform';
+
+  @override
+  String get libraryRemoveFromLibrary => 'Remove from Library';
+
+  @override
+  String get libraryRemoved => 'Removed from library';
+
+  @override
+  String get librarySearchHint => 'Search library...';
+
+  @override
+  String get librarySize => 'Size';
+
+  @override
+  String libraryTabDownloaded(int count) {
+    return 'Downloaded ($count)';
+  }
+
+  @override
+  String libraryTabWishlist(int count) {
+    return 'Wishlist ($count)';
+  }
+
+  @override
+  String get libraryVerifyFiles => 'Verify Files';
+
+  @override
+  String get libraryWishlistEmpty => 'Your wishlist is empty';
+
+  @override
+  String get libraryWishlistError => 'Failed to load wishlist';
+
+  @override
+  String get libraryWishlistHint =>
+      'Tap the heart icon on any ROM to add it here';
+
+  @override
   String get navBrowse => 'Browse';
 
   @override
@@ -263,6 +458,36 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get navSettings => 'Settings';
+
+  @override
+  String get statusCachingDebrid => 'Caching on debrid...';
+
+  @override
+  String get statusCompleted => 'Completed';
+
+  @override
+  String get statusDownloading => 'Downloading...';
+
+  @override
+  String get statusDownloadingTorrent => 'Downloading (Torrent)';
+
+  @override
+  String get statusExtracting => 'Extracting...';
+
+  @override
+  String get statusFailed => 'Failed';
+
+  @override
+  String get statusFindingPeers => 'Finding peers...';
+
+  @override
+  String get statusPaused => 'Paused';
+
+  @override
+  String get statusResolvingDebrid => 'Resolving via debrid...';
+
+  @override
+  String get statusWaiting => 'Waiting...';
 
   @override
   String get storagePermissionBody =>
