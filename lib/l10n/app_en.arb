@@ -106,6 +106,14 @@
   "@commonLoading": {
     "description": "Placeholder while loading"
   },
+  "commonRefresh": "Refresh",
+  "@commonRefresh": {
+    "description": "Tooltip refreshing a list"
+  },
+  "commonReload": "Reload",
+  "@commonReload": {
+    "description": "Tooltip reloading a web page"
+  },
   "commonRemove": "Remove",
   "@commonRemove": {
     "description": "Tooltip removing an item"
@@ -465,6 +473,14 @@
         "type": "String"
       }
     }
+  },
+  "iaCredentialsError": "Could not retrieve Internet Archive credentials. Please try again.",
+  "@iaCredentialsError": {
+    "description": "Login error"
+  },
+  "iaLoginTitle": "Internet Archive Login",
+  "@iaLoginTitle": {
+    "description": "Login screen title"
   },
   "libraryAll": "All",
   "@libraryAll": {
@@ -978,6 +994,119 @@
   "@settingsVersion": {
     "description": "Settings tile"
   },
+  "setupChecking": "Checking database...",
+  "@setupChecking": {
+    "description": "Setup screen status"
+  },
+  "setupDownloadBody": "The ROM catalog database needs to be downloaded to browse and search for games.",
+  "@setupDownloadBody": {
+    "description": "Setup screen body"
+  },
+  "setupDownloadButton": "Download Database",
+  "@setupDownloadButton": {
+    "description": "Setup screen button"
+  },
+  "setupDownloadSize": "Download Size",
+  "@setupDownloadSize": {
+    "description": "Setup info label"
+  },
+  "setupDownloadTitle": "Download ROM Database",
+  "@setupDownloadTitle": {
+    "description": "Setup screen title"
+  },
+  "setupDownloading": "Downloading database...",
+  "@setupDownloading": {
+    "description": "Setup screen status"
+  },
+  "setupFailed": "Download Failed",
+  "@setupFailed": {
+    "description": "Setup screen error title"
+  },
+  "setupReady": "Database ready!",
+  "@setupReady": {
+    "description": "Setup screen status"
+  },
+  "setupRomEntries": "ROM Entries",
+  "@setupRomEntries": {
+    "description": "Setup info label"
+  },
+  "setupSizeMb": "{size} MB",
+  "@setupSizeMb": {
+    "description": "Size in megabytes",
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "sourcesChecked": "checked {when}",
+  "@sourcesChecked": {
+    "description": "Status line fragment; when is a relative time",
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "sourcesCounts": "{entries} entries · {links} links",
+  "@sourcesCounts": {
+    "description": "Status line fragment; numbers are pre-formatted",
+    "placeholders": {
+      "entries": {
+        "type": "String"
+      },
+      "links": {
+        "type": "String"
+      }
+    }
+  },
+  "sourcesEmpty": "No sources found in the catalog database. Download or update the database from Settings → Update.",
+  "@sourcesEmpty": {
+    "description": "Sources screen empty state"
+  },
+  "sourcesLoadError": "Failed to load sources: {error}",
+  "@sourcesLoadError": {
+    "description": "Error",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "sourcesLoginRequired": "login required",
+  "@sourcesLoginRequired": {
+    "description": "Chip on sources needing an account (lower case)"
+  },
+  "sourcesOpenHomepage": "Open {url}",
+  "@sourcesOpenHomepage": {
+    "description": "Tooltip opening the source website",
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "sourcesPriority": "priority {priority}",
+  "@sourcesPriority": {
+    "description": "Chip with the source priority (lower case)",
+    "placeholders": {
+      "priority": {
+        "type": "int"
+      }
+    }
+  },
+  "sourcesStatusDegraded": "Degraded",
+  "@sourcesStatusDegraded": {
+    "description": "Source health status"
+  },
+  "sourcesStatusDown": "Down",
+  "@sourcesStatusDown": {
+    "description": "Source health status"
+  },
+  "sourcesStatusStale": "Stale",
+  "@sourcesStatusStale": {
+    "description": "Source health status"
+  },
   "statusCachingDebrid": "Caching on debrid...",
   "@statusCachingDebrid": {
     "description": "Download status shown under a download"
@@ -1025,6 +1154,55 @@
   "storagePermissionTitle": "Storage Permission",
   "@storagePermissionTitle": {
     "description": "Title of the dialog explaining the storage permission"
+  },
+  "timeDaysAgo": "{n}d ago",
+  "@timeDaysAgo": {
+    "description": "Relative time",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "timeHoursAgo": "{n}h ago",
+  "@timeHoursAgo": {
+    "description": "Relative time",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "timeJustNow": "just now",
+  "@timeJustNow": {
+    "description": "Relative time"
+  },
+  "timeMinutesAgo": "{n}m ago",
+  "@timeMinutesAgo": {
+    "description": "Relative time",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "timeMonthsAgo": "{n}mo ago",
+  "@timeMonthsAgo": {
+    "description": "Relative time",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "timeYearsAgo": "{n}y ago",
+  "@timeYearsAgo": {
+    "description": "Relative time",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
   },
   "updateAvailable": "Update Available",
   "@updateAvailable": {

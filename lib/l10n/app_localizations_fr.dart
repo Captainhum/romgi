@@ -93,6 +93,12 @@ class AppLocalizationsFr extends AppLocalizations {
   String get commonLoading => 'Chargement…';
 
   @override
+  String get commonRefresh => 'Actualiser';
+
+  @override
+  String get commonReload => 'Recharger';
+
+  @override
   String get commonRemove => 'Supprimer';
 
   @override
@@ -354,6 +360,13 @@ class AppLocalizationsFr extends AppLocalizations {
   String filterRegionsError(String error) {
     return 'Erreur de chargement des régions : $error';
   }
+
+  @override
+  String get iaCredentialsError =>
+      'Impossible de récupérer les identifiants Internet Archive. Réessaie.';
+
+  @override
+  String get iaLoginTitle => 'Connexion Internet Archive';
 
   @override
   String get libraryAll => 'Tous';
@@ -738,6 +751,80 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settingsVersion => 'Version';
 
   @override
+  String get setupChecking => 'Vérification de la base…';
+
+  @override
+  String get setupDownloadBody =>
+      'La base du catalogue doit être téléchargée pour parcourir et rechercher des jeux.';
+
+  @override
+  String get setupDownloadButton => 'Télécharger la base';
+
+  @override
+  String get setupDownloadSize => 'Taille';
+
+  @override
+  String get setupDownloadTitle => 'Télécharger la base des ROM';
+
+  @override
+  String get setupDownloading => 'Téléchargement de la base…';
+
+  @override
+  String get setupFailed => 'Échec du téléchargement';
+
+  @override
+  String get setupReady => 'Base prête !';
+
+  @override
+  String get setupRomEntries => 'Jeux';
+
+  @override
+  String setupSizeMb(String size) {
+    return '$size Mo';
+  }
+
+  @override
+  String sourcesChecked(String when) {
+    return 'vérifié $when';
+  }
+
+  @override
+  String sourcesCounts(String entries, String links) {
+    return '$entries jeux · $links liens';
+  }
+
+  @override
+  String get sourcesEmpty =>
+      'Aucune source dans la base du catalogue. Télécharge ou mets à jour la base depuis Réglages → Mettre à jour.';
+
+  @override
+  String sourcesLoadError(String error) {
+    return 'Impossible de charger les sources : $error';
+  }
+
+  @override
+  String get sourcesLoginRequired => 'connexion requise';
+
+  @override
+  String sourcesOpenHomepage(String url) {
+    return 'Ouvrir $url';
+  }
+
+  @override
+  String sourcesPriority(int priority) {
+    return 'priorité $priority';
+  }
+
+  @override
+  String get sourcesStatusDegraded => 'Dégradée';
+
+  @override
+  String get sourcesStatusDown => 'Hors service';
+
+  @override
+  String get sourcesStatusStale => 'Obsolète';
+
+  @override
   String get statusCachingDebrid => 'Mise en cache sur le debrid…';
 
   @override
@@ -773,6 +860,34 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get storagePermissionTitle => 'Autorisation de stockage';
+
+  @override
+  String timeDaysAgo(int n) {
+    return 'il y a $n j';
+  }
+
+  @override
+  String timeHoursAgo(int n) {
+    return 'il y a $n h';
+  }
+
+  @override
+  String get timeJustNow => 'à l\'instant';
+
+  @override
+  String timeMinutesAgo(int n) {
+    return 'il y a $n min';
+  }
+
+  @override
+  String timeMonthsAgo(int n) {
+    return 'il y a $n mois';
+  }
+
+  @override
+  String timeYearsAgo(int n) {
+    return 'il y a $n an(s)';
+  }
 
   @override
   String get updateAvailable => 'Mise à jour disponible';

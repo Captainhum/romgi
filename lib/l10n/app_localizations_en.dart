@@ -91,6 +91,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get commonLoading => 'Loading...';
 
   @override
+  String get commonRefresh => 'Refresh';
+
+  @override
+  String get commonReload => 'Reload';
+
+  @override
   String get commonRemove => 'Remove';
 
   @override
@@ -351,6 +357,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String filterRegionsError(String error) {
     return 'Error loading regions: $error';
   }
+
+  @override
+  String get iaCredentialsError =>
+      'Could not retrieve Internet Archive credentials. Please try again.';
+
+  @override
+  String get iaLoginTitle => 'Internet Archive Login';
 
   @override
   String get libraryAll => 'All';
@@ -730,6 +743,80 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsVersion => 'Version';
 
   @override
+  String get setupChecking => 'Checking database...';
+
+  @override
+  String get setupDownloadBody =>
+      'The ROM catalog database needs to be downloaded to browse and search for games.';
+
+  @override
+  String get setupDownloadButton => 'Download Database';
+
+  @override
+  String get setupDownloadSize => 'Download Size';
+
+  @override
+  String get setupDownloadTitle => 'Download ROM Database';
+
+  @override
+  String get setupDownloading => 'Downloading database...';
+
+  @override
+  String get setupFailed => 'Download Failed';
+
+  @override
+  String get setupReady => 'Database ready!';
+
+  @override
+  String get setupRomEntries => 'ROM Entries';
+
+  @override
+  String setupSizeMb(String size) {
+    return '$size MB';
+  }
+
+  @override
+  String sourcesChecked(String when) {
+    return 'checked $when';
+  }
+
+  @override
+  String sourcesCounts(String entries, String links) {
+    return '$entries entries · $links links';
+  }
+
+  @override
+  String get sourcesEmpty =>
+      'No sources found in the catalog database. Download or update the database from Settings → Update.';
+
+  @override
+  String sourcesLoadError(String error) {
+    return 'Failed to load sources: $error';
+  }
+
+  @override
+  String get sourcesLoginRequired => 'login required';
+
+  @override
+  String sourcesOpenHomepage(String url) {
+    return 'Open $url';
+  }
+
+  @override
+  String sourcesPriority(int priority) {
+    return 'priority $priority';
+  }
+
+  @override
+  String get sourcesStatusDegraded => 'Degraded';
+
+  @override
+  String get sourcesStatusDown => 'Down';
+
+  @override
+  String get sourcesStatusStale => 'Stale';
+
+  @override
   String get statusCachingDebrid => 'Caching on debrid...';
 
   @override
@@ -765,6 +852,34 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get storagePermissionTitle => 'Storage Permission';
+
+  @override
+  String timeDaysAgo(int n) {
+    return '${n}d ago';
+  }
+
+  @override
+  String timeHoursAgo(int n) {
+    return '${n}h ago';
+  }
+
+  @override
+  String get timeJustNow => 'just now';
+
+  @override
+  String timeMinutesAgo(int n) {
+    return '${n}m ago';
+  }
+
+  @override
+  String timeMonthsAgo(int n) {
+    return '${n}mo ago';
+  }
+
+  @override
+  String timeYearsAgo(int n) {
+    return '${n}y ago';
+  }
 
   @override
   String get updateAvailable => 'Update Available';

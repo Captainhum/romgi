@@ -242,6 +242,18 @@ abstract class AppLocalizations {
   /// **'Loading...'**
   String get commonLoading;
 
+  /// Tooltip refreshing a list
+  ///
+  /// In en, this message translates to:
+  /// **'Refresh'**
+  String get commonRefresh;
+
+  /// Tooltip reloading a web page
+  ///
+  /// In en, this message translates to:
+  /// **'Reload'**
+  String get commonReload;
+
   /// Tooltip removing an item
   ///
   /// In en, this message translates to:
@@ -637,6 +649,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Error loading regions: {error}'**
   String filterRegionsError(String error);
+
+  /// Login error
+  ///
+  /// In en, this message translates to:
+  /// **'Could not retrieve Internet Archive credentials. Please try again.'**
+  String get iaCredentialsError;
+
+  /// Login screen title
+  ///
+  /// In en, this message translates to:
+  /// **'Internet Archive Login'**
+  String get iaLoginTitle;
 
   /// Platform filter chip showing every platform
   ///
@@ -1304,6 +1328,126 @@ abstract class AppLocalizations {
   /// **'Version'**
   String get settingsVersion;
 
+  /// Setup screen status
+  ///
+  /// In en, this message translates to:
+  /// **'Checking database...'**
+  String get setupChecking;
+
+  /// Setup screen body
+  ///
+  /// In en, this message translates to:
+  /// **'The ROM catalog database needs to be downloaded to browse and search for games.'**
+  String get setupDownloadBody;
+
+  /// Setup screen button
+  ///
+  /// In en, this message translates to:
+  /// **'Download Database'**
+  String get setupDownloadButton;
+
+  /// Setup info label
+  ///
+  /// In en, this message translates to:
+  /// **'Download Size'**
+  String get setupDownloadSize;
+
+  /// Setup screen title
+  ///
+  /// In en, this message translates to:
+  /// **'Download ROM Database'**
+  String get setupDownloadTitle;
+
+  /// Setup screen status
+  ///
+  /// In en, this message translates to:
+  /// **'Downloading database...'**
+  String get setupDownloading;
+
+  /// Setup screen error title
+  ///
+  /// In en, this message translates to:
+  /// **'Download Failed'**
+  String get setupFailed;
+
+  /// Setup screen status
+  ///
+  /// In en, this message translates to:
+  /// **'Database ready!'**
+  String get setupReady;
+
+  /// Setup info label
+  ///
+  /// In en, this message translates to:
+  /// **'ROM Entries'**
+  String get setupRomEntries;
+
+  /// Size in megabytes
+  ///
+  /// In en, this message translates to:
+  /// **'{size} MB'**
+  String setupSizeMb(String size);
+
+  /// Status line fragment; when is a relative time
+  ///
+  /// In en, this message translates to:
+  /// **'checked {when}'**
+  String sourcesChecked(String when);
+
+  /// Status line fragment; numbers are pre-formatted
+  ///
+  /// In en, this message translates to:
+  /// **'{entries} entries · {links} links'**
+  String sourcesCounts(String entries, String links);
+
+  /// Sources screen empty state
+  ///
+  /// In en, this message translates to:
+  /// **'No sources found in the catalog database. Download or update the database from Settings → Update.'**
+  String get sourcesEmpty;
+
+  /// Error
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load sources: {error}'**
+  String sourcesLoadError(String error);
+
+  /// Chip on sources needing an account (lower case)
+  ///
+  /// In en, this message translates to:
+  /// **'login required'**
+  String get sourcesLoginRequired;
+
+  /// Tooltip opening the source website
+  ///
+  /// In en, this message translates to:
+  /// **'Open {url}'**
+  String sourcesOpenHomepage(String url);
+
+  /// Chip with the source priority (lower case)
+  ///
+  /// In en, this message translates to:
+  /// **'priority {priority}'**
+  String sourcesPriority(int priority);
+
+  /// Source health status
+  ///
+  /// In en, this message translates to:
+  /// **'Degraded'**
+  String get sourcesStatusDegraded;
+
+  /// Source health status
+  ///
+  /// In en, this message translates to:
+  /// **'Down'**
+  String get sourcesStatusDown;
+
+  /// Source health status
+  ///
+  /// In en, this message translates to:
+  /// **'Stale'**
+  String get sourcesStatusStale;
+
   /// Download status shown under a download
   ///
   /// In en, this message translates to:
@@ -1375,6 +1519,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Storage Permission'**
   String get storagePermissionTitle;
+
+  /// Relative time
+  ///
+  /// In en, this message translates to:
+  /// **'{n}d ago'**
+  String timeDaysAgo(int n);
+
+  /// Relative time
+  ///
+  /// In en, this message translates to:
+  /// **'{n}h ago'**
+  String timeHoursAgo(int n);
+
+  /// Relative time
+  ///
+  /// In en, this message translates to:
+  /// **'just now'**
+  String get timeJustNow;
+
+  /// Relative time
+  ///
+  /// In en, this message translates to:
+  /// **'{n}m ago'**
+  String timeMinutesAgo(int n);
+
+  /// Relative time
+  ///
+  /// In en, this message translates to:
+  /// **'{n}mo ago'**
+  String timeMonthsAgo(int n);
+
+  /// Relative time
+  ///
+  /// In en, this message translates to:
+  /// **'{n}y ago'**
+  String timeYearsAgo(int n);
 
   /// Update tile title
   ///
