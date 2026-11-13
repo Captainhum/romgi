@@ -9,6 +9,7 @@ import '../models/models.dart';
 import '../providers/providers.dart';
 import '../utils/utils.dart';
 import 'entry_detail_screen.dart';
+import '../l10n/l10n.dart';
 
 /// Talks to the native side of "open with…" so we can force the system
 /// chooser via Intent.createChooser instead of the user's saved default.
@@ -51,15 +52,15 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen>
             ? TextField(
                 controller: _searchController,
                 autofocus: true,
-                decoration: const InputDecoration(
-                  hintText: 'Search library...',
+                decoration: InputDecoration(
+                  hintText: context.l10n.librarySearchHint,
                   border: InputBorder.none,
                 ),
                 onChanged: (value) {
                   ref.read(libraryProvider.notifier).setSearchQuery(value);
                 },
               )
-            : const Text('Library'),
+            : Text(context.l10n.navLibrary),
         actions: [
           IconButton(
             icon: Icon(_showSearch ? Icons.close : Icons.search),
@@ -80,25 +81,25 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen>
                 await ref.read(libraryProvider.notifier).verifyFiles();
                 if (context.mounted) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Files verified')),
+                    SnackBar(content: Text(context.l10n.libraryFilesVerified)),
                   );
                 }
               } else if (value == 'cleanup') {
                 final confirmed = await showDialog<bool>(
                   context: context,
                   builder: (context) => AlertDialog(
-                    title: const Text('Clean Up Library'),
-                    content: const Text(
-                      'Remove entries for files that no longer exist on disk?',
+                    title: Text(context.l10n.libraryCleanUpTitle),
+                    content: Text(
+                      context.l10n.libraryCleanUpBody,
                     ),
                     actions: [
                       TextButton(
                         onPressed: () => Navigator.pop(context, false),
-                        child: const Text('Cancel'),
+                        child: Text(context.l10n.commonCancel),
                       ),
                       TextButton(
                         onPressed: () => Navigator.pop(context, true),
-                        child: const Text('Clean Up'),
+                        child: Text(context.l10n.libraryCleanUp),
                       ),
                     ],
                   ),
@@ -109,26 +110,26 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen>
                       .cleanupMissingFiles();
                   if (context.mounted) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Library cleaned up')),
+                      SnackBar(content: Text(context.l10n.libraryCleanedUp)),
                     );
                   }
                 }
               }
             },
             itemBuilder: (context) => [
-              const PopupMenuItem(
+              PopupMenuItem(
                 value: 'verify',
                 child: ListTile(
-                  leading: Icon(Icons.verified),
-                  title: Text('Verify Files'),
+                  leading: const Icon(Icons.verified),
+                  title: Text(context.l10n.libraryVerifyFiles),
                   contentPadding: EdgeInsets.zero,
                 ),
               ),
-              const PopupMenuItem(
+              PopupMenuItem(
                 value: 'cleanup',
                 child: ListTile(
-                  leading: Icon(Icons.cleaning_services),
-                  title: Text('Clean Up'),
+                  leading: const Icon(Icons.cleaning_services),
+                  title: Text(context.l10n.libraryCleanUp),
                   contentPadding: EdgeInsets.zero,
                 ),
               ),
@@ -144,7 +145,7 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen>
                 children: [
                   const Icon(Icons.folder, size: 18),
                   const SizedBox(width: 8),
-                  Text('Downloaded (${libraryState.items.length})'),
+                  Text(context.l10n.libraryTabDownloaded(libraryState.items.length)),
                 ],
               ),
             ),
@@ -154,7 +155,11 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen>
                 children: [
                   const Icon(Icons.favorite, size: 18),
                   const SizedBox(width: 8),
-                  Text('Wishlist (${favoritesAsync.valueOrNull?.length ?? 0})'),
+                  Text(
+                    context.l10n.libraryTabWishlist(
+                      favoritesAsync.valueOrNull?.length ?? 0,
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -186,7 +191,7 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen>
               padding: const EdgeInsets.symmetric(horizontal: 16),
               children: [
                 FilterChip(
-                  label: const Text('All'),
+                  label: Text(context.l10n.libraryAll),
                   selected: libraryState.selectedPlatform == null,
                   onSelected: (selected) {
                     ref
@@ -254,7 +259,7 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen>
             Icon(Icons.error_outline, size: 64, color: Colors.grey[400]),
             const SizedBox(height: 16),
             Text(
-              'Failed to load wishlist',
+              context.l10n.libraryWishlistError,
               style: TextStyle(color: Colors.grey[600]),
             ),
           ],
@@ -269,12 +274,12 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen>
                 Icon(Icons.favorite_border, size: 64, color: Colors.grey[400]),
                 const SizedBox(height: 16),
                 Text(
-                  'Your wishlist is empty',
+                  context.l10n.libraryWishlistEmpty,
                   style: TextStyle(color: Colors.grey[600], fontSize: 18),
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Tap the heart icon on any ROM to add it here',
+                  context.l10n.libraryWishlistHint,
                   style: TextStyle(color: Colors.grey[500]),
                 ),
               ],
@@ -298,12 +303,13 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen>
               },
               onRemove: () async {
                 final messenger = ScaffoldMessenger.of(context);
+                final removed = context.l10n.detailRemovedFromWishlist;
                 await ref
                     .read(favoritesProvider.notifier)
                     .removeFavorite(item.slug);
                 if (mounted) {
                   messenger.showSnackBar(
-                    const SnackBar(content: Text('Removed from wishlist')),
+                    SnackBar(content: Text(removed)),
                   );
                 }
               },
@@ -323,7 +329,7 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen>
             Icon(Icons.search_off, size: 64, color: Colors.grey[400]),
             const SizedBox(height: 16),
             Text(
-              'No results for "${state.searchQuery}"',
+              context.l10n.libraryNoResults(state.searchQuery),
               style: TextStyle(color: Colors.grey[600]),
             ),
           ],
@@ -339,7 +345,9 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen>
             Icon(Icons.folder_open, size: 64, color: Colors.grey[400]),
             const SizedBox(height: 16),
             Text(
-              'No ${PlatformNames.getDisplayName(state.selectedPlatform!)} ROMs',
+              context.l10n.libraryNoPlatformRoms(
+                PlatformNames.getDisplayName(state.selectedPlatform!),
+              ),
               style: TextStyle(color: Colors.grey[600]),
             ),
           ],
@@ -354,12 +362,12 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen>
           Icon(Icons.library_books, size: 64, color: Colors.grey[400]),
           const SizedBox(height: 16),
           Text(
-            'Your library is empty',
+            context.l10n.libraryEmpty,
             style: TextStyle(color: Colors.grey[600], fontSize: 18),
           ),
           const SizedBox(height: 8),
           Text(
-            'Downloaded ROMs will appear here',
+            context.l10n.libraryEmptyHint,
             style: TextStyle(color: Colors.grey[500]),
           ),
         ],
@@ -371,7 +379,7 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen>
     if (item.filePath == null) {
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(const SnackBar(content: Text('File path not found')));
+      ).showSnackBar(SnackBar(content: Text(context.l10n.libraryPathNotFound)));
       return;
     }
 
@@ -380,10 +388,16 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen>
       if (mounted) {
         ScaffoldMessenger.of(
           context,
-        ).showSnackBar(const SnackBar(content: Text('File no longer exists')));
+        ).showSnackBar(SnackBar(content: Text(context.l10n.libraryFileMissing)));
       }
       return;
     }
+
+    final group = item.groupHidden
+        ? null
+        : await ref.read(romDatabaseProvider).getEntryGroup(item.slug);
+    final canGroup =
+        group != null && group.isDisc && group.members.length > 1;
 
     // Show file info dialog with Open with option
     if (mounted) {
@@ -395,12 +409,12 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen>
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _infoRow('Platform', PlatformNames.getDisplayName(item.platform)),
-              _infoRow('Format', item.link.format.toUpperCase()),
-              _infoRow('Size', item.link.sizeStr),
+              _infoRow(context.l10n.libraryPlatform, PlatformNames.getDisplayName(item.platform)),
+              _infoRow(context.l10n.libraryFormat, item.link.format.toUpperCase()),
+              _infoRow(context.l10n.librarySize, item.link.sizeStr),
               const SizedBox(height: 8),
               Text(
-                'Path:',
+                context.l10n.libraryPath,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.grey[600],
@@ -414,9 +428,17 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen>
             ],
           ),
           actions: [
+            if (canGroup)
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(dialogContext);
+                  _createPlaylist(group);
+                },
+                child: Text(context.l10n.libraryCreatePlaylist),
+              ),
             TextButton(
               onPressed: () => Navigator.pop(dialogContext),
-              child: const Text('Close'),
+              child: Text(context.l10n.commonClose),
             ),
             FilledButton.icon(
               onPressed: () async {
@@ -429,13 +451,13 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen>
                 } on PlatformException catch (e) {
                   if (mounted) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Could not open file: ${e.message ?? e.code}')),
+                      SnackBar(content: Text(context.l10n.libraryOpenError(e.message ?? e.code))),
                     );
                   }
                 }
               },
               icon: const Icon(Icons.open_in_new),
-              label: const Text('Open with...'),
+              label: Text(context.l10n.libraryOpenWith),
             ),
           ],
         ),
@@ -461,25 +483,42 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen>
     );
   }
 
+  Future<void> _createPlaylist(EntryGroup group) async {
+    final missing = await ref
+        .read(downloadProvider.notifier)
+        .organizeExistingGroup(group);
+    await ref.read(libraryProvider.notifier).refresh();
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          missing.isEmpty
+              ? context.l10n.libraryPlaylistCreated(group.title)
+              : context.l10n.libraryPlaylistMissing(missing.join(', ')),
+        ),
+      ),
+    );
+  }
+
   Future<void> _confirmDelete(DownloadTask item) async {
     final result = await showDialog<String>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Delete ROM'),
-        content: Text('Delete "${item.title}"?'),
+        title: Text(context.l10n.libraryDeleteTitle),
+        content: Text(context.l10n.libraryDeleteConfirm(item.title)),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, 'cancel'),
-            child: const Text('Cancel'),
+            child: Text(context.l10n.commonCancel),
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, 'remove'),
-            child: const Text('Remove from Library'),
+            child: Text(context.l10n.libraryRemoveFromLibrary),
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, 'delete'),
             style: TextButton.styleFrom(foregroundColor: Colors.red),
-            child: const Text('Delete File'),
+            child: Text(context.l10n.libraryDeleteFile),
           ),
         ],
       ),
@@ -496,7 +535,7 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen>
       if (mounted) {
         ScaffoldMessenger.of(
           context,
-        ).showSnackBar(const SnackBar(content: Text('Removed from library')));
+        ).showSnackBar(SnackBar(content: Text(context.l10n.libraryRemoved)));
       }
     } else if (result == 'delete') {
       await ref
@@ -509,7 +548,7 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen>
       if (mounted) {
         ScaffoldMessenger.of(
           context,
-        ).showSnackBar(const SnackBar(content: Text('ROM deleted')));
+        ).showSnackBar(SnackBar(content: Text(context.l10n.libraryDeleted)));
       }
     }
   }
@@ -596,7 +635,7 @@ class _LibraryItemTile extends StatelessWidget {
             Icon(Icons.warning, size: 12, color: Colors.orange[700]),
             const SizedBox(width: 2),
             Text(
-              'Missing',
+              context.l10n.libraryMissing,
               style: TextStyle(fontSize: 10, color: Colors.orange[700]),
             ),
           ],
@@ -670,7 +709,7 @@ class _WishlistItemTile extends StatelessWidget {
       trailing: IconButton(
         icon: const Icon(Icons.favorite, color: Colors.red),
         onPressed: onRemove,
-        tooltip: 'Remove from wishlist',
+        tooltip: context.l10n.detailRemoveFromWishlist,
       ),
       onTap: onTap,
     );

@@ -8,6 +8,7 @@ import 'package:permission_handler/permission_handler.dart';
 
 import 'providers/providers.dart';
 import 'screens/screens.dart';
+import 'l10n/l10n.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -54,6 +55,16 @@ class RomgiApp extends ConsumerWidget {
         appBarTheme: const AppBarTheme(scrolledUnderElevation: 0),
       ),
       themeMode: settings.flutterThemeMode,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      locale: settings.appLanguage == null
+          ? null
+          : Locale(settings.appLanguage!),
+      builder: (context, child) {
+        // Keeps notifications and background messages in the UI language.
+        appLocale = Localizations.localeOf(context);
+        return child!;
+      },
       home: const _AppHome(),
     );
   }
@@ -127,10 +138,12 @@ class _MainNavigationState extends ConsumerState<MainNavigation> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            'Update available: v${updateState.availableUpdate?.version}',
+            context.l10n.updateAvailableSnack(
+              updateState.availableUpdate?.version ?? '',
+            ),
           ),
           action: SnackBarAction(
-            label: 'Settings',
+            label: context.l10n.navSettings,
             onPressed: () {
               ref.read(navigationTabProvider.notifier).state = NavTab.settings;
             },
@@ -154,19 +167,16 @@ class _MainNavigationState extends ConsumerState<MainNavigation> {
       context: context,
       barrierDismissible: false,
       builder: (context) => AlertDialog(
-        title: const Text('Storage Permission'),
-        content: const Text(
-          'Romgi needs storage access to save ROMs to a location accessible by your file manager and emulators.\n\n'
-          'On the next screen, please enable "Allow access to manage all files".',
-        ),
+        title: Text(context.l10n.storagePermissionTitle),
+        content: Text(context.l10n.storagePermissionBody),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: const Text('Skip'),
+            child: Text(context.l10n.commonSkip),
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, true),
-            child: const Text('Continue'),
+            child: Text(context.l10n.commonContinue),
           ),
         ],
       ),
@@ -216,26 +226,26 @@ class _MainNavigationState extends ConsumerState<MainNavigation> {
               selectedIndex: currentIndex,
               onDestinationSelected: _onTabSelected,
               labelType: NavigationRailLabelType.all,
-              destinations: const [
+              destinations: [
                 NavigationRailDestination(
-                  icon: Icon(Icons.search),
-                  selectedIcon: Icon(Icons.search),
-                  label: Text('Browse'),
+                  icon: const Icon(Icons.search),
+                  selectedIcon: const Icon(Icons.search),
+                  label: Text(context.l10n.navBrowse),
                 ),
                 NavigationRailDestination(
-                  icon: Icon(Icons.download_outlined),
-                  selectedIcon: Icon(Icons.download),
-                  label: Text('Downloads'),
+                  icon: const Icon(Icons.download_outlined),
+                  selectedIcon: const Icon(Icons.download),
+                  label: Text(context.l10n.navDownloads),
                 ),
                 NavigationRailDestination(
-                  icon: Icon(Icons.library_books_outlined),
-                  selectedIcon: Icon(Icons.library_books),
-                  label: Text('Library'),
+                  icon: const Icon(Icons.library_books_outlined),
+                  selectedIcon: const Icon(Icons.library_books),
+                  label: Text(context.l10n.navLibrary),
                 ),
                 NavigationRailDestination(
-                  icon: Icon(Icons.settings_outlined),
-                  selectedIcon: Icon(Icons.settings),
-                  label: Text('Settings'),
+                  icon: const Icon(Icons.settings_outlined),
+                  selectedIcon: const Icon(Icons.settings),
+                  label: Text(context.l10n.navSettings),
                 ),
               ],
             ),
@@ -254,26 +264,26 @@ class _MainNavigationState extends ConsumerState<MainNavigation> {
       bottomNavigationBar: NavigationBar(
         selectedIndex: currentIndex,
         onDestinationSelected: _onTabSelected,
-        destinations: const [
+        destinations: [
           NavigationDestination(
-            icon: Icon(Icons.search),
-            selectedIcon: Icon(Icons.search),
-            label: 'Browse',
+            icon: const Icon(Icons.search),
+            selectedIcon: const Icon(Icons.search),
+            label: context.l10n.navBrowse,
           ),
           NavigationDestination(
-            icon: Icon(Icons.download_outlined),
-            selectedIcon: Icon(Icons.download),
-            label: 'Downloads',
+            icon: const Icon(Icons.download_outlined),
+            selectedIcon: const Icon(Icons.download),
+            label: context.l10n.navDownloads,
           ),
           NavigationDestination(
-            icon: Icon(Icons.library_books_outlined),
-            selectedIcon: Icon(Icons.library_books),
-            label: 'Library',
+            icon: const Icon(Icons.library_books_outlined),
+            selectedIcon: const Icon(Icons.library_books),
+            label: context.l10n.navLibrary,
           ),
           NavigationDestination(
-            icon: Icon(Icons.settings_outlined),
-            selectedIcon: Icon(Icons.settings),
-            label: 'Settings',
+            icon: const Icon(Icons.settings_outlined),
+            selectedIcon: const Icon(Icons.settings),
+            label: context.l10n.navSettings,
           ),
         ],
       ),

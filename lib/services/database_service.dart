@@ -6,7 +6,7 @@ import '../models/models.dart';
 class DatabaseService {
   static Database? _database;
   static const String _dbName = 'romgi.db';
-  static const int _dbVersion = 8;
+  static const int _dbVersion = 9;
 
   Future<Database> get database async {
     _database ??= await _initDatabase();
@@ -115,6 +115,12 @@ class DatabaseService {
         )
       ''');
     }
+
+    if (oldVersion < 9) {
+      await db.execute(
+        'ALTER TABLE downloads ADD COLUMN group_hidden INTEGER NOT NULL DEFAULT 0',
+      );
+    }
   }
 
   Future<void> _onCreate(Database db, int version) async {
@@ -152,7 +158,8 @@ class DatabaseService {
         group_id TEXT,
         group_index INTEGER,
         group_title TEXT,
-        group_total INTEGER
+        group_total INTEGER,
+        group_hidden INTEGER NOT NULL DEFAULT 0
       )
     ''');
 
@@ -345,6 +352,7 @@ class DatabaseService {
     int? groupIndex,
     String? groupTitle,
     int? groupTotal,
+    bool? groupHidden,
   }) async {
     final db = await database;
     await db.update(
@@ -354,6 +362,7 @@ class DatabaseService {
         'group_index': groupIndex,
         'group_title': groupTitle,
         'group_total': groupTotal,
+        if (groupHidden != null) 'group_hidden': groupHidden ? 1 : 0,
       },
       where: 'id = ?',
       whereArgs: [id],

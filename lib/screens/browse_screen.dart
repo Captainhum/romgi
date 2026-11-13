@@ -7,6 +7,7 @@ import '../providers/providers.dart';
 import '../utils/utils.dart';
 import '../widgets/widgets.dart';
 import 'entry_detail_screen.dart';
+import '../l10n/l10n.dart';
 
 final isGridViewProvider = StateProvider<bool>((ref) => false);
 
@@ -68,7 +69,7 @@ class _BrowseScreenState extends ConsumerState<BrowseScreen> {
       if (randomEntry == null) {
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('No entries found in database')),
+            SnackBar(content: Text(context.l10n.browseNoEntries)),
           );
         }
         return;
@@ -88,7 +89,7 @@ class _BrowseScreenState extends ConsumerState<BrowseScreen> {
           SnackBar(
             content: Text(message),
             action: SnackBarAction(
-              label: 'Retry',
+              label: context.l10n.commonRetry,
               onPressed: _navigateToRandomEntry,
             ),
           ),
@@ -124,7 +125,7 @@ class _BrowseScreenState extends ConsumerState<BrowseScreen> {
               child: TextField(
                 controller: _searchController,
                 decoration: InputDecoration(
-                  hintText: 'Search ROMs...',
+                  hintText: context.l10n.browseSearchHint,
                   prefixIcon: const Icon(Icons.search),
                   suffixIcon: _searchController.text.isNotEmpty
                       ? IconButton(
@@ -158,20 +159,20 @@ class _BrowseScreenState extends ConsumerState<BrowseScreen> {
               child: IconButton(
                 icon: const Icon(Icons.filter_list),
                 onPressed: _showFilters,
-                tooltip: 'Filters',
+                tooltip: context.l10n.commonFilters,
               ),
             ),
             IconButton(
               icon: const Icon(Icons.shuffle),
               onPressed: () => _navigateToRandomEntry(),
-              tooltip: "I'm Feeling Lucky",
+              tooltip: context.l10n.browseFeelingLucky,
             ),
             IconButton(
               icon: Icon(isGridView ? Icons.view_list : Icons.grid_view),
               onPressed: () {
                 ref.read(isGridViewProvider.notifier).state = !isGridView;
               },
-              tooltip: isGridView ? 'List view' : 'Grid view',
+              tooltip: isGridView ? context.l10n.browseListView : context.l10n.browseGridView,
             ),
           ],
         ),
@@ -198,7 +199,7 @@ class _BrowseScreenState extends ConsumerState<BrowseScreen> {
               TextField(
                 controller: _searchController,
                 decoration: InputDecoration(
-                  hintText: 'Search ROMs...',
+                  hintText: context.l10n.browseSearchHint,
                   prefixIcon: const Icon(Icons.search),
                   suffixIcon: _searchController.text.isNotEmpty
                       ? IconButton(
@@ -235,7 +236,7 @@ class _BrowseScreenState extends ConsumerState<BrowseScreen> {
                         label: Text('$activeFilterCount'),
                         child: const Icon(Icons.filter_list),
                       ),
-                      label: const Text('Filters'),
+                      label: Text(context.l10n.commonFilters),
                     ),
                   ),
                   const SizedBox(width: 8),
@@ -243,7 +244,7 @@ class _BrowseScreenState extends ConsumerState<BrowseScreen> {
                     child: OutlinedButton.icon(
                       onPressed: () => _navigateToRandomEntry(),
                       icon: const Icon(Icons.shuffle),
-                      label: const Text('Random'),
+                      label: Text(context.l10n.browseRandom),
                     ),
                   ),
                   const SizedBox(width: 8),
@@ -252,7 +253,7 @@ class _BrowseScreenState extends ConsumerState<BrowseScreen> {
                     onPressed: () {
                       ref.read(isGridViewProvider.notifier).state = !isGridView;
                     },
-                    tooltip: isGridView ? 'List view' : 'Grid view',
+                    tooltip: isGridView ? context.l10n.browseListView : context.l10n.browseGridView,
                   ),
                 ],
               ),
@@ -348,8 +349,12 @@ class _BrowseScreenState extends ConsumerState<BrowseScreen> {
                   ),
                   child: Text(
                     searchState.result!.hasMore
-                        ? '${searchState.result!.currentResults}+ results'
-                        : '${searchState.result!.totalResults} results',
+                        ? context.l10n.browseResultCountMore(
+                            searchState.result!.currentResults,
+                          )
+                        : context.l10n.browseResultCount(
+                            searchState.result!.totalResults,
+                          ),
                     style: Theme.of(context).textTheme.bodySmall,
                   ),
                 ),
@@ -388,7 +393,7 @@ class _BrowseScreenState extends ConsumerState<BrowseScreen> {
             children: [
               const Icon(Icons.search_off, size: 48, color: Colors.grey),
               const SizedBox(height: 16),
-              const Text('No results found'),
+              Text(context.l10n.browseNoResults),
               if (searchState.selectedPlatforms.isNotEmpty ||
                   searchState.selectedRegions.isNotEmpty) ...[
                 const SizedBox(height: 8),
@@ -398,7 +403,7 @@ class _BrowseScreenState extends ConsumerState<BrowseScreen> {
                       ..clearFilters()
                       ..search();
                   },
-                  child: const Text('Clear filters'),
+                  child: Text(context.l10n.browseClearFilters),
                 ),
               ],
             ],
@@ -510,7 +515,7 @@ class _BrowseScreenState extends ConsumerState<BrowseScreen> {
                   ),
                   const SizedBox(width: 8),
                   Text(
-                    'Recently Viewed',
+                    context.l10n.browseRecentlyViewed,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -520,7 +525,7 @@ class _BrowseScreenState extends ConsumerState<BrowseScreen> {
                     onPressed: () async {
                       await ref.read(recentlyViewedProvider.notifier).clear();
                     },
-                    child: const Text('Clear'),
+                    child: Text(context.l10n.commonClear),
                   ),
                 ],
               ),
@@ -536,7 +541,7 @@ class _BrowseScreenState extends ConsumerState<BrowseScreen> {
               // Search hint
               Center(
                 child: Text(
-                  'Use the search bar above to find more ROMs',
+                  context.l10n.browseUseSearchBar,
                   style: Theme.of(
                     context,
                   ).textTheme.bodySmall?.copyWith(color: Colors.grey[500]),
@@ -558,14 +563,14 @@ class _BrowseScreenState extends ConsumerState<BrowseScreen> {
             Icon(Icons.search, size: 64, color: Colors.grey[400]),
             const SizedBox(height: 16),
             Text(
-              'Search for ROMs',
+              context.l10n.browseEmptyTitle,
               style: Theme.of(
                 context,
               ).textTheme.titleLarge?.copyWith(color: Colors.grey[600]),
             ),
             const SizedBox(height: 8),
             Text(
-              'Enter a game name or use filters to browse',
+              context.l10n.browseEmptyBody,
               style: Theme.of(
                 context,
               ).textTheme.bodyMedium?.copyWith(color: Colors.grey[500]),

@@ -27,6 +27,7 @@ DownloadTask _disc({
   int? groupIndex,
   String? groupTitle = 'Game',
   int? groupTotal,
+  bool groupHidden = false,
 }) =>
     DownloadTask(
       id: id,
@@ -41,20 +42,24 @@ DownloadTask _disc({
       groupIndex: groupIndex,
       groupTitle: groupTitle,
       groupTotal: groupTotal,
+      groupHidden: groupHidden,
     );
 
 void main() {
   late Directory tempDir;
   late List<DownloadTask> members;
   late PlaylistWriter writer;
+  late List<DownloadTask> saved;
 
   setUp(() {
     tempDir = Directory.systemTemp.createTempSync('romgi_playlist_test');
     members = [];
+    saved = [];
     writer = PlaylistWriter(
       getGroupMembers: (groupId) async =>
           members.where((m) => m.groupId == groupId).toList(),
       getPlatformDirectory: (_) async => tempDir,
+      saveTask: (task) async => saved.add(task),
     );
   });
 
@@ -96,6 +101,61 @@ void main() {
         playlistFile().readAsStringSync(),
         'Game (Disc 1).chd\nGame (Disc 2).chd\n',
       );
+    });
+
+    test('hidden groups move discs into .hidden and point the playlist there',
+        () async {
+      members = [
+        for (final i in [1, 2])
+          _disc(
+            id: 'd$i',
+            title: 'Game (Disc $i)',
+            filePath: discFile('Game (Disc $i).chd'),
+            groupIndex: i,
+            groupTotal: 2,
+            groupHidden: true,
+          ),
+      ];
+
+      await writer.maybeWritePlaylist(members.last);
+
+      expect(
+        playlistFile().readAsStringSync(),
+        '.hidden/Game (Disc 1).chd\n.hidden/Game (Disc 2).chd\n',
+      );
+      expect(
+        File(p.join(tempDir.path, 'Game (Disc 1).chd')).existsSync(),
+        isFalse,
+      );
+      expect(saved.map((t) => t.filePath), [
+        p.join(tempDir.path, '.hidden', 'Game (Disc 1).chd'),
+        p.join(tempDir.path, '.hidden', 'Game (Disc 2).chd'),
+      ]);
+    });
+
+    test('hidden groups keep discs in place when a name is taken', () async {
+      File(p.join(tempDir.path, '.hidden', 'Game (Disc 2).chd'))
+        ..createSync(recursive: true)
+        ..writeAsStringSync('someone else');
+      members = [
+        for (final i in [1, 2])
+          _disc(
+            id: 'd$i',
+            title: 'Game (Disc $i)',
+            filePath: discFile('Game (Disc $i).chd'),
+            groupIndex: i,
+            groupTotal: 2,
+            groupHidden: true,
+          ),
+      ];
+
+      await writer.maybeWritePlaylist(members.last);
+
+      expect(
+        playlistFile().readAsStringSync(),
+        'Game (Disc 1).chd\nGame (Disc 2).chd\n',
+      );
+      expect(saved, isEmpty);
     });
 
     test('orders entries by disc index regardless of member order', () async {

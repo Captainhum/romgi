@@ -33,6 +33,9 @@ class DownloadTask {
   final String? groupTitle;
   // Disc count of the group at queue time.
   final int? groupTotal;
+  // Move the group's discs into `.hidden/` once every member is done, so
+  // frontends only list the .m3u.
+  final bool groupHidden;
   // Torrent-only, in-memory only (not persisted). -1 means "unknown"
   // so the UI can distinguish a fresh torrent task from "0 peers".
   final int peers;
@@ -61,6 +64,7 @@ class DownloadTask {
     this.groupIndex,
     this.groupTitle,
     this.groupTotal,
+    this.groupHidden = false,
     this.peers = -1,
     this.seeds = -1,
     this.fetchingMetadata = false,
@@ -82,6 +86,7 @@ class DownloadTask {
     int? groupIndex,
     String? groupTitle,
     int? groupTotal,
+    bool? groupHidden,
     int? peers,
     int? seeds,
     bool? fetchingMetadata,
@@ -108,6 +113,7 @@ class DownloadTask {
       groupIndex: groupIndex ?? this.groupIndex,
       groupTitle: groupTitle ?? this.groupTitle,
       groupTotal: groupTotal ?? this.groupTotal,
+      groupHidden: groupHidden ?? this.groupHidden,
       peers: peers ?? this.peers,
       seeds: seeds ?? this.seeds,
       fetchingMetadata: fetchingMetadata ?? this.fetchingMetadata,
@@ -150,6 +156,7 @@ class DownloadTask {
       'group_index': groupIndex,
       'group_title': groupTitle,
       'group_total': groupTotal,
+      'group_hidden': groupHidden ? 1 : 0,
     };
   }
 
@@ -192,6 +199,7 @@ class DownloadTask {
       groupIndex: map['group_index'] as int?,
       groupTitle: map['group_title'] as String?,
       groupTotal: map['group_total'] as int?,
+      groupHidden: (map['group_hidden'] as int? ?? 0) == 1,
     );
   }
 

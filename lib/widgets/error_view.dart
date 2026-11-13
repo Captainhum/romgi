@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../utils/error_utils.dart';
+import '../l10n/l10n.dart';
 
 class ErrorView extends StatelessWidget {
   final dynamic error;
@@ -59,7 +60,7 @@ class ErrorView extends StatelessWidget {
               FilledButton.icon(
                 onPressed: onRetry,
                 icon: const Icon(Icons.refresh),
-                label: const Text('Try Again'),
+                label: Text(context.l10n.commonTryAgain),
               ),
             ],
           ],
@@ -106,7 +107,7 @@ class ErrorView extends StatelessWidget {
               IconButton(
                 onPressed: onRetry,
                 icon: const Icon(Icons.refresh),
-                tooltip: 'Try again',
+                tooltip: context.l10n.commonTryAgainTooltip,
               ),
           ],
         ),

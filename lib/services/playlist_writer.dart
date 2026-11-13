@@ -4,17 +4,25 @@ import 'package:flutter/foundation.dart';
 import 'package:path/path.dart' as p;
 
 import '../models/models.dart';
+import 'disc_organizer.dart';
 
 /// Writes the `.m3u` playlist for a multi-disc download group once every
-/// member has finished.
+/// member has finished. Groups flagged [DownloadTask.groupHidden] first get
+/// their discs moved into `.hidden/` so frontends list the game once.
 class PlaylistWriter {
   PlaylistWriter({
     required this.getGroupMembers,
     required this.getPlatformDirectory,
-  });
+    this.saveTask,
+    DiscOrganizer? organizer,
+  }) : organizer = organizer ?? DiscOrganizer();
 
   final Future<List<DownloadTask>> Function(String groupId) getGroupMembers;
   final Future<Directory> Function(String platform) getPlatformDirectory;
+
+  /// Persists a member whose files were moved.
+  final Future<void> Function(DownloadTask task)? saveTask;
+  final DiscOrganizer organizer;
 
   /// In preference order — `.cue` first since it's the playable entry point
   /// of a bin/cue dump.
@@ -54,11 +62,44 @@ class PlaylistWriter {
     }
 
     try {
-      await _writePlaylist(task.platform, task.groupTitle, members);
+      final ready = members.any((m) => m.groupHidden)
+          ? await _hideDiscs(task.platform, members)
+          : members;
+      await _writePlaylist(task.platform, task.groupTitle, ready);
     } catch (e) {
       // A missing playlist is non-fatal — the discs are already on disk.
       debugPrint('PlaylistWriter: failed to write playlist for $groupId: $e');
     }
+  }
+
+  /// Moves the discs into `.hidden/` and returns the members with their new
+  /// paths. On failure the discs stay where they are and the playlist is
+  /// written beside them.
+  Future<List<DownloadTask>> _hideDiscs(
+    String platform,
+    List<DownloadTask> members,
+  ) async {
+    final paths = members.map((m) => m.filePath).whereType<String>().toList();
+    final Map<String, String> moved;
+    try {
+      moved = await organizer.hide(paths, await getPlatformDirectory(platform));
+    } on DiscOrganizeException catch (e) {
+      debugPrint('PlaylistWriter: keeping discs in place: ${e.message}');
+      return members;
+    }
+
+    final updated = <DownloadTask>[];
+    for (final member in members) {
+      final newPath = moved[member.filePath];
+      if (newPath == null || newPath == member.filePath) {
+        updated.add(member);
+        continue;
+      }
+      final task = member.copyWith(filePath: newPath, error: member.error);
+      await saveTask?.call(task);
+      updated.add(task);
+    }
+    return updated;
   }
 
   int? _expectedTotal(DownloadTask task, List<DownloadTask> members) {
