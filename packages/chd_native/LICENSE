@@ -1,0 +1,5 @@
+The romgi-specific code in this package (lib/, hook/, src/romgi_chd.*,
+test/) is released under the MIT License, like romgi (see ../../LICENSE).
+
+Third-party code keeps its own license; see README.md and the license
+files under third_party/.
