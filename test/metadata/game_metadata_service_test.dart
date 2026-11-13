@@ -33,6 +33,7 @@ class FakeMetadataProvider extends GameMetadataProvider {
   final String id;
   final MetadataResult Function() result;
   int calls = 0;
+  final List<String> languages = [];
 
   FakeMetadataProvider(this.result, {this.id = 'fake'});
 
@@ -53,8 +54,10 @@ class FakeMetadataProvider extends GameMetadataProvider {
     required String title,
     required String platform,
     required Map<String, String> creds,
+    String language = 'en',
   }) async {
     calls++;
+    languages.add(language);
     return result();
   }
 }
@@ -106,12 +109,12 @@ void main() {
     final metadata = await service.getMetadata(_entry('Game (USA)'));
     expect(metadata!.description, 'desc');
     expect(metadata.screenshotUrls, ['https://ss/1']);
-    expect(db.rows['ps1|game']!.noMatch, isFalse);
+    expect(db.rows['ps1|game|en']!.noMatch, isFalse);
   });
 
   test('cache hit within the TTL skips provider calls', () async {
     final db = FakeDatabaseService();
-    db.rows['ps1|game'] = (
+    db.rows['ps1|game|en'] = (
       payload: jsonEncode(const GameMetadata(description: 'cached').toJson()),
       fetchedAt: DateTime.now().subtract(const Duration(days: 13)),
       noMatch: false,
@@ -128,7 +131,7 @@ void main() {
 
   test('expired cache refetches', () async {
     final db = FakeDatabaseService();
-    db.rows['ps1|game'] = (
+    db.rows['ps1|game|en'] = (
       payload: jsonEncode(const GameMetadata(description: 'stale').toJson()),
       fetchedAt: DateTime.now().subtract(const Duration(days: 15)),
       noMatch: false,
@@ -151,13 +154,13 @@ void main() {
     await _configure(service, 'fake');
 
     expect(await service.getMetadata(_entry('Obscure Game')), isNull);
-    expect(db.rows['ps1|obscure game']!.noMatch, isTrue);
+    expect(db.rows['ps1|obscure game|en']!.noMatch, isTrue);
 
     expect(await service.getMetadata(_entry('Obscure Game')), isNull);
     expect(provider.calls, 1);
 
-    db.rows['ps1|obscure game'] = (
-      payload: db.rows['ps1|obscure game']!.payload,
+    db.rows['ps1|obscure game|en'] = (
+      payload: db.rows['ps1|obscure game|en']!.payload,
       fetchedAt: DateTime.now().subtract(const Duration(days: 4)),
       noMatch: true,
     );
@@ -221,7 +224,22 @@ void main() {
     await service.getMetadata(_entry('Game (Disc 1)'));
     await service.getMetadata(_entry('Game (Disc 2)'));
     expect(provider.calls, 1);
-    expect(db.rows.keys, ['ps1|game']);
+    expect(db.rows.keys, ['ps1|game|en']);
+  });
+
+  test('descriptions are cached per language', () async {
+    final db = FakeDatabaseService();
+    final provider = FakeMetadataProvider(
+        () => const MetadataFound(description: 'desc'));
+    final service = _service([provider], db: db);
+    await _configure(service, 'fake');
+
+    await service.getMetadata(_entry('Game'), language: 'en');
+    await service.getMetadata(_entry('Game'), language: 'fr');
+    await service.getMetadata(_entry('Game'), language: 'fr');
+    expect(provider.calls, 2);
+    expect(provider.languages, ['en', 'fr']);
+    expect(db.rows.keys, unorderedEquals(['ps1|game|en', 'ps1|game|fr']));
   });
 
   test('title cleaning strips parenthetical and bracketed groups', () {

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 
 import 'metadata_provider.dart';
 import 'screenscraper_systems.dart';
@@ -71,6 +72,7 @@ class ScreenScraperProvider extends GameMetadataProvider {
     required String title,
     required String platform,
     required Map<String, String> creds,
+    String language = 'en',
   }) async {
     final systemId = screenScraperSystemIds[platform];
     if (systemId == null) return const MetadataNoMatch();
@@ -111,7 +113,10 @@ class ScreenScraperProvider extends GameMetadataProvider {
 
       final jeu = _bestMatch(jeux, title);
       return MetadataFound(
-        description: _synopsis(jeu),
+        description: pickSynopsis(
+          (jeu['synopsis'] as List?)?.whereType<Map>().toList() ?? const [],
+          language,
+        ),
         screenshotUrls: _screenshots(jeu),
       );
     } on DioException catch (e) {
@@ -132,16 +137,28 @@ class ScreenScraperProvider extends GameMetadataProvider {
     return jeux.first;
   }
 
-  String? _synopsis(Map jeu) {
-    final entries =
-        (jeu['synopsis'] as List?)?.whereType<Map>().toList() ?? const [];
-    if (entries.isEmpty) return null;
-    final chosen = entries.firstWhere(
-      (e) => e['langue'] == 'en',
-      orElse: () => entries.first,
-    );
-    final text = (chosen['text'] as String?)?.trim();
-    return (text == null || text.isEmpty) ? null : text;
+  /// The synopsis in [language], else English, else the first one with
+  /// text. Blank synopses are skipped.
+  @visibleForTesting
+  static String? pickSynopsis(List<Map> entries, String language) {
+    String? textOf(Map e) {
+      final text = (e['text'] as String?)?.trim();
+      return (text == null || text.isEmpty) ? null : text;
+    }
+
+    String? inLanguage(String code) {
+      for (final e in entries) {
+        if (e['langue'] == code) {
+          final text = textOf(e);
+          if (text != null) return text;
+        }
+      }
+      return null;
+    }
+
+    return inLanguage(language) ??
+        inLanguage('en') ??
+        entries.map(textOf).whereType<String>().firstOrNull;
   }
 
   List<String> _screenshots(Map jeu) {

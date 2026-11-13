@@ -97,7 +97,11 @@ class GameMetadataService {
       .replaceAll(RegExp(r'\s+'), ' ')
       .trim();
 
-  Future<GameMetadata?> getMetadata(RomEntry entry) async {
+  /// [language] selects localized text (descriptions); cached per language.
+  Future<GameMetadata?> getMetadata(
+    RomEntry entry, {
+    String language = 'en',
+  }) async {
     final configured = <GameMetadataProvider, Map<String, String>>{};
     for (final provider in _registry.providers) {
       final creds = await _readCreds(provider.info.id);
@@ -107,7 +111,7 @@ class GameMetadataService {
 
     final title = cleanTitle(entry.title);
     if (title.isEmpty) return null;
-    final cacheKey = '${entry.platform}|${title.toLowerCase()}';
+    final cacheKey = '${entry.platform}|${title.toLowerCase()}|$language';
 
     final cached = await _db.getGameMetadataCache(cacheKey);
     if (cached != null) {
@@ -132,6 +136,7 @@ class GameMetadataService {
           title: title,
           platform: entry.platform,
           creds: providerEntry.value,
+          language: language,
         );
         switch (result) {
           case MetadataFound found:

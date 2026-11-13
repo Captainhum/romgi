@@ -64,9 +64,12 @@ abstract class GameMetadataProvider {
 
   Future<String?> validateCredentials(Map<String, String> creds);
 
+  /// [language] is the ISO 639-1 code text fields (e.g. descriptions)
+  /// should prefer; providers without localized text ignore it.
   Future<MetadataResult> fetch({
     required String title,
     required String platform,
     required Map<String, String> creds,
+    String language = 'en',
   });
 }

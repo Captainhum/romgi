@@ -28,9 +28,15 @@ Future<MetadataResult> _fetch(
   Map<String, ResponseBody Function(RequestOptions)> routes, {
   String title = 'Chrono Cross',
   Map<String, String> creds = _creds,
+  String language = 'en',
 }) {
   final provider = ScreenScraperProvider(dio: stubbedDio(_base, routes));
-  return provider.fetch(title: title, platform: 'ps1', creds: creds);
+  return provider.fetch(
+    title: title,
+    platform: 'ps1',
+    creds: creds,
+    language: language,
+  );
 }
 
 void main() {
@@ -55,6 +61,56 @@ void main() {
           ])),
     });
     expect((result as MetadataFound).description, 'texte francais');
+  });
+
+  test('fetches the synopsis in the requested language', () async {
+    final result = await _fetch({
+      _search: (_) => jsonBody(_response([
+            _jeu(synopsis: [
+              '{"langue":"en","text":"english text"}',
+              '{"langue":"fr","text":"texte francais"}',
+            ]),
+          ])),
+    }, language: 'fr');
+    expect((result as MetadataFound).description, 'texte francais');
+  });
+
+  group('pickSynopsis', () {
+    List<Map> entries(Map<String, String> byLang) => [
+          for (final e in byLang.entries) {'langue': e.key, 'text': e.value},
+        ];
+
+    test('prefers the requested language', () {
+      expect(
+        ScreenScraperProvider.pickSynopsis(
+            entries({'en': 'english', 'fr': 'francais'}), 'fr'),
+        'francais',
+      );
+    });
+
+    test('falls back to english, then to the first non-blank text', () {
+      expect(
+        ScreenScraperProvider.pickSynopsis(
+            entries({'de': 'deutsch', 'en': 'english'}), 'fr'),
+        'english',
+      );
+      expect(
+        ScreenScraperProvider.pickSynopsis(
+            entries({'de': 'deutsch', 'es': 'espanol'}), 'fr'),
+        'deutsch',
+      );
+    });
+
+    test('skips blank texts at every step', () {
+      expect(
+        ScreenScraperProvider.pickSynopsis(
+            entries({'fr': '  ', 'en': '', 'de': ' deutsch '}), 'fr'),
+        'deutsch',
+      );
+      expect(ScreenScraperProvider.pickSynopsis(entries({'fr': ' '}), 'fr'),
+          isNull);
+      expect(ScreenScraperProvider.pickSynopsis(const [], 'fr'), isNull);
+    });
   });
 
   test('collects ss and sstitle medias, capped at 8', () async {
