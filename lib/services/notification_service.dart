@@ -5,6 +5,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import '../models/models.dart';
 import '../utils/utils.dart';
+import '../l10n/l10n.dart';
 
 typedef NotificationTapCallback = void Function(String? payload);
 
@@ -17,12 +18,12 @@ class NotificationService with WidgetsBindingObserver {
       FlutterLocalNotificationsPlugin();
 
   static const String _downloadChannelId = 'download_progress';
-  static const String _downloadChannelName = 'Download Progress';
-  static const String _downloadChannelDesc = 'Shows download progress';
+  static String get _downloadChannelName => appL10n.notifChannelProgress;
+  static String get _downloadChannelDesc => appL10n.notifChannelProgressDesc;
 
   static const String _completeChannelId = 'download_complete';
-  static const String _completeChannelName = 'Download Complete';
-  static const String _completeChannelDesc = 'Notifies when downloads complete';
+  static String get _completeChannelName => appL10n.notifChannelComplete;
+  static String get _completeChannelDesc => appL10n.notifChannelCompleteDesc;
 
   static const int _progressNotificationId = 1;
 
@@ -76,7 +77,7 @@ class NotificationService with WidgetsBindingObserver {
     if (androidPlugin != null) {
       // Progress channel (silent, ongoing)
       await androidPlugin.createNotificationChannel(
-        const AndroidNotificationChannel(
+        AndroidNotificationChannel(
           _downloadChannelId,
           _downloadChannelName,
           description: _downloadChannelDesc,
@@ -88,7 +89,7 @@ class NotificationService with WidgetsBindingObserver {
 
       // Complete channel (with sound)
       await androidPlugin.createNotificationChannel(
-        const AndroidNotificationChannel(
+        AndroidNotificationChannel(
           _completeChannelId,
           _completeChannelName,
           description: _completeChannelDesc,
@@ -157,7 +158,7 @@ class NotificationService with WidgetsBindingObserver {
 
     await _notifications.show(
       _progressNotificationId,
-      'Downloading',
+      appL10n.notifDownloading,
       '$title - $progressText',
       notificationDetails,
       payload: 'downloads',
@@ -183,7 +184,7 @@ class NotificationService with WidgetsBindingObserver {
 
     await _notifications.show(
       _progressNotificationId,
-      'Extracting',
+      appL10n.notifExtracting,
       title,
       notificationDetails,
       payload: 'downloads',
@@ -214,7 +215,7 @@ class NotificationService with WidgetsBindingObserver {
 
     await _notifications.show(
       notificationId,
-      'Download Complete',
+      appL10n.notifChannelComplete,
       '$title (${PlatformNames.getDisplayName(platform)})',
       notificationDetails,
       payload: 'library',
@@ -244,7 +245,7 @@ class NotificationService with WidgetsBindingObserver {
 
     await _notifications.show(
       notificationId,
-      'Download Failed',
+      appL10n.notifFailed,
       error != null ? '$title: $error' : title,
       notificationDetails,
       payload: 'downloads',

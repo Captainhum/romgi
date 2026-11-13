@@ -334,6 +334,94 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get errorCancelled => 'Request was cancelled.';
+
+  @override
+  String get errorCannotConnect =>
+      'Unable to connect. Please check your internet connection.';
+
+  @override
+  String get errorCannotConnectServer =>
+      'Unable to connect to the server. Please check your internet connection.';
+
+  @override
+  String get errorConnectTimeout =>
+      'Connection timed out. The server is taking too long to respond.';
+
+  @override
+  String get errorConnectionFailed => 'Connection failed. Please try again.';
+
+  @override
+  String get errorGeneric => 'Something went wrong. Please try again.';
+
+  @override
+  String get errorHttp400 => 'Invalid request. Please try again.';
+
+  @override
+  String get errorHttp401 => 'Authentication required.';
+
+  @override
+  String get errorHttp403 => 'Access denied.';
+
+  @override
+  String get errorHttp404 => 'The requested content was not found.';
+
+  @override
+  String get errorHttp429 =>
+      'Too many requests. Please wait a moment and try again.';
+
+  @override
+  String get errorHttp500 => 'Server error. The service is having issues.';
+
+  @override
+  String get errorHttp502 =>
+      'Server is temporarily unavailable. Please try again later.';
+
+  @override
+  String get errorHttp503 =>
+      'Service is currently unavailable. Please try again later.';
+
+  @override
+  String get errorHttp504 =>
+      'Server took too long to respond. Please try again.';
+
+  @override
+  String get errorReceiveTimeout =>
+      'Response timed out. The server is taking too long.';
+
+  @override
+  String get errorRequestFailed => 'Request failed. Please try again.';
+
+  @override
+  String get errorSecureConnection =>
+      'Secure connection failed. Please try again later.';
+
+  @override
+  String get errorSendTimeout => 'Request timed out while sending data.';
+
+  @override
+  String get errorServerLater => 'Server error. Please try again later.';
+
+  @override
+  String get errorServerRetry => 'Server error. Please try again.';
+
+  @override
+  String get errorTimeoutSlow =>
+      'Connection timed out. The server may be slow or unavailable.';
+
+  @override
+  String get errorTitle => 'Error';
+
+  @override
+  String get errorTitleConnection => 'Connection Error';
+
+  @override
+  String get errorTitleServer => 'Server Error';
+
+  @override
+  String get errorTitleTimeout => 'Connection Timed Out';
+
+  @override
   String get filterApply => 'Apply Filters';
 
   @override
@@ -486,6 +574,33 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get navSettings => 'Settings';
+
+  @override
+  String get notifChannelComplete => 'Download Complete';
+
+  @override
+  String get notifChannelCompleteDesc => 'Notifies when downloads complete';
+
+  @override
+  String get notifChannelProgress => 'Download Progress';
+
+  @override
+  String get notifChannelProgressDesc => 'Shows download progress';
+
+  @override
+  String get notifDownloading => 'Downloading';
+
+  @override
+  String get notifExtracting => 'Extracting';
+
+  @override
+  String get notifFailed => 'Download Failed';
+
+  @override
+  String get notifServiceChannel => 'Download Service';
+
+  @override
+  String get notifServiceChannelDesc => 'Keeps downloads running in background';
 
   @override
   String get settingsAbout => 'About';

@@ -337,6 +337,95 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
+  String get errorCancelled => 'La requête a été annulée.';
+
+  @override
+  String get errorCannotConnect =>
+      'Connexion impossible. Vérifie ta connexion internet.';
+
+  @override
+  String get errorCannotConnectServer =>
+      'Impossible de joindre le serveur. Vérifie ta connexion internet.';
+
+  @override
+  String get errorConnectTimeout =>
+      'Délai dépassé. Le serveur met trop de temps à répondre.';
+
+  @override
+  String get errorConnectionFailed => 'La connexion a échoué. Réessaie.';
+
+  @override
+  String get errorGeneric => 'Quelque chose s\'est mal passé. Réessaie.';
+
+  @override
+  String get errorHttp400 => 'Requête invalide. Réessaie.';
+
+  @override
+  String get errorHttp401 => 'Authentification requise.';
+
+  @override
+  String get errorHttp403 => 'Accès refusé.';
+
+  @override
+  String get errorHttp404 => 'Le contenu demandé est introuvable.';
+
+  @override
+  String get errorHttp429 =>
+      'Trop de requêtes. Patiente un instant puis réessaie.';
+
+  @override
+  String get errorHttp500 =>
+      'Erreur du serveur. Le service rencontre des problèmes.';
+
+  @override
+  String get errorHttp502 =>
+      'Serveur temporairement indisponible. Réessaie plus tard.';
+
+  @override
+  String get errorHttp503 =>
+      'Service actuellement indisponible. Réessaie plus tard.';
+
+  @override
+  String get errorHttp504 =>
+      'Le serveur a mis trop de temps à répondre. Réessaie.';
+
+  @override
+  String get errorReceiveTimeout =>
+      'Délai de réponse dépassé. Le serveur met trop de temps.';
+
+  @override
+  String get errorRequestFailed => 'La requête a échoué. Réessaie.';
+
+  @override
+  String get errorSecureConnection =>
+      'La connexion sécurisée a échoué. Réessaie plus tard.';
+
+  @override
+  String get errorSendTimeout => 'Délai dépassé pendant l\'envoi des données.';
+
+  @override
+  String get errorServerLater => 'Erreur du serveur. Réessaie plus tard.';
+
+  @override
+  String get errorServerRetry => 'Erreur du serveur. Réessaie.';
+
+  @override
+  String get errorTimeoutSlow =>
+      'Délai dépassé. Le serveur est peut-être lent ou indisponible.';
+
+  @override
+  String get errorTitle => 'Erreur';
+
+  @override
+  String get errorTitleConnection => 'Erreur de connexion';
+
+  @override
+  String get errorTitleServer => 'Erreur du serveur';
+
+  @override
+  String get errorTitleTimeout => 'Délai dépassé';
+
+  @override
   String get filterApply => 'Appliquer les filtres';
 
   @override
@@ -490,6 +579,36 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get navSettings => 'Réglages';
+
+  @override
+  String get notifChannelComplete => 'Téléchargement terminé';
+
+  @override
+  String get notifChannelCompleteDesc =>
+      'Prévient quand un téléchargement est terminé';
+
+  @override
+  String get notifChannelProgress => 'Progression des téléchargements';
+
+  @override
+  String get notifChannelProgressDesc =>
+      'Affiche la progression des téléchargements';
+
+  @override
+  String get notifDownloading => 'Téléchargement';
+
+  @override
+  String get notifExtracting => 'Extraction';
+
+  @override
+  String get notifFailed => 'Échec du téléchargement';
+
+  @override
+  String get notifServiceChannel => 'Service de téléchargement';
+
+  @override
+  String get notifServiceChannelDesc =>
+      'Garde les téléchargements actifs en arrière-plan';
 
   @override
   String get settingsAbout => 'À propos';

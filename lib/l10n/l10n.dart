@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/widgets.dart';
 
 import 'app_localizations.dart';
@@ -15,3 +17,10 @@ AppLocalizations l10nFor(Locale locale) {
       .any((l) => l.languageCode == locale.languageCode);
   return lookupAppLocalizations(supported ? locale : const Locale('en'));
 }
+
+/// Locale the UI is currently shown in, kept in sync by the app root so code
+/// without a [BuildContext] can use the same language.
+Locale appLocale = PlatformDispatcher.instance.locale;
+
+/// Strings in [appLocale], for notifications and background work.
+AppLocalizations get appL10n => l10nFor(appLocale);

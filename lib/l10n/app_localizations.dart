@@ -608,6 +608,162 @@ abstract class AppLocalizations {
   /// **'Queue ({count})'**
   String downloadsSectionQueue(int count);
 
+  /// Network error message shown to the user
+  ///
+  /// In en, this message translates to:
+  /// **'Request was cancelled.'**
+  String get errorCancelled;
+
+  /// Network error message shown to the user
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to connect. Please check your internet connection.'**
+  String get errorCannotConnect;
+
+  /// Network error message shown to the user
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to connect to the server. Please check your internet connection.'**
+  String get errorCannotConnectServer;
+
+  /// Network error message shown to the user
+  ///
+  /// In en, this message translates to:
+  /// **'Connection timed out. The server is taking too long to respond.'**
+  String get errorConnectTimeout;
+
+  /// Network error message shown to the user
+  ///
+  /// In en, this message translates to:
+  /// **'Connection failed. Please try again.'**
+  String get errorConnectionFailed;
+
+  /// Network error message shown to the user
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong. Please try again.'**
+  String get errorGeneric;
+
+  /// Network error message shown to the user
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid request. Please try again.'**
+  String get errorHttp400;
+
+  /// Network error message shown to the user
+  ///
+  /// In en, this message translates to:
+  /// **'Authentication required.'**
+  String get errorHttp401;
+
+  /// Network error message shown to the user
+  ///
+  /// In en, this message translates to:
+  /// **'Access denied.'**
+  String get errorHttp403;
+
+  /// Network error message shown to the user
+  ///
+  /// In en, this message translates to:
+  /// **'The requested content was not found.'**
+  String get errorHttp404;
+
+  /// Network error message shown to the user
+  ///
+  /// In en, this message translates to:
+  /// **'Too many requests. Please wait a moment and try again.'**
+  String get errorHttp429;
+
+  /// Network error message shown to the user
+  ///
+  /// In en, this message translates to:
+  /// **'Server error. The service is having issues.'**
+  String get errorHttp500;
+
+  /// Network error message shown to the user
+  ///
+  /// In en, this message translates to:
+  /// **'Server is temporarily unavailable. Please try again later.'**
+  String get errorHttp502;
+
+  /// Network error message shown to the user
+  ///
+  /// In en, this message translates to:
+  /// **'Service is currently unavailable. Please try again later.'**
+  String get errorHttp503;
+
+  /// Network error message shown to the user
+  ///
+  /// In en, this message translates to:
+  /// **'Server took too long to respond. Please try again.'**
+  String get errorHttp504;
+
+  /// Network error message shown to the user
+  ///
+  /// In en, this message translates to:
+  /// **'Response timed out. The server is taking too long.'**
+  String get errorReceiveTimeout;
+
+  /// Network error message shown to the user
+  ///
+  /// In en, this message translates to:
+  /// **'Request failed. Please try again.'**
+  String get errorRequestFailed;
+
+  /// Network error message shown to the user
+  ///
+  /// In en, this message translates to:
+  /// **'Secure connection failed. Please try again later.'**
+  String get errorSecureConnection;
+
+  /// Network error message shown to the user
+  ///
+  /// In en, this message translates to:
+  /// **'Request timed out while sending data.'**
+  String get errorSendTimeout;
+
+  /// Network error message shown to the user
+  ///
+  /// In en, this message translates to:
+  /// **'Server error. Please try again later.'**
+  String get errorServerLater;
+
+  /// Network error message shown to the user
+  ///
+  /// In en, this message translates to:
+  /// **'Server error. Please try again.'**
+  String get errorServerRetry;
+
+  /// Network error message shown to the user
+  ///
+  /// In en, this message translates to:
+  /// **'Connection timed out. The server may be slow or unavailable.'**
+  String get errorTimeoutSlow;
+
+  /// Network error message shown to the user
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get errorTitle;
+
+  /// Network error message shown to the user
+  ///
+  /// In en, this message translates to:
+  /// **'Connection Error'**
+  String get errorTitleConnection;
+
+  /// Network error message shown to the user
+  ///
+  /// In en, this message translates to:
+  /// **'Server Error'**
+  String get errorTitleServer;
+
+  /// Network error message shown to the user
+  ///
+  /// In en, this message translates to:
+  /// **'Connection Timed Out'**
+  String get errorTitleTimeout;
+
   /// Button applying the selected filters
   ///
   /// In en, this message translates to:
@@ -877,6 +1033,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Settings'**
   String get navSettings;
+
+  /// Android notification channel name and notification title
+  ///
+  /// In en, this message translates to:
+  /// **'Download Complete'**
+  String get notifChannelComplete;
+
+  /// Android notification channel description
+  ///
+  /// In en, this message translates to:
+  /// **'Notifies when downloads complete'**
+  String get notifChannelCompleteDesc;
+
+  /// Android notification channel name
+  ///
+  /// In en, this message translates to:
+  /// **'Download Progress'**
+  String get notifChannelProgress;
+
+  /// Android notification channel description
+  ///
+  /// In en, this message translates to:
+  /// **'Shows download progress'**
+  String get notifChannelProgressDesc;
+
+  /// Notification title
+  ///
+  /// In en, this message translates to:
+  /// **'Downloading'**
+  String get notifDownloading;
+
+  /// Notification title
+  ///
+  /// In en, this message translates to:
+  /// **'Extracting'**
+  String get notifExtracting;
+
+  /// Notification title
+  ///
+  /// In en, this message translates to:
+  /// **'Download Failed'**
+  String get notifFailed;
+
+  /// Foreground service notification channel name
+  ///
+  /// In en, this message translates to:
+  /// **'Download Service'**
+  String get notifServiceChannel;
+
+  /// Foreground service channel description
+  ///
+  /// In en, this message translates to:
+  /// **'Keeps downloads running in background'**
+  String get notifServiceChannelDesc;
 
   /// Section header
   ///

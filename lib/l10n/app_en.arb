@@ -436,6 +436,110 @@
       }
     }
   },
+  "errorCancelled": "Request was cancelled.",
+  "@errorCancelled": {
+    "description": "Network error message shown to the user"
+  },
+  "errorCannotConnect": "Unable to connect. Please check your internet connection.",
+  "@errorCannotConnect": {
+    "description": "Network error message shown to the user"
+  },
+  "errorCannotConnectServer": "Unable to connect to the server. Please check your internet connection.",
+  "@errorCannotConnectServer": {
+    "description": "Network error message shown to the user"
+  },
+  "errorConnectTimeout": "Connection timed out. The server is taking too long to respond.",
+  "@errorConnectTimeout": {
+    "description": "Network error message shown to the user"
+  },
+  "errorConnectionFailed": "Connection failed. Please try again.",
+  "@errorConnectionFailed": {
+    "description": "Network error message shown to the user"
+  },
+  "errorGeneric": "Something went wrong. Please try again.",
+  "@errorGeneric": {
+    "description": "Network error message shown to the user"
+  },
+  "errorHttp400": "Invalid request. Please try again.",
+  "@errorHttp400": {
+    "description": "Network error message shown to the user"
+  },
+  "errorHttp401": "Authentication required.",
+  "@errorHttp401": {
+    "description": "Network error message shown to the user"
+  },
+  "errorHttp403": "Access denied.",
+  "@errorHttp403": {
+    "description": "Network error message shown to the user"
+  },
+  "errorHttp404": "The requested content was not found.",
+  "@errorHttp404": {
+    "description": "Network error message shown to the user"
+  },
+  "errorHttp429": "Too many requests. Please wait a moment and try again.",
+  "@errorHttp429": {
+    "description": "Network error message shown to the user"
+  },
+  "errorHttp500": "Server error. The service is having issues.",
+  "@errorHttp500": {
+    "description": "Network error message shown to the user"
+  },
+  "errorHttp502": "Server is temporarily unavailable. Please try again later.",
+  "@errorHttp502": {
+    "description": "Network error message shown to the user"
+  },
+  "errorHttp503": "Service is currently unavailable. Please try again later.",
+  "@errorHttp503": {
+    "description": "Network error message shown to the user"
+  },
+  "errorHttp504": "Server took too long to respond. Please try again.",
+  "@errorHttp504": {
+    "description": "Network error message shown to the user"
+  },
+  "errorReceiveTimeout": "Response timed out. The server is taking too long.",
+  "@errorReceiveTimeout": {
+    "description": "Network error message shown to the user"
+  },
+  "errorRequestFailed": "Request failed. Please try again.",
+  "@errorRequestFailed": {
+    "description": "Network error message shown to the user"
+  },
+  "errorSecureConnection": "Secure connection failed. Please try again later.",
+  "@errorSecureConnection": {
+    "description": "Network error message shown to the user"
+  },
+  "errorSendTimeout": "Request timed out while sending data.",
+  "@errorSendTimeout": {
+    "description": "Network error message shown to the user"
+  },
+  "errorServerLater": "Server error. Please try again later.",
+  "@errorServerLater": {
+    "description": "Network error message shown to the user"
+  },
+  "errorServerRetry": "Server error. Please try again.",
+  "@errorServerRetry": {
+    "description": "Network error message shown to the user"
+  },
+  "errorTimeoutSlow": "Connection timed out. The server may be slow or unavailable.",
+  "@errorTimeoutSlow": {
+    "description": "Network error message shown to the user"
+  },
+  "errorTitle": "Error",
+  "@errorTitle": {
+    "description": "Network error message shown to the user"
+  },
+  "errorTitleConnection": "Connection Error",
+  "@errorTitleConnection": {
+    "description": "Network error message shown to the user"
+  },
+  "errorTitleServer": "Server Error",
+  "@errorTitleServer": {
+    "description": "Network error message shown to the user"
+  },
+  "errorTitleTimeout": "Connection Timed Out",
+  "@errorTitleTimeout": {
+    "description": "Network error message shown to the user"
+  },
   "filterApply": "Apply Filters",
   "@filterApply": {
     "description": "Button applying the selected filters"
@@ -655,6 +759,42 @@
   "navSettings": "Settings",
   "@navSettings": {
     "description": "Navigation tab: settings"
+  },
+  "notifChannelComplete": "Download Complete",
+  "@notifChannelComplete": {
+    "description": "Android notification channel name and notification title"
+  },
+  "notifChannelCompleteDesc": "Notifies when downloads complete",
+  "@notifChannelCompleteDesc": {
+    "description": "Android notification channel description"
+  },
+  "notifChannelProgress": "Download Progress",
+  "@notifChannelProgress": {
+    "description": "Android notification channel name"
+  },
+  "notifChannelProgressDesc": "Shows download progress",
+  "@notifChannelProgressDesc": {
+    "description": "Android notification channel description"
+  },
+  "notifDownloading": "Downloading",
+  "@notifDownloading": {
+    "description": "Notification title"
+  },
+  "notifExtracting": "Extracting",
+  "@notifExtracting": {
+    "description": "Notification title"
+  },
+  "notifFailed": "Download Failed",
+  "@notifFailed": {
+    "description": "Notification title"
+  },
+  "notifServiceChannel": "Download Service",
+  "@notifServiceChannel": {
+    "description": "Foreground service notification channel name"
+  },
+  "notifServiceChannelDesc": "Keeps downloads running in background",
+  "@notifServiceChannelDesc": {
+    "description": "Foreground service channel description"
   },
   "settingsAbout": "About",
   "@settingsAbout": {
