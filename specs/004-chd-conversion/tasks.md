@@ -9,6 +9,6 @@
 - [x] T007 [US2] Recovery of conversions interrupted by an app kill
 - [x] T008 [US3] Convert before the multi-disc playlist so `.hidden/` holds CHDs; note in the sheet
 - [x] T009 [US4] Library "Convert to CHD" action
-- [ ] T010 [US4] "Convert all" for a platform in the Library
+- [x] T010 [US4] "Convert all" for a platform in the Library
 - [x] T011 Strings EN/FR
 - [x] T012 On-device end-to-end: download a PS1 game with conversion on, check the frontend

@@ -100,6 +100,10 @@
       }
     }
   },
+  "chdErrorNoSpaceShort": "not enough free space",
+  "@chdErrorNoSpaceShort": {
+    "description": "Reason a CHD conversion did not run"
+  },
   "chdErrorNotConvertible": "no disc image to convert",
   "@chdErrorNotConvertible": {
     "description": "Reason a CHD conversion did not run"
@@ -123,6 +127,10 @@
   "commonContinue": "Continue",
   "@commonContinue": {
     "description": "Button to proceed"
+  },
+  "commonConvert": "Convert",
+  "@commonConvert": {
+    "description": "Confirm button"
   },
   "commonDelete": "Delete",
   "@commonDelete": {
@@ -682,6 +690,39 @@
   "libraryCleanedUp": "Library cleaned up",
   "@libraryCleanedUp": {
     "description": "Snackbar after clean up"
+  },
+  "libraryConvertAll": "Convert all to CHD",
+  "@libraryConvertAll": {
+    "description": "Library menu item converting every CD game shown"
+  },
+  "libraryConvertAllBody": "Each game is converted one after the other, then verified. The original files are deleted only once their CHD is verified. You can follow and cancel it in Downloads.",
+  "@libraryConvertAllBody": {
+    "description": "Confirmation body"
+  },
+  "libraryConvertAllDone": "{converted} converted, {failed} skipped",
+  "@libraryConvertAllDone": {
+    "description": "Summary after converting all",
+    "placeholders": {
+      "converted": {
+        "type": "int"
+      },
+      "failed": {
+        "type": "int"
+      }
+    }
+  },
+  "libraryConvertAllNone": "No game to convert here",
+  "@libraryConvertAllNone": {
+    "description": "Snackbar when nothing is convertible"
+  },
+  "libraryConvertAllTitle": "Convert {count, plural, =1{1 game} other{{count} games}} to CHD?",
+  "@libraryConvertAllTitle": {
+    "description": "Confirmation title",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "libraryConvertChd": "Convert to CHD",
   "@libraryConvertChd": {

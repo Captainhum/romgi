@@ -221,6 +221,12 @@ abstract class AppLocalizations {
   /// Reason a CHD conversion did not run
   ///
   /// In en, this message translates to:
+  /// **'not enough free space'**
+  String get chdErrorNoSpaceShort;
+
+  /// Reason a CHD conversion did not run
+  ///
+  /// In en, this message translates to:
   /// **'no disc image to convert'**
   String get chdErrorNotConvertible;
 
@@ -253,6 +259,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Continue'**
   String get commonContinue;
+
+  /// Confirm button
+  ///
+  /// In en, this message translates to:
+  /// **'Convert'**
+  String get commonConvert;
 
   /// Dialog button
   ///
@@ -925,6 +937,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Library cleaned up'**
   String get libraryCleanedUp;
+
+  /// Library menu item converting every CD game shown
+  ///
+  /// In en, this message translates to:
+  /// **'Convert all to CHD'**
+  String get libraryConvertAll;
+
+  /// Confirmation body
+  ///
+  /// In en, this message translates to:
+  /// **'Each game is converted one after the other, then verified. The original files are deleted only once their CHD is verified. You can follow and cancel it in Downloads.'**
+  String get libraryConvertAllBody;
+
+  /// Summary after converting all
+  ///
+  /// In en, this message translates to:
+  /// **'{converted} converted, {failed} skipped'**
+  String libraryConvertAllDone(int converted, int failed);
+
+  /// Snackbar when nothing is convertible
+  ///
+  /// In en, this message translates to:
+  /// **'No game to convert here'**
+  String get libraryConvertAllNone;
+
+  /// Confirmation title
+  ///
+  /// In en, this message translates to:
+  /// **'Convert {count, plural, =1{1 game} other{{count} games}} to CHD?'**
+  String libraryConvertAllTitle(int count);
 
   /// Library action
   ///

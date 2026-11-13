@@ -85,6 +85,8 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen>
                     SnackBar(content: Text(context.l10n.libraryFilesVerified)),
                   );
                 }
+              } else if (value == 'convert_all') {
+                await _convertAll();
               } else if (value == 'cleanup') {
                 final confirmed = await showDialog<bool>(
                   context: context,
@@ -123,6 +125,14 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen>
                 child: ListTile(
                   leading: const Icon(Icons.verified),
                   title: Text(context.l10n.libraryVerifyFiles),
+                  contentPadding: EdgeInsets.zero,
+                ),
+              ),
+              PopupMenuItem(
+                value: 'convert_all',
+                child: ListTile(
+                  leading: const Icon(Icons.compress),
+                  title: Text(context.l10n.libraryConvertAll),
                   contentPadding: EdgeInsets.zero,
                 ),
               ),
@@ -494,6 +504,65 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen>
     );
   }
 
+  /// Converts every CD game currently listed (respecting the platform
+  /// filter and search), one at a time.
+  Future<void> _convertAll() async {
+    final candidates = <DownloadTask>[];
+    for (final item in ref.read(libraryProvider).filteredItems) {
+      if (item.filePath != null &&
+          ChdConverter.supportsPlatform(item.platform) &&
+          await ChdConverter.findSource(item.filePath!) != null) {
+        candidates.add(item);
+      }
+    }
+    if (!mounted) return;
+    if (candidates.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(context.l10n.libraryConvertAllNone)),
+      );
+      return;
+    }
+
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: Text(context.l10n.libraryConvertAllTitle(candidates.length)),
+        content: Text(context.l10n.libraryConvertAllBody),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(dialogContext, false),
+            child: Text(context.l10n.commonCancel),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(dialogContext, true),
+            child: Text(context.l10n.commonConvert),
+          ),
+        ],
+      ),
+    );
+    if (confirmed != true || !mounted) return;
+
+    ref.read(navigationTabProvider.notifier).state = NavTab.downloads;
+    final downloads = ref.read(downloadProvider.notifier);
+    var converted = 0;
+    var failed = 0;
+    for (final item in candidates) {
+      final error = await downloads.convertToChd(item);
+      if (error == null) {
+        converted++;
+      } else {
+        failed++;
+      }
+    }
+    await ref.read(libraryProvider.notifier).refresh();
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(context.l10n.libraryConvertAllDone(converted, failed)),
+      ),
+    );
+  }
+
   Future<void> _convertToChd(DownloadTask item) async {
     ref.read(navigationTabProvider.notifier).state = NavTab.downloads;
     final error =
@@ -514,7 +583,7 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen>
   String _chdReason(ChdConversionError error) {
     final l10n = context.l10n;
     return switch (error) {
-      ChdConversionError.noSpace => l10n.chdErrorNoSpace('?'),
+      ChdConversionError.noSpace => l10n.chdErrorNoSpaceShort,
       ChdConversionError.badInput => l10n.chdErrorBadInput,
       ChdConversionError.failed => l10n.chdErrorFailed,
       ChdConversionError.verifyFailed => l10n.chdErrorVerify,

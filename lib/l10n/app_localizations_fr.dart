@@ -86,6 +86,9 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
+  String get chdErrorNoSpaceShort => 'espace libre insuffisant';
+
+  @override
   String get chdErrorNotConvertible => 'aucune image disque à convertir';
 
   @override
@@ -102,6 +105,9 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get commonContinue => 'Continuer';
+
+  @override
+  String get commonConvert => 'Convertir';
 
   @override
   String get commonDelete => 'Supprimer';
@@ -528,6 +534,32 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get libraryCleanedUp => 'Bibliothèque nettoyée';
+
+  @override
+  String get libraryConvertAll => 'Tout convertir en CHD';
+
+  @override
+  String get libraryConvertAllBody =>
+      'Les jeux sont convertis l\'un après l\'autre, puis vérifiés. Les fichiers d\'origine ne sont supprimés qu\'une fois leur CHD vérifié. Tu peux suivre et annuler dans Téléchargements.';
+
+  @override
+  String libraryConvertAllDone(int converted, int failed) {
+    return '$converted converti(s), $failed ignoré(s)';
+  }
+
+  @override
+  String get libraryConvertAllNone => 'Aucun jeu à convertir ici';
+
+  @override
+  String libraryConvertAllTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count jeux',
+      one: '1 jeu',
+    );
+    return 'Convertir $_temp0 en CHD ?';
+  }
 
   @override
   String get libraryConvertChd => 'Convertir en CHD';
