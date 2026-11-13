@@ -114,6 +114,10 @@ class DownloadService {
     _playlistWriter = PlaylistWriter(
       getGroupMembers: _db.getDownloadsByGroup,
       getPlatformDirectory: _storage.getPlatformDirectory,
+      saveTask: (task) async {
+        await _db.updateDownload(task);
+        _downloadController.add(task);
+      },
     );
   }
 
@@ -207,6 +211,7 @@ class DownloadService {
     int? groupIndex,
     String? groupTitle,
     int? groupTotal,
+    bool groupHidden = false,
   }) async {
     final existingDownload = await _db.findExistingDownload(slug);
     if (existingDownload != null) {
@@ -226,6 +231,7 @@ class DownloadService {
       groupIndex: groupIndex,
       groupTitle: groupTitle,
       groupTotal: groupTotal,
+      groupHidden: groupHidden,
     );
 
     await _db.insertDownload(downloadTask);
@@ -239,10 +245,14 @@ class DownloadService {
   /// Enqueue every disc in [group], picking each disc's best link with the
   /// same [LinkResolver] the detail screen uses. Once all members finish, a
   /// `.m3u` playlist is written beside the discs (see [_maybeWritePlaylist]).
+  /// [linkOverrides] replaces the picked link per member slug; [hidden]
+  /// moves the discs into `.hidden/` once the set is complete.
   Future<DiscGroupDownloadResult> addDiscGroup(
     EntryGroup group, {
     required LinkResolverPrefs prefs,
     Map<String, int> sourcePriority = const {},
+    Map<String, DownloadLink> linkOverrides = const {},
+    bool hidden = false,
   }) async {
     final resolver = LinkResolver(sourcePriority: sourcePriority);
     var added = 0;
@@ -257,7 +267,9 @@ class DownloadService {
       }
 
       final ranked = resolver.rank(entry.links, prefs);
-      if (ranked.isEmpty) {
+      final link = linkOverrides[entry.slug] ??
+          (ranked.isEmpty ? null : ranked.first.link);
+      if (link == null) {
         skipped++;
         continue;
       }
@@ -267,16 +279,17 @@ class DownloadService {
         title: entry.title,
         platform: entry.platform,
         boxartUrl: entry.boxartUrl,
-        link: ranked.first.link,
+        link: link,
         groupId: group.id,
         groupIndex: member.index,
         groupTitle: group.title,
         groupTotal: group.members.length,
+        groupHidden: hidden,
       );
 
       if (result == AddDownloadResult.duplicate) {
         duplicates++;
-        await _backfillGroupMetadata(task, group, member);
+        await _backfillGroupMetadata(task, group, member, hidden: hidden);
       } else {
         added++;
       }
@@ -292,9 +305,10 @@ class DownloadService {
   Future<void> _backfillGroupMetadata(
     DownloadTask existing,
     EntryGroup group,
-    EntryGroupMember member,
-  ) async {
-    if (existing.groupId != null) return;
+    EntryGroupMember member, {
+    bool hidden = false,
+  }) async {
+    if (existing.groupId != null && existing.groupHidden == hidden) return;
 
     final backfilled = existing.copyWith(
       error: existing.error,
@@ -302,6 +316,7 @@ class DownloadService {
       groupIndex: member.index,
       groupTitle: group.title,
       groupTotal: group.members.length,
+      groupHidden: hidden,
     );
     await _db.updateDownloadGroup(
       backfilled.id,
@@ -309,6 +324,7 @@ class DownloadService {
       groupIndex: member.index,
       groupTitle: group.title,
       groupTotal: group.members.length,
+      groupHidden: hidden,
     );
 
     final active = _activeTasks[backfilled.id];
@@ -319,11 +335,34 @@ class DownloadService {
         groupIndex: member.index,
         groupTitle: group.title,
         groupTotal: group.members.length,
+        groupHidden: hidden,
       );
     }
 
     _downloadController.add(backfilled);
     await _maybeWritePlaylist(backfilled);
+  }
+
+  /// Groups discs of [group] that were downloaded one by one: hides them and
+  /// writes the playlist, without downloading anything. Returns the labels
+  /// of discs not downloaded yet (empty on success).
+  Future<List<String>> organizeExistingGroup(EntryGroup group) async {
+    final found = <(DownloadTask, EntryGroupMember)>[];
+    final missing = <String>[];
+    for (final member in group.members) {
+      final task = await _db.findExistingDownload(member.slug);
+      if (task == null || task.status != DownloadStatus.completed) {
+        missing.add(member.label.isEmpty ? '${member.index}' : member.label);
+      } else {
+        found.add((task, member));
+      }
+    }
+    if (missing.isNotEmpty) return missing;
+
+    for (final (task, member) in found) {
+      await _backfillGroupMetadata(task, group, member, hidden: true);
+    }
+    return const [];
   }
 
   Future<void> _maybeWritePlaylist(DownloadTask task) =>

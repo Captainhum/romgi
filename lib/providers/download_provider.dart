@@ -230,14 +230,25 @@ class DownloadNotifier extends StateNotifier<DownloadState> {
     EntryGroup group, {
     required LinkResolverPrefs prefs,
     Map<String, int> sourcePriority = const {},
+    Map<String, DownloadLink> linkOverrides = const {},
+    bool hidden = false,
   }) async {
     final result = await _service.addDiscGroup(
       group,
       prefs: prefs,
       sourcePriority: sourcePriority,
+      linkOverrides: linkOverrides,
+      hidden: hidden,
     );
     await refresh();
     return result;
+  }
+
+  /// See [DownloadService.organizeExistingGroup].
+  Future<List<String>> organizeExistingGroup(EntryGroup group) async {
+    final missing = await _service.organizeExistingGroup(group);
+    await refresh();
+    return missing;
   }
 
   Future<void> pauseDownload(String id) async {
