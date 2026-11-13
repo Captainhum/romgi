@@ -57,6 +57,14 @@ class RomgiApp extends ConsumerWidget {
       themeMode: settings.flutterThemeMode,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
+      locale: settings.appLanguage == null
+          ? null
+          : Locale(settings.appLanguage!),
+      builder: (context, child) {
+        // Keeps notifications and background messages in the UI language.
+        appLocale = Localizations.localeOf(context);
+        return child!;
+      },
       home: const _AppHome(),
     );
   }

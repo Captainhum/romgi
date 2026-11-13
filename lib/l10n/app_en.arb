@@ -586,6 +586,10 @@
   "@iaLoginTitle": {
     "description": "Login screen title"
   },
+  "languageName": "English",
+  "@languageName": {
+    "description": "Name of this language written in the language itself (endonym), shown in the language picker"
+  },
   "libraryAll": "All",
   "@libraryAll": {
     "description": "Platform filter chip showing every platform"
@@ -824,6 +828,10 @@
   "@settingsChecking": {
     "description": "Account status while loading"
   },
+  "settingsChooseLanguage": "Choose Language",
+  "@settingsChooseLanguage": {
+    "description": "Language picker dialog title"
+  },
   "settingsChooseTheme": "Choose Theme",
   "@settingsChooseTheme": {
     "description": "Dialog title"
@@ -1004,6 +1012,10 @@
   "settingsInstall": "Install",
   "@settingsInstall": {
     "description": "Button installing an app update"
+  },
+  "settingsLanguage": "Language",
+  "@settingsLanguage": {
+    "description": "Settings tile opening the language picker"
   },
   "settingsLoggedInAs": "Logged in as {username}",
   "@settingsLoggedInAs": {

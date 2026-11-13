@@ -458,6 +458,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get iaLoginTitle => 'Connexion Internet Archive';
 
   @override
+  String get languageName => 'Français';
+
+  @override
   String get libraryAll => 'Tous';
 
   @override
@@ -632,6 +635,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settingsChecking => 'Vérification…';
 
   @override
+  String get settingsChooseLanguage => 'Choisir la langue';
+
+  @override
   String get settingsChooseTheme => 'Choisir le thème';
 
   @override
@@ -768,6 +774,9 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settingsInstall => 'Installer';
+
+  @override
+  String get settingsLanguage => 'Langue';
 
   @override
   String settingsLoggedInAs(String username) {

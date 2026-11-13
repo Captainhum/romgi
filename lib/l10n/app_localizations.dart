@@ -818,6 +818,12 @@ abstract class AppLocalizations {
   /// **'Internet Archive Login'**
   String get iaLoginTitle;
 
+  /// Name of this language written in the language itself (endonym), shown in the language picker
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get languageName;
+
   /// Platform filter chip showing every platform
   ///
   /// In en, this message translates to:
@@ -1130,6 +1136,12 @@ abstract class AppLocalizations {
   /// **'Checking...'**
   String get settingsChecking;
 
+  /// Language picker dialog title
+  ///
+  /// In en, this message translates to:
+  /// **'Choose Language'**
+  String get settingsChooseLanguage;
+
   /// Dialog title
   ///
   /// In en, this message translates to:
@@ -1351,6 +1363,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Install'**
   String get settingsInstall;
+
+  /// Settings tile opening the language picker
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get settingsLanguage;
 
   /// Account subtitle
   ///

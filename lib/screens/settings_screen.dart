@@ -277,6 +277,18 @@ class SettingsScreen extends ConsumerWidget {
                   onTap: () =>
                       _showThemePicker(context, ref, settings.themeMode),
                 ),
+                ListTile(
+                  leading: const Icon(Icons.language),
+                  title: Text(context.l10n.settingsLanguage),
+                  subtitle: Text(
+                    settings.appLanguage == null
+                        ? context.l10n.settingsThemeSystem
+                        : _languageName(settings.appLanguage!),
+                  ),
+                  trailing: const Icon(Icons.chevron_right),
+                  onTap: () =>
+                      _showLanguagePicker(context, ref, settings.appLanguage),
+                ),
 
                 const Divider(height: 32),
 
@@ -420,6 +432,48 @@ class SettingsScreen extends ConsumerWidget {
               title: Text(_getThemeModeName(context.l10n, mode)),
               onTap: () {
                 ref.read(settingsProvider.notifier).setThemeMode(mode);
+                Navigator.pop(dialogContext);
+              },
+            );
+          }).toList(),
+        ),
+      ),
+    );
+  }
+
+  void _showLanguagePicker(
+    BuildContext context,
+    WidgetRef ref,
+    String? current,
+  ) {
+    final codes = <String?>[
+      null,
+      ...AppLocalizations.supportedLocales.map((l) => l.languageCode),
+    ];
+    showDialog(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: Text(context.l10n.settingsChooseLanguage),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: codes.map((code) {
+            final isSelected = code == current;
+            return ListTile(
+              leading: Icon(
+                isSelected
+                    ? Icons.radio_button_checked
+                    : Icons.radio_button_unchecked,
+                color: isSelected
+                    ? Theme.of(dialogContext).colorScheme.primary
+                    : null,
+              ),
+              title: Text(
+                code == null
+                    ? context.l10n.settingsThemeSystem
+                    : _languageName(code),
+              ),
+              onTap: () {
+                ref.read(settingsProvider.notifier).setAppLanguage(code);
                 Navigator.pop(dialogContext);
               },
             );
@@ -1412,3 +1466,6 @@ String _fieldLabel(AppLocalizations l10n, CredentialField field) {
       return field.label;
   }
 }
+
+/// A language's own name ("Français"), from its translation file.
+String _languageName(String code) => l10nFor(Locale(code)).languageName;

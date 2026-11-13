@@ -98,6 +98,20 @@ romgi supports a wide range of retro gaming platforms, including:
 - **Sega**: Master System, Genesis/Mega Drive, Saturn, Dreamcast, Game Gear
 - **And many more**: Atari, Neo Geo, TurboGrafx, and other retro platforms
 
+## Translations
+
+romgi is available in English and French, and follows your device language (you can also pick
+one in **Settings > Appearance > Language**).
+
+Want romgi in your language? You can help without writing code:
+
+- **On the web** — translate in your browser on Weblate (link coming soon). Each sentence comes
+  with a short explanation of where it appears.
+- **By hand** — copy `lib/l10n/app_en.arb` to `lib/l10n/app_<code>.arb` (for example
+  `app_es.arb`), set `"@@locale": "<code>"`, translate the values (leave the `@` entries and the
+  `{placeholders}` as they are), and open a pull request. Untranslated sentences fall back to
+  English, so a partial translation is fine.
+
 ## Building from Source
 
 ### Requirements
