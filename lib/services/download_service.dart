@@ -22,6 +22,7 @@ import 'storage_service.dart';
 import 'torrent_info.dart';
 import 'torrent_magnet.dart';
 import 'torrent_service.dart';
+import '../l10n/l10n.dart';
 
 enum AddDownloadResult { added, duplicate }
 
@@ -129,8 +130,8 @@ class DownloadService {
     FlutterForegroundTask.init(
       androidNotificationOptions: AndroidNotificationOptions(
         channelId: 'download_foreground',
-        channelName: 'Download Service',
-        channelDescription: 'Keeps downloads running in background',
+        channelName: appL10n.notifServiceChannel,
+        channelDescription: appL10n.notifServiceChannelDesc,
         channelImportance: NotificationChannelImportance.LOW,
         priority: NotificationPriority.LOW,
       ),
@@ -154,7 +155,7 @@ class DownloadService {
     }
 
     await FlutterForegroundTask.startService(
-      notificationTitle: 'Downloading',
+      notificationTitle: appL10n.notifDownloading,
       notificationText: title,
     );
   }

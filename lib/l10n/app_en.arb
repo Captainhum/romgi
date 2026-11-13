@@ -1,0 +1,1427 @@
+{
+  "@@locale": "en",
+  "browseClearFilters": "Clear filters",
+  "@browseClearFilters": {
+    "description": "Button resetting all filters"
+  },
+  "browseEmptyBody": "Enter a game name or use filters to browse",
+  "@browseEmptyBody": {
+    "description": "Empty state body on the Browse tab"
+  },
+  "browseEmptyTitle": "Search for ROMs",
+  "@browseEmptyTitle": {
+    "description": "Empty state title on the Browse tab"
+  },
+  "browseFeelingLucky": "I'm Feeling Lucky",
+  "@browseFeelingLucky": {
+    "description": "Tooltip of the random game button (playful)"
+  },
+  "browseGridView": "Grid view",
+  "@browseGridView": {
+    "description": "Tooltip to switch to grid layout"
+  },
+  "browseListView": "List view",
+  "@browseListView": {
+    "description": "Tooltip to switch to list layout"
+  },
+  "browseNoEntries": "No entries found in database",
+  "@browseNoEntries": {
+    "description": "Snackbar when the random pick finds no game"
+  },
+  "browseNoResults": "No results found",
+  "@browseNoResults": {
+    "description": "Shown when the search returns nothing"
+  },
+  "browseRandom": "Random",
+  "@browseRandom": {
+    "description": "Button opening a random game"
+  },
+  "browseRecentlyViewed": "Recently Viewed",
+  "@browseRecentlyViewed": {
+    "description": "Header of the recently opened games list"
+  },
+  "browseResultCount": "{count, plural, =1{1 result} other{{count} results}}",
+  "@browseResultCount": {
+    "description": "Number of search results",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "browseResultCountMore": "{count}+ results",
+  "@browseResultCountMore": {
+    "description": "Number of results shown when more pages exist",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "browseSearchHint": "Search ROMs...",
+  "@browseSearchHint": {
+    "description": "Search field placeholder"
+  },
+  "browseUseSearchBar": "Use the search bar above to find more ROMs",
+  "@browseUseSearchBar": {
+    "description": "Hint under the recently viewed list"
+  },
+  "commonCancel": "Cancel",
+  "@commonCancel": {
+    "description": "Dialog button"
+  },
+  "commonClear": "Clear",
+  "@commonClear": {
+    "description": "Button clearing a list or field"
+  },
+  "commonClose": "Close",
+  "@commonClose": {
+    "description": "Dialog button"
+  },
+  "commonContinue": "Continue",
+  "@commonContinue": {
+    "description": "Button to proceed"
+  },
+  "commonDelete": "Delete",
+  "@commonDelete": {
+    "description": "Dialog button"
+  },
+  "commonDownload": "Download",
+  "@commonDownload": {
+    "description": "Button starting a download"
+  },
+  "commonDownloaded": "Downloaded",
+  "@commonDownloaded": {
+    "description": "Badge on games already downloaded"
+  },
+  "commonErrorOccurred": "An error occurred",
+  "@commonErrorOccurred": {
+    "description": "Generic error"
+  },
+  "commonFilters": "Filters",
+  "@commonFilters": {
+    "description": "Button/tooltip opening the filter sheet"
+  },
+  "commonLoading": "Loading...",
+  "@commonLoading": {
+    "description": "Placeholder while loading"
+  },
+  "commonRefresh": "Refresh",
+  "@commonRefresh": {
+    "description": "Tooltip refreshing a list"
+  },
+  "commonReload": "Reload",
+  "@commonReload": {
+    "description": "Tooltip reloading a web page"
+  },
+  "commonRemove": "Remove",
+  "@commonRemove": {
+    "description": "Tooltip removing an item"
+  },
+  "commonRetry": "Retry",
+  "@commonRetry": {
+    "description": "Button to retry a failed action"
+  },
+  "commonSave": "Save",
+  "@commonSave": {
+    "description": "Button"
+  },
+  "commonSkip": "Skip",
+  "@commonSkip": {
+    "description": "Button to skip an optional step"
+  },
+  "commonTryAgain": "Try Again",
+  "@commonTryAgain": {
+    "description": "Button on error screens"
+  },
+  "commonTryAgainTooltip": "Try again",
+  "@commonTryAgainTooltip": {
+    "description": "Tooltip of the retry icon"
+  },
+  "commonUnknown": "Unknown",
+  "@commonUnknown": {
+    "description": "Unknown value"
+  },
+  "commonView": "View",
+  "@commonView": {
+    "description": "Snackbar action jumping to the related tab"
+  },
+  "detailAbout": "About",
+  "@detailAbout": {
+    "description": "Section header of the game description"
+  },
+  "detailAchievements": "{count, plural, =1{1 achievement} other{{count} achievements}}",
+  "@detailAchievements": {
+    "description": "RetroAchievements count chip",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "detailAddToWishlist": "Add to wishlist",
+  "@detailAddToWishlist": {
+    "description": "Tooltip of the favorite button"
+  },
+  "detailAddedToQueue": "Added \"{title}\" to download queue",
+  "@detailAddedToQueue": {
+    "description": "Snackbar after queueing a download",
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "detailAddedToWishlist": "Added to wishlist",
+  "@detailAddedToWishlist": {
+    "description": "Snackbar after adding a favorite"
+  },
+  "detailAllTorrents": "All download links are torrents.\nEnable torrents in Settings to download.",
+  "@detailAllTorrents": {
+    "description": "Shown when torrents are disabled and only torrent links exist"
+  },
+  "detailAlreadyDownloaded": "Already downloaded",
+  "@detailAlreadyDownloaded": {
+    "description": "Banner on a game page when it is in the library"
+  },
+  "detailAlreadyIs": "\"{title}\" is {status}",
+  "@detailAlreadyIs": {
+    "description": "Snackbar when the game is already queued; status is one of detailStatus*",
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "detailDirect": "Direct",
+  "@detailDirect": {
+    "description": "Badge for direct HTTP sources"
+  },
+  "detailDiscGameBody": "Download every disc and generate an .m3u playlist so your emulator can swap discs.",
+  "@detailDiscGameBody": {
+    "description": "Explanation on the multi-disc card. .m3u is a file extension, keep it."
+  },
+  "detailDiscGameTitle": "{count}-disc game",
+  "@detailDiscGameTitle": {
+    "description": "Title of the multi-disc card",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "detailDiscLabel": "Disc {index}",
+  "@detailDiscLabel": {
+    "description": "Chip label for one disc of a set",
+    "placeholders": {
+      "index": {
+        "type": "int"
+      }
+    }
+  },
+  "detailDiscsDuplicate": "{count} already added",
+  "@detailDiscsDuplicate": {
+    "description": "Part of the disc set summary",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "detailDiscsQueued": "{count} queued",
+  "@detailDiscsQueued": {
+    "description": "Part of the disc set summary",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "detailDiscsSummary": "Discs: {parts}",
+  "@detailDiscsSummary": {
+    "description": "Snackbar after queueing a disc set; parts is a comma separated list",
+    "placeholders": {
+      "parts": {
+        "type": "String"
+      }
+    }
+  },
+  "detailDiscsUnavailable": "{count} unavailable",
+  "@detailDiscsUnavailable": {
+    "description": "Part of the disc set summary",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "detailDownloadAllDiscs": "Download all {count} discs",
+  "@detailDownloadAllDiscs": {
+    "description": "Button downloading every disc of a set",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "detailDownloadLinks": "Download Links",
+  "@detailDownloadLinks": {
+    "description": "Section header listing download sources"
+  },
+  "detailLogIn": "Log In",
+  "@detailLogIn": {
+    "description": "Dialog button opening the login page"
+  },
+  "detailLoginAndDownload": "Login & Download",
+  "@detailLoginAndDownload": {
+    "description": "Button for a source that needs login"
+  },
+  "detailLoginPrompt": "This file requires an Internet Archive account to download. Would you like to log in now?",
+  "@detailLoginPrompt": {
+    "description": "Body of the login required dialog"
+  },
+  "detailLoginRequired": "Login Required",
+  "@detailLoginRequired": {
+    "description": "Badge/dialog title for sources needing an Internet Archive account"
+  },
+  "detailNoDiscsAvailable": "No discs available to download",
+  "@detailNoDiscsAvailable": {
+    "description": "Snackbar when no disc of a set has a source"
+  },
+  "detailNoLinks": "No download links available",
+  "@detailNoLinks": {
+    "description": "Shown when a game has no source"
+  },
+  "detailNotFound": "Entry not found",
+  "@detailNotFound": {
+    "description": "Shown when the game page cannot load its entry"
+  },
+  "detailReadMore": "Read more",
+  "@detailReadMore": {
+    "description": "Expands the description"
+  },
+  "detailRemoveFromWishlist": "Remove from wishlist",
+  "@detailRemoveFromWishlist": {
+    "description": "Tooltip of the favorite button"
+  },
+  "detailRemovedFromWishlist": "Removed from wishlist",
+  "@detailRemovedFromWishlist": {
+    "description": "Snackbar after removing a favorite"
+  },
+  "detailShowLess": "Show less",
+  "@detailShowLess": {
+    "description": "Collapses the description"
+  },
+  "detailStatusDownloaded": "already downloaded",
+  "@detailStatusDownloaded": {
+    "description": "Status fragment inserted in detailAlreadyIs"
+  },
+  "detailStatusDownloading": "currently downloading",
+  "@detailStatusDownloading": {
+    "description": "Status fragment inserted in detailAlreadyIs"
+  },
+  "detailStatusInQueue": "in queue",
+  "@detailStatusInQueue": {
+    "description": "Status fragment inserted in detailAlreadyIs"
+  },
+  "detailStatusPaused": "paused in queue",
+  "@detailStatusPaused": {
+    "description": "Status fragment inserted in detailAlreadyIs"
+  },
+  "detailStatusQueued": "already in queue",
+  "@detailStatusQueued": {
+    "description": "Status fragment inserted in detailAlreadyIs"
+  },
+  "detailTorrent": "Torrent",
+  "@detailTorrent": {
+    "description": "Badge for torrent sources"
+  },
+  "downloadsClearCompleted": "Clear completed",
+  "@downloadsClearCompleted": {
+    "description": "Menu item removing completed downloads from the list"
+  },
+  "downloadsContactingTrackers": "Contacting trackers…",
+  "@downloadsContactingTrackers": {
+    "description": "Torrent status before peers are found"
+  },
+  "downloadsEmptyBody": "Browse ROMs and tap download to get started",
+  "@downloadsEmptyBody": {
+    "description": "Empty state body"
+  },
+  "downloadsEmptyTitle": "No downloads yet",
+  "@downloadsEmptyTitle": {
+    "description": "Empty state title"
+  },
+  "downloadsExtracting": "Extracting…",
+  "@downloadsExtracting": {
+    "description": "Status while an archive is extracted"
+  },
+  "downloadsFailed": "Download failed",
+  "@downloadsFailed": {
+    "description": "Generic download error"
+  },
+  "downloadsIaLoginRequired": "Internet Archive login required",
+  "@downloadsIaLoginRequired": {
+    "description": "Error shown when a download needs an Internet Archive login"
+  },
+  "downloadsLoggedInRetrying": "Logged in! Retrying download...",
+  "@downloadsLoggedInRetrying": {
+    "description": "Snackbar after logging in from a failed download"
+  },
+  "downloadsLogin": "Login",
+  "@downloadsLogin": {
+    "description": "Button opening the Internet Archive login"
+  },
+  "downloadsPausedSuffix": "Paused",
+  "@downloadsPausedSuffix": {
+    "description": "Appended to a queued item that is paused"
+  },
+  "downloadsPeersConnected": "{count, plural, =1{1 peer connected} other{{count} peers connected}}",
+  "@downloadsPeersConnected": {
+    "description": "Torrent peers while fetching metadata",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "downloadsPeersSeeds": "{peers, plural, =1{1 peer} other{{peers} peers}} • {seeds, plural, =1{1 seed} other{{seeds} seeds}}",
+  "@downloadsPeersSeeds": {
+    "description": "Torrent swarm summary",
+    "placeholders": {
+      "peers": {
+        "type": "int"
+      },
+      "seeds": {
+        "type": "int"
+      }
+    }
+  },
+  "downloadsSectionCompleted": "Completed ({count})",
+  "@downloadsSectionCompleted": {
+    "description": "Downloads section header with item count",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "downloadsSectionDownloading": "Downloading ({count})",
+  "@downloadsSectionDownloading": {
+    "description": "Downloads section header with item count",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "downloadsSectionFailed": "Failed ({count})",
+  "@downloadsSectionFailed": {
+    "description": "Downloads section header with item count",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "downloadsSectionQueue": "Queue ({count})",
+  "@downloadsSectionQueue": {
+    "description": "Downloads section header with item count",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "errorCancelled": "Request was cancelled.",
+  "@errorCancelled": {
+    "description": "Network error message shown to the user"
+  },
+  "errorCannotConnect": "Unable to connect. Please check your internet connection.",
+  "@errorCannotConnect": {
+    "description": "Network error message shown to the user"
+  },
+  "errorCannotConnectServer": "Unable to connect to the server. Please check your internet connection.",
+  "@errorCannotConnectServer": {
+    "description": "Network error message shown to the user"
+  },
+  "errorConnectTimeout": "Connection timed out. The server is taking too long to respond.",
+  "@errorConnectTimeout": {
+    "description": "Network error message shown to the user"
+  },
+  "errorConnectionFailed": "Connection failed. Please try again.",
+  "@errorConnectionFailed": {
+    "description": "Network error message shown to the user"
+  },
+  "errorGeneric": "Something went wrong. Please try again.",
+  "@errorGeneric": {
+    "description": "Network error message shown to the user"
+  },
+  "errorHttp400": "Invalid request. Please try again.",
+  "@errorHttp400": {
+    "description": "Network error message shown to the user"
+  },
+  "errorHttp401": "Authentication required.",
+  "@errorHttp401": {
+    "description": "Network error message shown to the user"
+  },
+  "errorHttp403": "Access denied.",
+  "@errorHttp403": {
+    "description": "Network error message shown to the user"
+  },
+  "errorHttp404": "The requested content was not found.",
+  "@errorHttp404": {
+    "description": "Network error message shown to the user"
+  },
+  "errorHttp429": "Too many requests. Please wait a moment and try again.",
+  "@errorHttp429": {
+    "description": "Network error message shown to the user"
+  },
+  "errorHttp500": "Server error. The service is having issues.",
+  "@errorHttp500": {
+    "description": "Network error message shown to the user"
+  },
+  "errorHttp502": "Server is temporarily unavailable. Please try again later.",
+  "@errorHttp502": {
+    "description": "Network error message shown to the user"
+  },
+  "errorHttp503": "Service is currently unavailable. Please try again later.",
+  "@errorHttp503": {
+    "description": "Network error message shown to the user"
+  },
+  "errorHttp504": "Server took too long to respond. Please try again.",
+  "@errorHttp504": {
+    "description": "Network error message shown to the user"
+  },
+  "errorReceiveTimeout": "Response timed out. The server is taking too long.",
+  "@errorReceiveTimeout": {
+    "description": "Network error message shown to the user"
+  },
+  "errorRequestFailed": "Request failed. Please try again.",
+  "@errorRequestFailed": {
+    "description": "Network error message shown to the user"
+  },
+  "errorSecureConnection": "Secure connection failed. Please try again later.",
+  "@errorSecureConnection": {
+    "description": "Network error message shown to the user"
+  },
+  "errorSendTimeout": "Request timed out while sending data.",
+  "@errorSendTimeout": {
+    "description": "Network error message shown to the user"
+  },
+  "errorServerLater": "Server error. Please try again later.",
+  "@errorServerLater": {
+    "description": "Network error message shown to the user"
+  },
+  "errorServerRetry": "Server error. Please try again.",
+  "@errorServerRetry": {
+    "description": "Network error message shown to the user"
+  },
+  "errorTimeoutSlow": "Connection timed out. The server may be slow or unavailable.",
+  "@errorTimeoutSlow": {
+    "description": "Network error message shown to the user"
+  },
+  "errorTitle": "Error",
+  "@errorTitle": {
+    "description": "Network error message shown to the user"
+  },
+  "errorTitleConnection": "Connection Error",
+  "@errorTitleConnection": {
+    "description": "Network error message shown to the user"
+  },
+  "errorTitleServer": "Server Error",
+  "@errorTitleServer": {
+    "description": "Network error message shown to the user"
+  },
+  "errorTitleTimeout": "Connection Timed Out",
+  "@errorTitleTimeout": {
+    "description": "Network error message shown to the user"
+  },
+  "filterApply": "Apply Filters",
+  "@filterApply": {
+    "description": "Button applying the selected filters"
+  },
+  "filterClearAll": "Clear all",
+  "@filterClearAll": {
+    "description": "Button resetting every filter"
+  },
+  "filterHasAchievements": "Has Achievements",
+  "@filterHasAchievements": {
+    "description": "Filter chip: only games with RetroAchievements"
+  },
+  "filterPlatforms": "Platforms",
+  "@filterPlatforms": {
+    "description": "Filter section title"
+  },
+  "filterPlatformsError": "Error loading platforms: {error}",
+  "@filterPlatformsError": {
+    "description": "Shown when platforms fail to load",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "filterRegions": "Regions",
+  "@filterRegions": {
+    "description": "Filter section title"
+  },
+  "filterRegionsError": "Error loading regions: {error}",
+  "@filterRegionsError": {
+    "description": "Shown when regions fail to load",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "iaCredentialsError": "Could not retrieve Internet Archive credentials. Please try again.",
+  "@iaCredentialsError": {
+    "description": "Login error"
+  },
+  "iaLoginTitle": "Internet Archive Login",
+  "@iaLoginTitle": {
+    "description": "Login screen title"
+  },
+  "languageName": "English",
+  "@languageName": {
+    "description": "Name of this language written in the language itself (endonym), shown in the language picker"
+  },
+  "libraryAll": "All",
+  "@libraryAll": {
+    "description": "Platform filter chip showing every platform"
+  },
+  "libraryCleanUp": "Clean Up",
+  "@libraryCleanUp": {
+    "description": "Confirm button / menu item"
+  },
+  "libraryCleanUpBody": "Remove entries for files that no longer exist on disk?",
+  "@libraryCleanUpBody": {
+    "description": "Clean up confirmation"
+  },
+  "libraryCleanUpTitle": "Clean Up Library",
+  "@libraryCleanUpTitle": {
+    "description": "Dialog/menu title"
+  },
+  "libraryCleanedUp": "Library cleaned up",
+  "@libraryCleanedUp": {
+    "description": "Snackbar after clean up"
+  },
+  "libraryDeleteConfirm": "Delete \"{title}\"?",
+  "@libraryDeleteConfirm": {
+    "description": "Delete dialog body",
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "libraryDeleteFile": "Delete File",
+  "@libraryDeleteFile": {
+    "description": "Dialog button: deletes the file"
+  },
+  "libraryDeleteTitle": "Delete ROM",
+  "@libraryDeleteTitle": {
+    "description": "Dialog title"
+  },
+  "libraryDeleted": "ROM deleted",
+  "@libraryDeleted": {
+    "description": "Snackbar"
+  },
+  "libraryEmpty": "Your library is empty",
+  "@libraryEmpty": {
+    "description": "Empty state title"
+  },
+  "libraryEmptyHint": "Downloaded ROMs will appear here",
+  "@libraryEmptyHint": {
+    "description": "Empty state body"
+  },
+  "libraryFileMissing": "File no longer exists",
+  "@libraryFileMissing": {
+    "description": "Error snackbar"
+  },
+  "libraryFilesVerified": "Files verified",
+  "@libraryFilesVerified": {
+    "description": "Snackbar after verifying files"
+  },
+  "libraryFormat": "Format",
+  "@libraryFormat": {
+    "description": "Info row label"
+  },
+  "libraryMissing": "Missing",
+  "@libraryMissing": {
+    "description": "Badge on items whose file is gone"
+  },
+  "libraryNoPlatformRoms": "No {platform} ROMs",
+  "@libraryNoPlatformRoms": {
+    "description": "Empty state for a platform filter",
+    "placeholders": {
+      "platform": {
+        "type": "String"
+      }
+    }
+  },
+  "libraryNoResults": "No results for \"{query}\"",
+  "@libraryNoResults": {
+    "description": "Library search empty state",
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
+  },
+  "libraryOpenError": "Could not open file: {error}",
+  "@libraryOpenError": {
+    "description": "Error snackbar",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "libraryOpenWith": "Open with...",
+  "@libraryOpenWith": {
+    "description": "Button opening the file in another app"
+  },
+  "libraryPath": "Path:",
+  "@libraryPath": {
+    "description": "Info row label"
+  },
+  "libraryPathNotFound": "File path not found",
+  "@libraryPathNotFound": {
+    "description": "Error snackbar"
+  },
+  "libraryPlatform": "Platform",
+  "@libraryPlatform": {
+    "description": "Info row label"
+  },
+  "libraryRemoveFromLibrary": "Remove from Library",
+  "@libraryRemoveFromLibrary": {
+    "description": "Dialog button: keeps the file"
+  },
+  "libraryRemoved": "Removed from library",
+  "@libraryRemoved": {
+    "description": "Snackbar"
+  },
+  "librarySearchHint": "Search library...",
+  "@librarySearchHint": {
+    "description": "Library search placeholder"
+  },
+  "librarySize": "Size",
+  "@librarySize": {
+    "description": "Info row label"
+  },
+  "libraryTabDownloaded": "Downloaded ({count})",
+  "@libraryTabDownloaded": {
+    "description": "Tab with item count",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "libraryTabWishlist": "Wishlist ({count})",
+  "@libraryTabWishlist": {
+    "description": "Tab with item count",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "libraryVerifyFiles": "Verify Files",
+  "@libraryVerifyFiles": {
+    "description": "Menu item / settings entry"
+  },
+  "libraryWishlistEmpty": "Your wishlist is empty",
+  "@libraryWishlistEmpty": {
+    "description": "Empty state title"
+  },
+  "libraryWishlistError": "Failed to load wishlist",
+  "@libraryWishlistError": {
+    "description": "Error state"
+  },
+  "libraryWishlistHint": "Tap the heart icon on any ROM to add it here",
+  "@libraryWishlistHint": {
+    "description": "Empty state body"
+  },
+  "navBrowse": "Browse",
+  "@navBrowse": {
+    "description": "Navigation tab: catalog search"
+  },
+  "navDownloads": "Downloads",
+  "@navDownloads": {
+    "description": "Navigation tab: download queue"
+  },
+  "navLibrary": "Library",
+  "@navLibrary": {
+    "description": "Navigation tab: downloaded games"
+  },
+  "navSettings": "Settings",
+  "@navSettings": {
+    "description": "Navigation tab: settings"
+  },
+  "notifChannelComplete": "Download Complete",
+  "@notifChannelComplete": {
+    "description": "Android notification channel name and notification title"
+  },
+  "notifChannelCompleteDesc": "Notifies when downloads complete",
+  "@notifChannelCompleteDesc": {
+    "description": "Android notification channel description"
+  },
+  "notifChannelProgress": "Download Progress",
+  "@notifChannelProgress": {
+    "description": "Android notification channel name"
+  },
+  "notifChannelProgressDesc": "Shows download progress",
+  "@notifChannelProgressDesc": {
+    "description": "Android notification channel description"
+  },
+  "notifDownloading": "Downloading",
+  "@notifDownloading": {
+    "description": "Notification title"
+  },
+  "notifExtracting": "Extracting",
+  "@notifExtracting": {
+    "description": "Notification title"
+  },
+  "notifFailed": "Download Failed",
+  "@notifFailed": {
+    "description": "Notification title"
+  },
+  "notifServiceChannel": "Download Service",
+  "@notifServiceChannel": {
+    "description": "Foreground service notification channel name"
+  },
+  "notifServiceChannelDesc": "Keeps downloads running in background",
+  "@notifServiceChannelDesc": {
+    "description": "Foreground service channel description"
+  },
+  "settingsAbout": "About",
+  "@settingsAbout": {
+    "description": "Section header"
+  },
+  "settingsAccounts": "Accounts",
+  "@settingsAccounts": {
+    "description": "Section header"
+  },
+  "settingsApiKeyCleared": "API key cleared",
+  "@settingsApiKeyCleared": {
+    "description": "Status message"
+  },
+  "settingsApiKeySaved": "API key saved",
+  "@settingsApiKeySaved": {
+    "description": "Status message"
+  },
+  "settingsAppearance": "Appearance",
+  "@settingsAppearance": {
+    "description": "Section header"
+  },
+  "settingsAutoExtract": "Auto-extract",
+  "@settingsAutoExtract": {
+    "description": "Per-platform switch"
+  },
+  "settingsChecking": "Checking...",
+  "@settingsChecking": {
+    "description": "Account status while loading"
+  },
+  "settingsChooseLanguage": "Choose Language",
+  "@settingsChooseLanguage": {
+    "description": "Language picker dialog title"
+  },
+  "settingsChooseTheme": "Choose Theme",
+  "@settingsChooseTheme": {
+    "description": "Dialog title"
+  },
+  "settingsCleanUpHint": "Remove entries for missing files",
+  "@settingsCleanUpHint": {
+    "description": "Settings tile subtitle"
+  },
+  "settingsConcurrentCount": "{count, plural, =1{1 download at a time} other{{count} downloads at a time}}",
+  "@settingsConcurrentCount": {
+    "description": "Concurrent downloads subtitle",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "settingsConcurrentDownloads": "Concurrent Downloads",
+  "@settingsConcurrentDownloads": {
+    "description": "Settings tile"
+  },
+  "settingsConcurrentUnlimited": "Unlimited concurrent downloads",
+  "@settingsConcurrentUnlimited": {
+    "description": "Concurrent downloads subtitle"
+  },
+  "settingsConnected": "Connected successfully",
+  "@settingsConnected": {
+    "description": "Connection test result"
+  },
+  "settingsCredentialsCleared": "Credentials cleared",
+  "@settingsCredentialsCleared": {
+    "description": "Status message"
+  },
+  "settingsCredentialsSaved": "Credentials saved",
+  "@settingsCredentialsSaved": {
+    "description": "Status message"
+  },
+  "settingsDatabaseDeleted": "Database deleted",
+  "@settingsDatabaseDeleted": {
+    "description": "Snackbar"
+  },
+  "settingsDatabaseDownloadFailed": "Download failed: {error}",
+  "@settingsDatabaseDownloadFailed": {
+    "description": "Database download error",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsDatabaseDownloadPrompt": "Download the ROM database to browse and search games.",
+  "@settingsDatabaseDownloadPrompt": {
+    "description": "Update dialog body when not installed"
+  },
+  "settingsDatabaseError": "Error loading database info",
+  "@settingsDatabaseError": {
+    "description": "Settings tile subtitle"
+  },
+  "settingsDatabaseNewVersion": "A new database version is available.",
+  "@settingsDatabaseNewVersion": {
+    "description": "Update dialog body"
+  },
+  "settingsDatabaseSize": "Size: {size} MB",
+  "@settingsDatabaseSize": {
+    "description": "Database download size",
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsDatabaseUpdate": "Update Database",
+  "@settingsDatabaseUpdate": {
+    "description": "Dialog title"
+  },
+  "settingsDatabaseUpdated": "Database updated successfully",
+  "@settingsDatabaseUpdated": {
+    "description": "Snackbar"
+  },
+  "settingsDatabaseUpdating": "Updating Database",
+  "@settingsDatabaseUpdating": {
+    "description": "Dialog title"
+  },
+  "settingsDatabaseVersion": "Version {version} - {entries} entries",
+  "@settingsDatabaseVersion": {
+    "description": "ROM database subtitle; entries is already formatted (e.g. 241K)",
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "entries": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsDebridApiKey": "{provider} API key",
+  "@settingsDebridApiKey": {
+    "description": "Debrid key field label",
+    "placeholders": {
+      "provider": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsDebridService": "Debrid Service",
+  "@settingsDebridService": {
+    "description": "Section header"
+  },
+  "settingsDefaultLocation": "Default Location",
+  "@settingsDefaultLocation": {
+    "description": "Settings tile"
+  },
+  "settingsDeleteDatabase": "Delete Database",
+  "@settingsDeleteDatabase": {
+    "description": "Menu item / dialog title"
+  },
+  "settingsDeleteDatabaseBody": "This will delete the ROM database. You will need to download it again to browse ROMs.\n\nThis can help fix issues with a corrupted database.",
+  "@settingsDeleteDatabaseBody": {
+    "description": "Delete database dialog body"
+  },
+  "settingsDeleteReset": "Delete & Reset",
+  "@settingsDeleteReset": {
+    "description": "Menu item"
+  },
+  "settingsDisableAutoExtract": "Disable Auto-Extract",
+  "@settingsDisableAutoExtract": {
+    "description": "Settings switch"
+  },
+  "settingsDisableAutoExtractHint": "Keep downloaded archives as-is without extracting",
+  "@settingsDisableAutoExtractHint": {
+    "description": "Settings switch subtitle"
+  },
+  "settingsDisableTorrents": "Disable Torrents",
+  "@settingsDisableTorrents": {
+    "description": "Settings switch"
+  },
+  "settingsDisableTorrentsHint": "Only use direct downloads (hides torrent-only sources)",
+  "@settingsDisableTorrentsHint": {
+    "description": "Settings switch subtitle"
+  },
+  "settingsDownloadLocations": "Download Locations",
+  "@settingsDownloadLocations": {
+    "description": "Section header"
+  },
+  "settingsFieldApiKey": "API key",
+  "@settingsFieldApiKey": {
+    "description": "Credential field"
+  },
+  "settingsFieldOptional": "{label} (optional)",
+  "@settingsFieldOptional": {
+    "description": "Label of an optional credential field",
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsFieldPassword": "Password",
+  "@settingsFieldPassword": {
+    "description": "Credential field"
+  },
+  "settingsFieldUsername": "Username",
+  "@settingsFieldUsername": {
+    "description": "Credential field"
+  },
+  "settingsFillRequired": "Fill in all required fields",
+  "@settingsFillRequired": {
+    "description": "Validation message"
+  },
+  "settingsGameMetadata": "Game Metadata",
+  "@settingsGameMetadata": {
+    "description": "Section header"
+  },
+  "settingsIaLoginHint": "Login to download protected files",
+  "@settingsIaLoginHint": {
+    "description": "Internet Archive tile subtitle"
+  },
+  "settingsInstall": "Install",
+  "@settingsInstall": {
+    "description": "Button installing an app update"
+  },
+  "settingsLanguage": "Language",
+  "@settingsLanguage": {
+    "description": "Settings tile opening the language picker"
+  },
+  "settingsLoggedInAs": "Logged in as {username}",
+  "@settingsLoggedInAs": {
+    "description": "Account subtitle",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsLoggedOut": "Logged out from Internet Archive",
+  "@settingsLoggedOut": {
+    "description": "Snackbar"
+  },
+  "settingsLogout": "Logout",
+  "@settingsLogout": {
+    "description": "Button/dialog title"
+  },
+  "settingsLogoutConfirm": "Are you sure you want to logout from Internet Archive?",
+  "@settingsLogoutConfirm": {
+    "description": "Logout confirmation"
+  },
+  "settingsMetadataSubtitle": "Descriptions, screenshots and artwork on game pages (ScreenScraper, SteamGridDB)",
+  "@settingsMetadataSubtitle": {
+    "description": "Metadata switch subtitle"
+  },
+  "settingsNoApiKey": "No API key saved",
+  "@settingsNoApiKey": {
+    "description": "Status message"
+  },
+  "settingsNoCredentials": "No credentials saved",
+  "@settingsNoCredentials": {
+    "description": "Status message"
+  },
+  "settingsNotInstalled": "Not installed",
+  "@settingsNotInstalled": {
+    "description": "Database status"
+  },
+  "settingsNotLoggedIn": "Not logged in",
+  "@settingsNotLoggedIn": {
+    "description": "Account status"
+  },
+  "settingsPlatformLocations": "Platform-Specific Locations",
+  "@settingsPlatformLocations": {
+    "description": "Settings tile"
+  },
+  "settingsPlatformLocationsHint": "Override download location for specific platforms",
+  "@settingsPlatformLocationsHint": {
+    "description": "Settings tile subtitle"
+  },
+  "settingsPlatformsError": "Failed to load platforms",
+  "@settingsPlatformsError": {
+    "description": "Error"
+  },
+  "settingsProvider": "Provider",
+  "@settingsProvider": {
+    "description": "Debrid provider picker"
+  },
+  "settingsRomDatabase": "ROM Database",
+  "@settingsRomDatabase": {
+    "description": "Settings tile"
+  },
+  "settingsRomSources": "ROM sources",
+  "@settingsRomSources": {
+    "description": "Settings tile"
+  },
+  "settingsRomSourcesHint": "Status of the catalogs that feed this app",
+  "@settingsRomSourcesHint": {
+    "description": "Settings tile subtitle"
+  },
+  "settingsSaveKey": "Save key",
+  "@settingsSaveKey": {
+    "description": "Button"
+  },
+  "settingsShowMetadata": "Show game metadata",
+  "@settingsShowMetadata": {
+    "description": "Settings switch"
+  },
+  "settingsSourceCode": "Source Code",
+  "@settingsSourceCode": {
+    "description": "Settings tile"
+  },
+  "settingsSources": "Sources",
+  "@settingsSources": {
+    "description": "Section header"
+  },
+  "settingsTest": "Test",
+  "@settingsTest": {
+    "description": "Button testing a connection"
+  },
+  "settingsTheme": "Theme",
+  "@settingsTheme": {
+    "description": "Settings tile"
+  },
+  "settingsThemeDark": "Dark",
+  "@settingsThemeDark": {
+    "description": "Theme option"
+  },
+  "settingsThemeLight": "Light",
+  "@settingsThemeLight": {
+    "description": "Theme option"
+  },
+  "settingsThemeSystem": "System default",
+  "@settingsThemeSystem": {
+    "description": "Theme/language option following the device"
+  },
+  "settingsUpdate": "Update",
+  "@settingsUpdate": {
+    "description": "Button"
+  },
+  "settingsUseDebrid": "Use debrid service",
+  "@settingsUseDebrid": {
+    "description": "Settings switch"
+  },
+  "settingsUseDebridHint": "Resolve cached torrents to fast direct links (TorBox, Real-Debrid)",
+  "@settingsUseDebridHint": {
+    "description": "Settings switch subtitle"
+  },
+  "settingsUsingDefault": "Using default",
+  "@settingsUsingDefault": {
+    "description": "Platform folder subtitle when not overridden"
+  },
+  "settingsVerifyFilesHint": "Check if downloaded files still exist",
+  "@settingsVerifyFilesHint": {
+    "description": "Settings tile subtitle"
+  },
+  "settingsVersion": "Version",
+  "@settingsVersion": {
+    "description": "Settings tile"
+  },
+  "setupChecking": "Checking database...",
+  "@setupChecking": {
+    "description": "Setup screen status"
+  },
+  "setupDownloadBody": "The ROM catalog database needs to be downloaded to browse and search for games.",
+  "@setupDownloadBody": {
+    "description": "Setup screen body"
+  },
+  "setupDownloadButton": "Download Database",
+  "@setupDownloadButton": {
+    "description": "Setup screen button"
+  },
+  "setupDownloadSize": "Download Size",
+  "@setupDownloadSize": {
+    "description": "Setup info label"
+  },
+  "setupDownloadTitle": "Download ROM Database",
+  "@setupDownloadTitle": {
+    "description": "Setup screen title"
+  },
+  "setupDownloading": "Downloading database...",
+  "@setupDownloading": {
+    "description": "Setup screen status"
+  },
+  "setupFailed": "Download Failed",
+  "@setupFailed": {
+    "description": "Setup screen error title"
+  },
+  "setupReady": "Database ready!",
+  "@setupReady": {
+    "description": "Setup screen status"
+  },
+  "setupRomEntries": "ROM Entries",
+  "@setupRomEntries": {
+    "description": "Setup info label"
+  },
+  "setupSizeMb": "{size} MB",
+  "@setupSizeMb": {
+    "description": "Size in megabytes",
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "sourcesChecked": "checked {when}",
+  "@sourcesChecked": {
+    "description": "Status line fragment; when is a relative time",
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "sourcesCounts": "{entries} entries · {links} links",
+  "@sourcesCounts": {
+    "description": "Status line fragment; numbers are pre-formatted",
+    "placeholders": {
+      "entries": {
+        "type": "String"
+      },
+      "links": {
+        "type": "String"
+      }
+    }
+  },
+  "sourcesEmpty": "No sources found in the catalog database. Download or update the database from Settings → Update.",
+  "@sourcesEmpty": {
+    "description": "Sources screen empty state"
+  },
+  "sourcesLoadError": "Failed to load sources: {error}",
+  "@sourcesLoadError": {
+    "description": "Error",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "sourcesLoginRequired": "login required",
+  "@sourcesLoginRequired": {
+    "description": "Chip on sources needing an account (lower case)"
+  },
+  "sourcesOpenHomepage": "Open {url}",
+  "@sourcesOpenHomepage": {
+    "description": "Tooltip opening the source website",
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "sourcesPriority": "priority {priority}",
+  "@sourcesPriority": {
+    "description": "Chip with the source priority (lower case)",
+    "placeholders": {
+      "priority": {
+        "type": "int"
+      }
+    }
+  },
+  "sourcesStatusDegraded": "Degraded",
+  "@sourcesStatusDegraded": {
+    "description": "Source health status"
+  },
+  "sourcesStatusDown": "Down",
+  "@sourcesStatusDown": {
+    "description": "Source health status"
+  },
+  "sourcesStatusStale": "Stale",
+  "@sourcesStatusStale": {
+    "description": "Source health status"
+  },
+  "statusCachingDebrid": "Caching on debrid...",
+  "@statusCachingDebrid": {
+    "description": "Download status shown under a download"
+  },
+  "statusCompleted": "Completed",
+  "@statusCompleted": {
+    "description": "Download status shown under a download"
+  },
+  "statusDownloading": "Downloading...",
+  "@statusDownloading": {
+    "description": "Download status shown under a download"
+  },
+  "statusDownloadingTorrent": "Downloading (Torrent)",
+  "@statusDownloadingTorrent": {
+    "description": "Download status shown under a download"
+  },
+  "statusExtracting": "Extracting...",
+  "@statusExtracting": {
+    "description": "Download status shown under a download"
+  },
+  "statusFailed": "Failed",
+  "@statusFailed": {
+    "description": "Download status shown under a download"
+  },
+  "statusFindingPeers": "Finding peers...",
+  "@statusFindingPeers": {
+    "description": "Download status shown under a download"
+  },
+  "statusPaused": "Paused",
+  "@statusPaused": {
+    "description": "Download status shown under a download"
+  },
+  "statusResolvingDebrid": "Resolving via debrid...",
+  "@statusResolvingDebrid": {
+    "description": "Download status shown under a download"
+  },
+  "statusWaiting": "Waiting...",
+  "@statusWaiting": {
+    "description": "Download status shown under a download"
+  },
+  "storagePermissionBody": "Romgi needs storage access to save ROMs to a location accessible by your file manager and emulators.\n\nOn the next screen, please enable \"Allow access to manage all files\".",
+  "@storagePermissionBody": {
+    "description": "Body of the storage permission dialog. The quoted text is the Android system option name."
+  },
+  "storagePermissionTitle": "Storage Permission",
+  "@storagePermissionTitle": {
+    "description": "Title of the dialog explaining the storage permission"
+  },
+  "timeDaysAgo": "{n}d ago",
+  "@timeDaysAgo": {
+    "description": "Relative time",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "timeHoursAgo": "{n}h ago",
+  "@timeHoursAgo": {
+    "description": "Relative time",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "timeJustNow": "just now",
+  "@timeJustNow": {
+    "description": "Relative time"
+  },
+  "timeMinutesAgo": "{n}m ago",
+  "@timeMinutesAgo": {
+    "description": "Relative time",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "timeMonthsAgo": "{n}mo ago",
+  "@timeMonthsAgo": {
+    "description": "Relative time",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "timeYearsAgo": "{n}y ago",
+  "@timeYearsAgo": {
+    "description": "Relative time",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "updateAvailable": "Update Available",
+  "@updateAvailable": {
+    "description": "Update tile title"
+  },
+  "updateAvailableSnack": "Update available: v{version}",
+  "@updateAvailableSnack": {
+    "description": "Snackbar shown at startup when a newer app version exists",
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "updateCheck": "Check for Updates",
+  "@updateCheck": {
+    "description": "Update tile title"
+  },
+  "updateChecking": "Checking for Updates...",
+  "@updateChecking": {
+    "description": "Update tile title"
+  },
+  "updateDownloading": "Downloading Update...",
+  "@updateDownloading": {
+    "description": "Update tile title"
+  },
+  "updateDownloadingProgress": "Downloading... {progress}%",
+  "@updateDownloadingProgress": {
+    "description": "Update download progress",
+    "placeholders": {
+      "progress": {
+        "type": "int"
+      }
+    }
+  },
+  "updateFailed": "Update Check Failed",
+  "@updateFailed": {
+    "description": "Update tile title"
+  },
+  "updatePleaseWait": "Please wait...",
+  "@updatePleaseWait": {
+    "description": "Update tile subtitle"
+  },
+  "updateReady": "Ready to Install",
+  "@updateReady": {
+    "description": "Update tile title"
+  },
+  "updateTapInstall": "Tap Install to update to {version}",
+  "@updateTapInstall": {
+    "description": "Update subtitle",
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "updateTapToCheck": "Tap to check for new versions",
+  "@updateTapToCheck": {
+    "description": "Update tile subtitle"
+  },
+  "updateVersionAvailable": "Version {version} is available",
+  "@updateVersionAvailable": {
+    "description": "Update subtitle",
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  }
+}

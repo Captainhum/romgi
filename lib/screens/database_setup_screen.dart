@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../providers/api_provider.dart';
 import '../services/rom_database_service.dart';
+import '../l10n/l10n.dart';
 
 enum DatabaseSetupStatus {
   checking,
@@ -74,7 +75,7 @@ class DatabaseSetupNotifier extends StateNotifier<DatabaseSetupState> {
     } catch (e) {
       state = state.copyWith(
         status: DatabaseSetupStatus.error,
-        errorMessage: 'Failed to check database: $e',
+        errorMessage: '$e',
       );
     }
   }
@@ -104,7 +105,7 @@ class DatabaseSetupNotifier extends StateNotifier<DatabaseSetupState> {
       } else {
         state = state.copyWith(
           status: DatabaseSetupStatus.error,
-          errorMessage: 'Download failed: $e',
+          errorMessage: '$e',
         );
       }
     }
@@ -183,7 +184,7 @@ class _DatabaseSetupScreenState extends ConsumerState<DatabaseSetupScreen> {
             const CircularProgressIndicator(),
             const SizedBox(height: 24),
             Text(
-              'Checking database...',
+              context.l10n.setupChecking,
               style: Theme.of(context).textTheme.bodyLarge,
             ),
           ],
@@ -200,7 +201,7 @@ class _DatabaseSetupScreenState extends ConsumerState<DatabaseSetupScreen> {
             ),
             const SizedBox(height: 24),
             Text(
-              'Database ready!',
+              context.l10n.setupReady,
               style: Theme.of(context).textTheme.bodyLarge,
             ),
           ],
@@ -217,12 +218,12 @@ class _DatabaseSetupScreenState extends ConsumerState<DatabaseSetupScreen> {
             ),
             const SizedBox(height: 24),
             Text(
-              'Download ROM Database',
+              context.l10n.setupDownloadTitle,
               style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(height: 8),
             Text(
-              'The ROM catalog database needs to be downloaded to browse and search for games.',
+              context.l10n.setupDownloadBody,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: Colors.grey[600],
@@ -238,7 +239,7 @@ class _DatabaseSetupScreenState extends ConsumerState<DatabaseSetupScreen> {
                 ref.read(databaseSetupProvider.notifier).downloadDatabase();
               },
               icon: const Icon(Icons.download),
-              label: const Text('Download Database'),
+              label: Text(context.l10n.setupDownloadButton),
             ),
           ],
         );
@@ -250,7 +251,7 @@ class _DatabaseSetupScreenState extends ConsumerState<DatabaseSetupScreen> {
           children: [
             const SizedBox(height: 24),
             Text(
-              'Downloading database...',
+              context.l10n.setupDownloading,
               style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(height: 8),
@@ -272,7 +273,7 @@ class _DatabaseSetupScreenState extends ConsumerState<DatabaseSetupScreen> {
               onPressed: () {
                 ref.read(databaseSetupProvider.notifier).cancelDownload();
               },
-              child: const Text('Cancel'),
+              child: Text(context.l10n.commonCancel),
             ),
           ],
         );
@@ -288,12 +289,12 @@ class _DatabaseSetupScreenState extends ConsumerState<DatabaseSetupScreen> {
             ),
             const SizedBox(height: 24),
             Text(
-              'Download Failed',
+              context.l10n.setupFailed,
               style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(height: 8),
             Text(
-              state.errorMessage ?? 'An error occurred',
+              state.errorMessage ?? context.l10n.commonErrorOccurred,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: Colors.grey[600],
@@ -305,7 +306,7 @@ class _DatabaseSetupScreenState extends ConsumerState<DatabaseSetupScreen> {
                 ref.read(databaseSetupProvider.notifier).retry();
               },
               icon: const Icon(Icons.refresh),
-              label: const Text('Retry'),
+              label: Text(context.l10n.commonRetry),
             ),
           ],
         );
@@ -326,11 +327,11 @@ class _DatabaseSetupScreenState extends ConsumerState<DatabaseSetupScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Download Size',
+                context.l10n.setupDownloadSize,
                 style: Theme.of(context).textTheme.bodySmall,
               ),
               Text(
-                '$sizeInMB MB',
+                context.l10n.setupSizeMb(sizeInMB),
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -342,7 +343,7 @@ class _DatabaseSetupScreenState extends ConsumerState<DatabaseSetupScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'ROM Entries',
+                context.l10n.setupRomEntries,
                 style: Theme.of(context).textTheme.bodySmall,
               ),
               Text(
@@ -358,7 +359,7 @@ class _DatabaseSetupScreenState extends ConsumerState<DatabaseSetupScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Platforms',
+                context.l10n.filterPlatforms,
                 style: Theme.of(context).textTheme.bodySmall,
               ),
               Text(

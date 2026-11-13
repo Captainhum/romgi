@@ -7,6 +7,7 @@ import '../providers/providers.dart';
 import '../services/download_service.dart';
 import '../utils/utils.dart';
 import 'internet_archive_login_screen.dart';
+import '../l10n/l10n.dart';
 
 class DownloadsScreen extends ConsumerWidget {
   const DownloadsScreen({super.key});
@@ -17,7 +18,7 @@ class DownloadsScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Downloads'),
+        title: Text(context.l10n.navDownloads),
         actions: [
           if (downloadState.completedDownloads.isNotEmpty)
             PopupMenuButton<String>(
@@ -27,9 +28,9 @@ class DownloadsScreen extends ConsumerWidget {
                 }
               },
               itemBuilder: (context) => [
-                const PopupMenuItem(
+                PopupMenuItem(
                   value: 'clear_completed',
-                  child: Text('Clear completed'),
+                  child: Text(context.l10n.downloadsClearCompleted),
                 ),
               ],
             ),
@@ -60,12 +61,12 @@ class DownloadsScreen extends ConsumerWidget {
             ),
             const SizedBox(height: 16),
             Text(
-              'No downloads yet',
+              context.l10n.downloadsEmptyTitle,
               style: Theme.of(context).textTheme.titleMedium,
             ),
             const SizedBox(height: 8),
             Text(
-              'Browse ROMs and tap download to get started',
+              context.l10n.downloadsEmptyBody,
               style: Theme.of(context).textTheme.bodySmall,
             ),
           ],
@@ -80,7 +81,9 @@ class DownloadsScreen extends ConsumerWidget {
           // Current downloads
           if (state.currentDownloads.isNotEmpty) ...[
             _SectionHeader(
-              title: 'Downloading (${state.currentDownloads.length})',
+              title: context.l10n.downloadsSectionDownloading(
+                state.currentDownloads.length,
+              ),
             ),
             ...state.currentDownloads.map(
               (task) => _CurrentDownloadTile(task: task),
@@ -89,7 +92,11 @@ class DownloadsScreen extends ConsumerWidget {
 
           // Queue
           if (state.queuedDownloads.isNotEmpty) ...[
-            _SectionHeader(title: 'Queue (${state.queuedDownloads.length})'),
+            _SectionHeader(
+              title: context.l10n.downloadsSectionQueue(
+                state.queuedDownloads.length,
+              ),
+            ),
             ...state.queuedDownloads.map(
               (task) => _QueuedDownloadTile(task: task),
             ),
@@ -97,7 +104,11 @@ class DownloadsScreen extends ConsumerWidget {
 
           // Failed
           if (state.failedDownloads.isNotEmpty) ...[
-            _SectionHeader(title: 'Failed (${state.failedDownloads.length})'),
+            _SectionHeader(
+              title: context.l10n.downloadsSectionFailed(
+                state.failedDownloads.length,
+              ),
+            ),
             ...state.failedDownloads.map(
               (task) => _FailedDownloadTile(task: task),
             ),
@@ -106,7 +117,9 @@ class DownloadsScreen extends ConsumerWidget {
           // Completed
           if (state.completedDownloads.isNotEmpty) ...[
             _SectionHeader(
-              title: 'Completed (${state.completedDownloads.length})',
+              title: context.l10n.downloadsSectionCompleted(
+                state.completedDownloads.length,
+              ),
             ),
             ...state.completedDownloads.map(
               (task) => _CompletedDownloadTile(task: task),
@@ -184,7 +197,7 @@ class _CurrentDownloadTile extends ConsumerWidget {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        '${PlatformNames.getDisplayName(task.platform)} • ${task.link.host} • ${task.statusText}',
+                        '${PlatformNames.getDisplayName(task.platform)} • ${task.link.host} • ${_statusLabel(context.l10n, task)}',
                         style: Theme.of(context).textTheme.bodySmall,
                       ),
                     ],
@@ -218,10 +231,10 @@ class _CurrentDownloadTile extends ConsumerWidget {
                 Text(
                   task.fetchingMetadata
                       ? task.peers > 0
-                          ? '${task.peers} peer${task.peers == 1 ? '' : 's'} connected'
-                          : 'Contacting trackers…'
+                          ? context.l10n.downloadsPeersConnected(task.peers)
+                          : context.l10n.downloadsContactingTrackers
                       : task.status == DownloadStatus.extracting
-                          ? 'Extracting…'
+                          ? context.l10n.downloadsExtracting
                           : task.progressText,
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
@@ -251,8 +264,7 @@ class _CurrentDownloadTile extends ConsumerWidget {
             if (task.link.isTorrent && task.peers >= 0) ...[
               const SizedBox(height: 4),
               Text(
-                '${task.peers} peer${task.peers == 1 ? '' : 's'} • '
-                '${task.seeds} seed${task.seeds == 1 ? '' : 's'}',
+                context.l10n.downloadsPeersSeeds(task.peers, task.seeds),
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: Theme.of(context).colorScheme.onSurfaceVariant,
                 ),
@@ -291,7 +303,7 @@ class _QueuedDownloadTile extends ConsumerWidget {
       ),
       title: Text(task.title, maxLines: 1, overflow: TextOverflow.ellipsis),
       subtitle: Text(
-        '${PlatformNames.getDisplayName(task.platform)} • ${task.link.sizeStr}${isPaused ? ' • Paused' : ''}',
+        '${PlatformNames.getDisplayName(task.platform)} • ${task.link.sizeStr}${isPaused ? ' • ${context.l10n.downloadsPausedSuffix}' : ''}',
       ),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
@@ -357,7 +369,7 @@ class _CompletedDownloadTile extends ConsumerWidget {
           ),
           IconButton(
             icon: const Icon(Icons.close),
-            tooltip: 'Remove',
+            tooltip: context.l10n.commonRemove,
             onPressed: () {
               ref
                   .read(downloadProvider.notifier)
@@ -377,11 +389,11 @@ class _FailedDownloadTile extends ConsumerWidget {
 
   bool get _isAuthRequired => DownloadService.isAuthRequiredError(task.error);
 
-  String _getErrorMessage() {
+  String _getErrorMessage(BuildContext context) {
     if (_isAuthRequired) {
-      return 'Internet Archive login required';
+      return context.l10n.downloadsIaLoginRequired;
     }
-    return task.error ?? 'Download failed';
+    return task.error ?? context.l10n.downloadsFailed;
   }
 
   @override
@@ -415,7 +427,7 @@ class _FailedDownloadTile extends ConsumerWidget {
             ),
           Expanded(
             child: Text(
-              _getErrorMessage(),
+              _getErrorMessage(context),
               style: TextStyle(
                 color: _isAuthRequired
                     ? Colors.deepPurple.shade400
@@ -433,7 +445,7 @@ class _FailedDownloadTile extends ConsumerWidget {
           if (_isAuthRequired)
             TextButton.icon(
               icon: const Icon(Icons.lock_open, size: 18),
-              label: const Text('Login'),
+              label: Text(context.l10n.downloadsLogin),
               style: TextButton.styleFrom(
                 foregroundColor: Colors.deepPurple.shade400,
               ),
@@ -442,14 +454,14 @@ class _FailedDownloadTile extends ConsumerWidget {
           else
             IconButton(
               icon: const Icon(Icons.refresh),
-              tooltip: 'Retry',
+              tooltip: context.l10n.commonRetry,
               onPressed: () {
                 ref.read(downloadProvider.notifier).retryDownload(task.id);
               },
             ),
           IconButton(
             icon: const Icon(Icons.close),
-            tooltip: 'Remove',
+            tooltip: context.l10n.commonRemove,
             onPressed: () {
               ref.read(downloadProvider.notifier).cancelDownload(task.id);
             },
@@ -473,9 +485,35 @@ class _FailedDownloadTile extends ConsumerWidget {
 
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Logged in! Retrying download...')),
+          SnackBar(content: Text(context.l10n.downloadsLoggedInRetrying)),
         );
       }
     }
+  }
+}
+
+String _statusLabel(AppLocalizations l10n, DownloadTask task) {
+  switch (task.status) {
+    case DownloadStatus.pending:
+      return l10n.statusWaiting;
+    case DownloadStatus.downloading:
+      if (task.resolvingDebrid) {
+        return task.progress > 0
+            ? l10n.statusCachingDebrid
+            : l10n.statusResolvingDebrid;
+      }
+      if (task.link.isTorrent && task.fetchingMetadata) {
+        return l10n.statusFindingPeers;
+      }
+      if (task.link.isTorrent) return l10n.statusDownloadingTorrent;
+      return l10n.statusDownloading;
+    case DownloadStatus.paused:
+      return l10n.statusPaused;
+    case DownloadStatus.extracting:
+      return l10n.statusExtracting;
+    case DownloadStatus.completed:
+      return l10n.statusCompleted;
+    case DownloadStatus.failed:
+      return l10n.statusFailed;
   }
 }

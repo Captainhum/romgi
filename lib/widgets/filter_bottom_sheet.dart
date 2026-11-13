@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../models/models.dart';
 import '../providers/providers.dart';
+import '../l10n/l10n.dart';
 
 class FilterBottomSheet extends ConsumerStatefulWidget {
   const FilterBottomSheet({super.key});
@@ -64,7 +65,7 @@ class _FilterBottomSheetState extends ConsumerState<FilterBottomSheet> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Filters',
+                      context.l10n.commonFilters,
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
                     TextButton(
@@ -75,7 +76,7 @@ class _FilterBottomSheetState extends ConsumerState<FilterBottomSheet> {
                           _retroAchievementsOnly = false;
                         });
                       },
-                      child: const Text('Clear all'),
+                      child: Text(context.l10n.filterClearAll),
                     ),
                   ],
                 ),
@@ -101,7 +102,7 @@ class _FilterBottomSheetState extends ConsumerState<FilterBottomSheet> {
                         runSpacing: 8,
                         children: [
                           FilterChip(
-                            label: const Text('Has Achievements'),
+                            label: Text(context.l10n.filterHasAchievements),
                             selected: _retroAchievementsOnly,
                             onSelected: (selected) {
                               setState(() {
@@ -116,7 +117,7 @@ class _FilterBottomSheetState extends ConsumerState<FilterBottomSheet> {
 
                     // Regions section
                     Text(
-                      'Regions',
+                      context.l10n.filterRegions,
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
                     const SizedBox(height: 8),
@@ -124,7 +125,7 @@ class _FilterBottomSheetState extends ConsumerState<FilterBottomSheet> {
                       loading: () =>
                           const Center(child: CircularProgressIndicator()),
                       error: (error, stackTrace) =>
-                          Text('Error loading regions: $error'),
+                          Text(context.l10n.filterRegionsError('$error')),
                       data: (regions) => Wrap(
                         spacing: 8,
                         runSpacing: 8,
@@ -153,7 +154,7 @@ class _FilterBottomSheetState extends ConsumerState<FilterBottomSheet> {
 
                     // Platforms section
                     Text(
-                      'Platforms',
+                      context.l10n.filterPlatforms,
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
                     const SizedBox(height: 8),
@@ -161,7 +162,7 @@ class _FilterBottomSheetState extends ConsumerState<FilterBottomSheet> {
                       loading: () =>
                           const Center(child: CircularProgressIndicator()),
                       error: (error, stackTrace) =>
-                          Text('Error loading platforms: $error'),
+                          Text(context.l10n.filterPlatformsError('$error')),
                       data: (platforms) => _buildPlatformsList(platforms),
                     ),
                   ],
@@ -183,7 +184,7 @@ class _FilterBottomSheetState extends ConsumerState<FilterBottomSheet> {
                           ..search();
                         Navigator.pop(context);
                       },
-                      child: const Text('Apply Filters'),
+                      child: Text(context.l10n.filterApply),
                     ),
                   ),
                 ),

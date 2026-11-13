@@ -9,6 +9,7 @@ import '../services/link_resolver.dart';
 import '../utils/utils.dart';
 import '../widgets/widgets.dart';
 import 'internet_archive_login_screen.dart';
+import '../l10n/l10n.dart';
 
 final entryProvider = FutureProvider.family<RomEntry?, String>((
   ref,
@@ -61,7 +62,7 @@ class EntryDetailScreen extends ConsumerWidget {
         data: (entry) => entry == null
             ? Scaffold(
                 appBar: AppBar(),
-                body: const Center(child: Text('Entry not found')),
+                body: Center(child: Text(context.l10n.detailNotFound)),
               )
             : _EntryDetailContent(entry: entry),
       ),
@@ -255,7 +256,7 @@ class _EntryDetailContentState extends ConsumerState<_EntryDetailContent> {
                             ),
                             const SizedBox(width: 8),
                             Text(
-                              'Already downloaded',
+                              context.l10n.detailAlreadyDownloaded,
                               style: TextStyle(
                                 color: Theme.of(
                                   context,
@@ -299,7 +300,9 @@ class _EntryDetailContentState extends ConsumerState<_EntryDetailContent> {
                     _InfoChip(
                       icon: Icons.emoji_events,
                       label: entry.raNumAchievements != null
-                          ? '${entry.raNumAchievements} achievements'
+                          ? context.l10n.detailAchievements(
+                              entry.raNumAchievements!,
+                            )
                           : 'RetroAchievements',
                       backgroundColor: Theme.of(
                         context,
@@ -337,7 +340,7 @@ class _EntryDetailContentState extends ConsumerState<_EntryDetailContent> {
                   ),
                   const SizedBox(width: 8),
                   Text(
-                    'Download Links',
+                    context.l10n.detailDownloadLinks,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -388,7 +391,7 @@ class _EntryDetailContentState extends ConsumerState<_EntryDetailContent> {
                               color: Theme.of(context).colorScheme.outline,
                             ),
                             const SizedBox(height: 8),
-                            const Text('No download links available'),
+                            Text(context.l10n.detailNoLinks),
                           ],
                         ),
                       ),
@@ -408,8 +411,8 @@ class _EntryDetailContentState extends ConsumerState<_EntryDetailContent> {
                               color: Theme.of(context).colorScheme.outline,
                             ),
                             const SizedBox(height: 8),
-                            const Text(
-                              'All download links are torrents.\nEnable torrents in Settings to download.',
+                            Text(
+                              context.l10n.detailAllTorrents,
                               textAlign: TextAlign.center,
                             ),
                           ],
@@ -454,7 +457,7 @@ class _DiscGroupSection extends ConsumerWidget {
                 Icon(Icons.album, color: theme.colorScheme.primary),
                 const SizedBox(width: 8),
                 Text(
-                  '${group.members.length}-disc game',
+                  context.l10n.detailDiscGameTitle(group.members.length),
                   style: theme.textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
@@ -463,8 +466,7 @@ class _DiscGroupSection extends ConsumerWidget {
             ),
             const SizedBox(height: 4),
             Text(
-              'Download every disc and generate an .m3u playlist so your '
-              'emulator can swap discs.',
+              context.l10n.detailDiscGameBody,
               style: theme.textTheme.bodySmall,
             ),
             const SizedBox(height: 12),
@@ -474,7 +476,7 @@ class _DiscGroupSection extends ConsumerWidget {
               children: group.members.map((member) {
                 final isCurrent = member.slug == entry.slug;
                 final label = member.label.isEmpty
-                    ? 'Disc ${member.index}'
+                    ? context.l10n.detailDiscLabel(member.index)
                     : member.label;
 
                 return ActionChip(
@@ -499,7 +501,7 @@ class _DiscGroupSection extends ConsumerWidget {
               width: double.infinity,
               child: FilledButton.icon(
                 icon: const Icon(Icons.download),
-                label: Text('Download all ${group.members.length} discs'),
+                label: Text(context.l10n.detailDownloadAllDiscs(group.members.length)),
                 onPressed: () => _downloadAll(context, ref),
               ),
             ),
@@ -527,12 +529,15 @@ class _DiscGroupSection extends ConsumerWidget {
     ScaffoldMessenger.of(context).clearSnackBars();
 
     final parts = <String>[];
-    if (result.added > 0) parts.add('${result.added} queued');
-    if (result.duplicates > 0) parts.add('${result.duplicates} already added');
-    if (result.skipped > 0) parts.add('${result.skipped} unavailable');
+    final l10n = context.l10n;
+    if (result.added > 0) parts.add(l10n.detailDiscsQueued(result.added));
+    if (result.duplicates > 0) {
+      parts.add(l10n.detailDiscsDuplicate(result.duplicates));
+    }
+    if (result.skipped > 0) parts.add(l10n.detailDiscsUnavailable(result.skipped));
     final message = parts.isEmpty
-        ? 'No discs available to download'
-        : 'Discs: ${parts.join(', ')}';
+        ? context.l10n.detailNoDiscsAvailable
+        : l10n.detailDiscsSummary(parts.join(', '));
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -540,7 +545,7 @@ class _DiscGroupSection extends ConsumerWidget {
         duration: const Duration(seconds: 5),
         action: result.added > 0
             ? SnackBarAction(
-                label: 'View',
+                label: context.l10n.commonView,
                 onPressed: () {
                   ref.read(navigationTabProvider.notifier).state =
                       NavTab.downloads;
@@ -587,7 +592,7 @@ class _MetadataCardState extends State<_MetadataCard> {
                 Icon(Icons.info_outline, color: theme.colorScheme.primary),
                 const SizedBox(width: 8),
                 Text(
-                  'About',
+                  context.l10n.detailAbout,
                   style: theme.textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
@@ -609,7 +614,7 @@ class _MetadataCardState extends State<_MetadataCard> {
                     minimumSize: const Size(0, 32),
                   ),
                   onPressed: () => setState(() => _expanded = !_expanded),
-                  child: Text(_expanded ? 'Show less' : 'Read more'),
+                  child: Text(_expanded ? context.l10n.detailShowLess : context.l10n.detailReadMore),
                 ),
             ],
             if (media.isNotEmpty) ...[
@@ -809,14 +814,14 @@ class _FavoriteButton extends ConsumerWidget {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text(
-                    isFavorite ? 'Removed from wishlist' : 'Added to wishlist',
+                    isFavorite ? context.l10n.detailRemovedFromWishlist : context.l10n.detailAddedToWishlist,
                   ),
                   duration: const Duration(seconds: 2),
                 ),
               );
             }
           },
-          tooltip: isFavorite ? 'Remove from wishlist' : 'Add to wishlist',
+          tooltip: isFavorite ? context.l10n.detailRemoveFromWishlist : context.l10n.detailAddToWishlist,
         );
       },
     );
@@ -910,7 +915,7 @@ class _DownloadLinkCard extends ConsumerWidget {
                       ),
                       const SizedBox(width: 4),
                       Text(
-                        link.isTorrent ? 'Torrent' : 'Direct',
+                        link.isTorrent ? context.l10n.detailTorrent : context.l10n.detailDirect,
                         style: const TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w600,
@@ -930,14 +935,14 @@ class _DownloadLinkCard extends ConsumerWidget {
                       color: Colors.deepPurple.shade700,
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    child: const Row(
+                    child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Icon(Icons.lock, size: 14, color: Colors.white),
-                        SizedBox(width: 4),
+                        const Icon(Icons.lock, size: 14, color: Colors.white),
+                        const SizedBox(width: 4),
                         Text(
-                          'Login Required',
-                          style: TextStyle(
+                          context.l10n.detailLoginRequired,
+                          style: const TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w600,
                             color: Colors.white,
@@ -975,7 +980,7 @@ class _DownloadLinkCard extends ConsumerWidget {
                   ? FilledButton.icon(
                       onPressed: () => _startDownload(context, ref),
                       icon: const Icon(Icons.lock_open),
-                      label: const Text('Login & Download'),
+                      label: Text(context.l10n.detailLoginAndDownload),
                       style: FilledButton.styleFrom(
                         backgroundColor: Colors.deepPurple.shade700,
                         foregroundColor: Colors.white,
@@ -984,7 +989,7 @@ class _DownloadLinkCard extends ConsumerWidget {
                   : FilledButton.icon(
                       onPressed: () => _startDownload(context, ref),
                       icon: const Icon(Icons.download),
-                      label: const Text('Download'),
+                      label: Text(context.l10n.commonDownload),
                     ),
             ),
           ],
@@ -1005,19 +1010,16 @@ class _DownloadLinkCard extends ConsumerWidget {
         final shouldLogin = await showDialog<bool>(
           context: context,
           builder: (context) => AlertDialog(
-            title: const Text('Login Required'),
-            content: const Text(
-              'This file requires an Internet Archive account to download. '
-              'Would you like to log in now?',
-            ),
+            title: Text(context.l10n.detailLoginRequired),
+            content: Text(context.l10n.detailLoginPrompt),
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(context, false),
-                child: const Text('Cancel'),
+                child: Text(context.l10n.commonCancel),
               ),
               FilledButton(
                 onPressed: () => Navigator.pop(context, true),
-                child: const Text('Log In'),
+                child: Text(context.l10n.detailLogIn),
               ),
             ],
           ),
@@ -1068,12 +1070,12 @@ class _DownloadLinkCard extends ConsumerWidget {
     if (result == AddDownloadResult.duplicate) {
       // Show duplicate message with status
       final statusMsg = switch (existingTask.status) {
-        DownloadStatus.completed => 'already downloaded',
+        DownloadStatus.completed => context.l10n.detailStatusDownloaded,
         DownloadStatus.downloading ||
-        DownloadStatus.extracting => 'currently downloading',
-        DownloadStatus.pending => 'already in queue',
-        DownloadStatus.paused => 'paused in queue',
-        DownloadStatus.failed => 'in queue', // shouldn't happen
+        DownloadStatus.extracting => context.l10n.detailStatusDownloading,
+        DownloadStatus.pending => context.l10n.detailStatusQueued,
+        DownloadStatus.paused => context.l10n.detailStatusPaused,
+        DownloadStatus.failed => context.l10n.detailStatusInQueue, // shouldn't happen
       };
 
       final targetTab = existingTask.status == DownloadStatus.completed
@@ -1082,10 +1084,10 @@ class _DownloadLinkCard extends ConsumerWidget {
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('"${entry.title}" is $statusMsg'),
+          content: Text(context.l10n.detailAlreadyIs(entry.title, statusMsg)),
           duration: const Duration(seconds: 5),
           action: SnackBarAction(
-            label: 'View',
+            label: context.l10n.commonView,
             onPressed: () {
               ref.read(navigationTabProvider.notifier).state = targetTab;
               Navigator.of(context).popUntil((route) => route.isFirst);
@@ -1096,10 +1098,10 @@ class _DownloadLinkCard extends ConsumerWidget {
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Added "${entry.title}" to download queue'),
+          content: Text(context.l10n.detailAddedToQueue(entry.title)),
           duration: const Duration(seconds: 5),
           action: SnackBarAction(
-            label: 'View',
+            label: context.l10n.commonView,
             onPressed: () {
               // Navigate to downloads tab
               ref.read(navigationTabProvider.notifier).state = NavTab.downloads;

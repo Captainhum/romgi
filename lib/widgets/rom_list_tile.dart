@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../models/models.dart';
 import '../utils/utils.dart';
 import 'retro_achievements_badge.dart';
+import '../l10n/l10n.dart';
 
 class RomListTile extends StatelessWidget {
   final RomEntry entry;
@@ -128,7 +129,7 @@ class _DownloadedBadge extends StatelessWidget {
           Icon(Icons.download_done, size: 10, color: Colors.green.shade700),
           const SizedBox(width: 2),
           Text(
-            'Downloaded',
+            context.l10n.commonDownloaded,
             style: TextStyle(
               fontSize: 10,
               fontWeight: FontWeight.bold,

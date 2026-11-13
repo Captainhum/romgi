@@ -17,6 +17,9 @@ class SettingsState {
   final bool debridEnabled;
   final String debridProviderId;
   final bool metadataEnabled;
+
+  /// Language code chosen in Settings, or null to follow the device.
+  final String? appLanguage;
   final bool isLoading;
 
   const SettingsState({
@@ -32,6 +35,7 @@ class SettingsState {
     this.debridEnabled = false,
     this.debridProviderId = 'torbox',
     this.metadataEnabled = true,
+    this.appLanguage,
     this.isLoading = false,
   });
 
@@ -54,6 +58,8 @@ class SettingsState {
     bool? debridEnabled,
     String? debridProviderId,
     bool? metadataEnabled,
+    String? appLanguage,
+    bool clearAppLanguage = false,
     bool? isLoading,
   }) {
     return SettingsState(
@@ -73,6 +79,8 @@ class SettingsState {
       debridEnabled: debridEnabled ?? this.debridEnabled,
       debridProviderId: debridProviderId ?? this.debridProviderId,
       metadataEnabled: metadataEnabled ?? this.metadataEnabled,
+      appLanguage:
+          clearAppLanguage ? null : (appLanguage ?? this.appLanguage),
       isLoading: isLoading ?? this.isLoading,
     );
   }
@@ -97,6 +105,7 @@ class SettingsNotifier extends StateNotifier<SettingsState> {
   static const String _keyDefaultPath = 'default_download_path';
   static const String _keyPlatformPaths = 'platform_paths_';
   static const String _keyThemeMode = 'theme_mode';
+  static const String _keyAppLanguage = 'app_language';
   static const String _keyDefaultPlatforms = 'default_platforms';
   static const String _keyDefaultRegions = 'default_regions';
   static const String _keyMaxConcurrentDownloads = 'max_concurrent_downloads';
@@ -138,6 +147,7 @@ class SettingsNotifier extends StateNotifier<SettingsState> {
     final debridProviderId =
         prefs.getString(_keyDebridProviderId) ?? 'torbox';
     final metadataEnabled = prefs.getBool(_keyMetadataEnabled) ?? true;
+    final appLanguage = prefs.getString(_keyAppLanguage);
 
     // Load platform-specific paths
     final platformPaths = <String, String>{};
@@ -166,6 +176,7 @@ class SettingsNotifier extends StateNotifier<SettingsState> {
       debridEnabled: debridEnabled,
       debridProviderId: debridProviderId,
       metadataEnabled: metadataEnabled,
+      appLanguage: appLanguage,
       isLoading: false,
     );
   }
@@ -197,6 +208,18 @@ class SettingsNotifier extends StateNotifier<SettingsState> {
     }
 
     state = state.copyWith(platformPaths: updatedPaths);
+  }
+
+  /// [code] null follows the device language.
+  Future<void> setAppLanguage(String? code) async {
+    final prefs = await SharedPreferences.getInstance();
+    if (code == null) {
+      await prefs.remove(_keyAppLanguage);
+      state = state.copyWith(clearAppLanguage: true);
+    } else {
+      await prefs.setString(_keyAppLanguage, code);
+      state = state.copyWith(appLanguage: code);
+    }
   }
 
   Future<void> setThemeMode(AppThemeMode mode) async {

@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import '../providers/providers.dart';
+import '../l10n/l10n.dart';
 
 class InternetArchiveLoginScreen extends ConsumerStatefulWidget {
   const InternetArchiveLoginScreen({super.key});
@@ -149,11 +150,8 @@ class _InternetArchiveLoginScreenState
       if (access.isEmpty || secret.isEmpty) {
         if (!mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text(
-              'Could not retrieve Internet Archive credentials. '
-              'Please try again.',
-            ),
+          SnackBar(
+            content: Text(context.l10n.iaCredentialsError),
             backgroundColor: Colors.redAccent,
           ),
         );
@@ -176,7 +174,7 @@ class _InternetArchiveLoginScreenState
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Logged in as ${session.username}'),
+          content: Text(context.l10n.settingsLoggedInAs(session.username)),
           backgroundColor: Colors.green,
         ),
       );
@@ -192,7 +190,7 @@ class _InternetArchiveLoginScreenState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Internet Archive Login'),
+        title: Text(context.l10n.iaLoginTitle),
         actions: [
           if (_isLoading)
             const Padding(
@@ -206,7 +204,7 @@ class _InternetArchiveLoginScreenState
           IconButton(
             icon: const Icon(Icons.refresh),
             onPressed: () => _controller.reload(),
-            tooltip: 'Reload',
+            tooltip: context.l10n.commonReload,
           ),
         ],
       ),
