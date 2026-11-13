@@ -225,6 +225,19 @@ void main() {
     expect(query['devpassword'], 'dummy-devpass');
   });
 
+  test('a login error sent as text labelled JSON is reported as such',
+      () async {
+    final bad = stubbedDio(_base, {
+      _userInfo: (_) => jsonBody(
+            'Erreur de login : Vérifier les identifiants utilisateurs !',
+          ),
+    });
+    expect(
+      await ScreenScraperProvider(dio: bad).validateCredentials(_creds),
+      'Invalid ScreenScraper credentials',
+    );
+  });
+
   test('validateCredentials accepts a working login and flags a bad one',
       () async {
     final ok = stubbedDio(_base, {

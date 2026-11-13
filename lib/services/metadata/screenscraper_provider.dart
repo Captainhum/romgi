@@ -21,6 +21,10 @@ class ScreenScraperProvider extends GameMetadataProvider {
               validateStatus: (code) => code != null && code < 500,
             ));
 
+  /// Errors come back as plain text labelled as JSON; read every reply as
+  /// text and parse it in [_decoded] instead of letting Dio throw.
+  static final Options _plain = Options(responseType: ResponseType.plain);
+
   final Dio _dio;
   final String _devId;
   final String _devPassword;
@@ -54,6 +58,7 @@ class ScreenScraperProvider extends GameMetadataProvider {
       final res = await _dio.get(
         '/ssuserInfos.php',
         queryParameters: _authParams(creds),
+        options: _plain,
       );
       if (res.statusCode == 401 || res.statusCode == 403) {
         return 'Invalid ScreenScraper credentials';
@@ -62,6 +67,12 @@ class ScreenScraperProvider extends GameMetadataProvider {
       if (res.statusCode == 200 && body is Map) return null;
       if (res.data is String) return _textError(res.data as String).message;
       return 'ScreenScraper returned ${res.statusCode}';
+    } on DioException catch (e) {
+      final data = e.response?.data;
+      if (data is String && data.trim().isNotEmpty) {
+        return _textError(data).message;
+      }
+      return 'Could not reach ScreenScraper';
     } catch (_) {
       return 'Could not reach ScreenScraper';
     }
@@ -85,6 +96,7 @@ class ScreenScraperProvider extends GameMetadataProvider {
           'systemeid': systemId,
           'recherche': title,
         },
+        options: _plain,
       );
       if (res.statusCode == 400 || res.statusCode == 404) {
         return const MetadataNoMatch();

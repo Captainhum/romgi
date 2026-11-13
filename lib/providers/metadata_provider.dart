@@ -22,9 +22,12 @@ final metadataProviderConfiguredProvider =
   return ref.watch(gameMetadataServiceProvider).isConfigured(providerId);
 });
 
-/// ISO 639-1 code game descriptions are fetched in: the device language.
-/// Auto-disposed with the detail page, so a locale change applies on reopen.
+/// ISO 639-1 code game descriptions are fetched in: the language chosen in
+/// Settings, else the device language. Auto-disposed with the detail page,
+/// so a device locale change applies on reopen.
 final metadataLanguageProvider = Provider.autoDispose<String>((ref) {
+  final chosen = ref.watch(settingsProvider.select((s) => s.appLanguage));
+  if (chosen != null) return chosen;
   final code = PlatformDispatcher.instance.locale.languageCode.toLowerCase();
   return code.isEmpty || code == 'und' ? 'en' : code;
 });
