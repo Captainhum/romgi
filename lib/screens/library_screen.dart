@@ -384,8 +384,8 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen>
       return;
     }
 
-    final file = File(item.filePath!);
-    if (!await file.exists()) {
+    if (await FileSystemEntity.type(item.filePath!) ==
+        FileSystemEntityType.notFound) {
       if (mounted) {
         ScaffoldMessenger.of(
           context,

@@ -159,6 +159,13 @@ class StorageService {
 
   Future<bool> deleteFile(String filePath) async {
     try {
+      // Multi-file archives are extracted into a folder of their own.
+      final dir = Directory(filePath);
+      if (await dir.exists()) {
+        await dir.delete(recursive: true);
+        return true;
+      }
+
       final file = File(filePath);
       if (await file.exists()) {
         await file.delete();
@@ -177,7 +184,7 @@ class StorageService {
   }
 
   Future<bool> fileExists(String path) async {
-    return File(path).exists();
+    return await FileSystemEntity.type(path) != FileSystemEntityType.notFound;
   }
 
   Future<int> getFileSize(String path) async {

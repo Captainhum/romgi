@@ -94,7 +94,7 @@ class LibraryNotifier extends StateNotifier<LibraryState> {
       final path = item.filePath;
       if (path != null) {
         try {
-          if (await File(path).exists()) {
+          if (await _exists(path)) {
             verified.add(path);
           }
         } catch (e) {
@@ -133,6 +133,10 @@ class LibraryNotifier extends StateNotifier<LibraryState> {
     await refresh();
   }
 
+  /// A download is a file, or a folder when an archive held several files.
+  static Future<bool> _exists(String path) async =>
+      await FileSystemEntity.type(path) != FileSystemEntityType.notFound;
+
   Future<void> verifyFiles() async {
     state = state.copyWith(isLoading: true);
 
@@ -141,7 +145,7 @@ class LibraryNotifier extends StateNotifier<LibraryState> {
 
     for (final item in state.items) {
       if (item.filePath != null) {
-        if (await File(item.filePath!).exists()) {
+        if (await _exists(item.filePath!)) {
           verified.add(item.filePath!);
         } else {
           // File is missing - mark for potential cleanup

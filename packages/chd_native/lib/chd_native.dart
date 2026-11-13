@@ -71,16 +71,7 @@ Future<ChdStatus> createCdChd(
   ChdCancelToken? cancelToken,
 }) =>
     _run(
-      (progress, cancel) {
-        final cue = cuePath.toNativeUtf8();
-        final chd = chdPath.toNativeUtf8();
-        try {
-          return _createCd(cue, chd, progress, cancel);
-        } finally {
-          malloc.free(cue);
-          malloc.free(chd);
-        }
-      },
+      (progress, cancel) => _spawnCreate(cuePath, chdPath, progress, cancel),
       onProgress,
       cancelToken,
     );
@@ -93,22 +84,50 @@ Future<ChdStatus> verifyChd(
   ChdCancelToken? cancelToken,
 }) =>
     _run(
-      (progress, cancel) {
-        final chd = chdPath.toNativeUtf8();
-        try {
-          return _verify(chd, progress, cancel);
-        } finally {
-          malloc.free(chd);
-        }
-      },
+      (progress, cancel) => _spawnVerify(chdPath, progress, cancel),
       onProgress,
       cancelToken,
     );
 
-/// Runs [job] on an isolate with native progress/cancel cells that this
-/// isolate polls and sets.
+// The isolate closures below are built in functions whose only locals are
+// strings and addresses: a closure sends its whole enclosing context, so
+// building it next to the caller's callbacks would try to send those too.
+
+Future<int> _spawnCreate(String cue, String chd, int progress, int cancel) =>
+    Isolate.run(() {
+      final cuePtr = cue.toNativeUtf8();
+      final chdPtr = chd.toNativeUtf8();
+      try {
+        return _createCd(
+          cuePtr,
+          chdPtr,
+          Pointer<Double>.fromAddress(progress),
+          Pointer<Int32>.fromAddress(cancel),
+        );
+      } finally {
+        malloc.free(cuePtr);
+        malloc.free(chdPtr);
+      }
+    });
+
+Future<int> _spawnVerify(String chd, int progress, int cancel) =>
+    Isolate.run(() {
+      final chdPtr = chd.toNativeUtf8();
+      try {
+        return _verify(
+          chdPtr,
+          Pointer<Double>.fromAddress(progress),
+          Pointer<Int32>.fromAddress(cancel),
+        );
+      } finally {
+        malloc.free(chdPtr);
+      }
+    });
+
+/// Runs [job] (given the addresses of native progress/cancel cells) and
+/// polls the progress cell from this isolate.
 Future<ChdStatus> _run(
-  int Function(Pointer<Double> progress, Pointer<Int32> cancel) job,
+  Future<int> Function(int progressAddress, int cancelAddress) job,
   void Function(double progress)? onProgress,
   ChdCancelToken? cancelToken,
 ) async {
@@ -117,8 +136,6 @@ Future<ChdStatus> _run(
   cancelToken?._flag = cancel;
   if (cancelToken?.isCancelled ?? false) cancel.value = 1;
 
-  final progressAddress = progress.address;
-  final cancelAddress = cancel.address;
   final timer = onProgress == null
       ? null
       : Timer.periodic(
@@ -126,12 +143,7 @@ Future<ChdStatus> _run(
           (_) => onProgress(progress.value),
         );
   try {
-    final code = await Isolate.run(
-      () => job(
-        Pointer<Double>.fromAddress(progressAddress),
-        Pointer<Int32>.fromAddress(cancelAddress),
-      ),
-    );
+    final code = await job(progress.address, cancel.address);
     onProgress?.call(progress.value);
     return _status(code);
   } finally {

@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:isolate';
 
 import 'package:chd_native/chd_native.dart';
 import 'package:test/test.dart';
@@ -52,6 +53,25 @@ void main() {
     expect(await createCdChd(_writeDisc(dir), out), ChdStatus.ok);
     final result = Process.runSync('chdman', ['verify', '-i', out]);
     expect(result.exitCode, 0, reason: '${result.stdout}${result.stderr}');
+  });
+
+  test('progress callbacks may capture objects that cannot cross isolates',
+      () async {
+    // A ReceivePort can't be sent to another isolate; the conversion must
+    // still run when the caller's callback holds one.
+    final port = ReceivePort();
+    addTearDown(port.close);
+    final out = '${dir.path}/game.chd';
+    final status = await createCdChd(
+      _writeDisc(dir),
+      out,
+      onProgress: (_) => port.sendPort,
+    );
+    expect(status, ChdStatus.ok);
+    expect(
+      await verifyChd(out, onProgress: (_) => port.sendPort),
+      ChdStatus.ok,
+    );
   });
 
   test('a missing cue reports bad input and writes nothing', () async {

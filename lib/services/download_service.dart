@@ -466,6 +466,13 @@ class DownloadService {
           error: appL10n.chdConversionFailed(_chdErrorText(e)),
         );
       }
+    } catch (e) {
+      // Anything unexpected still leaves a usable, unconverted download.
+      failure = ChdConversionError.failed;
+      await _notifications.showDownloadFailed(
+        title: task.title,
+        error: appL10n.chdConversionFailed(appL10n.chdErrorFailed),
+      );
     } finally {
       _conversionTokens.remove(task.id);
       if (!wasActive) _activeTasks.remove(task.id);

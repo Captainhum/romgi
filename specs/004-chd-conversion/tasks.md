@@ -11,4 +11,4 @@
 - [x] T009 [US4] Library "Convert to CHD" action
 - [ ] T010 [US4] "Convert all" for a platform in the Library
 - [x] T011 Strings EN/FR
-- [ ] T012 On-device end-to-end: download a PS1 game with conversion on, check the frontend
+- [x] T012 On-device end-to-end: download a PS1 game with conversion on, check the frontend
