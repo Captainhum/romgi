@@ -280,6 +280,15 @@
   "@detailDownloadLinks": {
     "description": "Section header listing download sources"
   },
+  "detailLinksAvailable": "{count, plural, =1{1 available} other{{count} available}}",
+  "@detailLinksAvailable": {
+    "description": "Number of download links for a game",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "detailLogIn": "Log In",
   "@detailLogIn": {
     "description": "Dialog button opening the login page"

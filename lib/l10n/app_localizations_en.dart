@@ -208,6 +208,17 @@ class AppLocalizationsEn extends AppLocalizations {
   String get detailDownloadLinks => 'Download Links';
 
   @override
+  String detailLinksAvailable(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count available',
+      one: '1 available',
+    );
+    return '$_temp0';
+  }
+
+  @override
   String get detailLogIn => 'Log In';
 
   @override

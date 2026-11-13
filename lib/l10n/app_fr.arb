@@ -53,6 +53,7 @@
   "detailDownloadAllDiscs": "Télécharger les {count} disques",
   "detailDownloadFullGame": "Télécharger le jeu complet ({count} disques)",
   "detailDownloadLinks": "Liens de téléchargement",
+  "detailLinksAvailable": "{count, plural, =1{1 disponible} other{{count} disponibles}}",
   "detailLogIn": "Se connecter",
   "detailLoginAndDownload": "Se connecter et télécharger",
   "detailLoginPrompt": "Ce fichier nécessite un compte Internet Archive. Veux-tu te connecter maintenant ?",

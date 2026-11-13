@@ -416,6 +416,12 @@ abstract class AppLocalizations {
   /// **'Download Links'**
   String get detailDownloadLinks;
 
+  /// Number of download links for a game
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 available} other{{count} available}}'**
+  String detailLinksAvailable(int count);
+
   /// Dialog button opening the login page
   ///
   /// In en, this message translates to:

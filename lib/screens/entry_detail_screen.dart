@@ -359,7 +359,7 @@ class _EntryDetailContentState extends ConsumerState<_EntryDetailContent> {
                     );
                     return [
                       Text(
-                        '${ranked.length} available',
+                        context.l10n.detailLinksAvailable(ranked.length),
                         style: Theme.of(context).textTheme.bodySmall,
                       ),
                     ];
@@ -476,9 +476,7 @@ class _DiscGroupSection extends ConsumerWidget {
               runSpacing: 4,
               children: group.members.map((member) {
                 final isCurrent = member.slug == entry.slug;
-                final label = member.label.isEmpty
-                    ? context.l10n.detailDiscLabel(member.index)
-                    : member.label;
+                final label = context.l10n.detailDiscLabel(member.index);
 
                 return ActionChip(
                   avatar: isCurrent

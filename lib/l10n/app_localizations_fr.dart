@@ -210,6 +210,17 @@ class AppLocalizationsFr extends AppLocalizations {
   String get detailDownloadLinks => 'Liens de téléchargement';
 
   @override
+  String detailLinksAvailable(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count disponibles',
+      one: '1 disponible',
+    );
+    return '$_temp0';
+  }
+
+  @override
   String get detailLogIn => 'Se connecter';
 
   @override

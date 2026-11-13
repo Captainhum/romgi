@@ -10,7 +10,7 @@ const _allowed = {
 };
 
 final _uiLiteral = RegExp(
-  r"""(?:Text\(\s*|(?:label|title|tooltip|hintText|labelText|helperText|content|notificationTitle|channelName):\s*)'([A-Z][^']*)'""",
+  r"""(?:Text\(\s*|(?:label|title|tooltip|hintText|labelText|helperText|content|notificationTitle|channelName):\s*)'([A-Z][^']*|\$\{[^}]+\} [a-z][^']*)'""",
 );
 
 void main() {

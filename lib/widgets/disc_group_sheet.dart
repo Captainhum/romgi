@@ -225,9 +225,7 @@ class _DiscGroupSheetState extends ConsumerState<DiscGroupSheet> {
 
   Widget _discRow(BuildContext context, _DiscOption option) {
     final l10n = context.l10n;
-    final label = option.member.label.isEmpty
-        ? l10n.detailDiscLabel(option.member.index)
-        : option.member.label;
+    final label = l10n.detailDiscLabel(option.member.index);
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),
@@ -252,9 +250,14 @@ class _DiscGroupSheetState extends ConsumerState<DiscGroupSheet> {
                         DropdownMenuItem(
                           value: resolved.link,
                           child: Text(
-                            '${resolved.link.host} · '
-                            '${resolved.link.isTorrent ? l10n.detailTorrent : l10n.detailDirect}'
-                            ' · ${resolved.link.sizeStr}',
+                            [
+                              resolved.link.host,
+                              resolved.link.isTorrent
+                                  ? l10n.detailTorrent
+                                  : l10n.detailDirect,
+                              if (resolved.link.sizeStr.isNotEmpty)
+                                resolved.link.sizeStr,
+                            ].join(' · '),
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
