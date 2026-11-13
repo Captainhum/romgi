@@ -28,6 +28,7 @@ android {
         versionCode = flutter.versionCode
         versionName = flutter.versionName
         multiDexEnabled = true
+        manifestPlaceholders["appLabel"] = "romgi"
     }
 
     buildTypes {
@@ -47,6 +48,12 @@ android {
             }
         }
         debug {
+            // Installs next to the release build so it can be tested on a
+            // device that already has romgi.
+            applicationIdSuffix = ".dev"
+            versionNameSuffix = "-dev"
+            manifestPlaceholders["appLabel"] = "romgi dev"
+
             // Debug also bundles x86_64 so we can run on the Windows
             // emulator (where qemu2 can only run x86 guests on x86 hosts).
             ndk {
