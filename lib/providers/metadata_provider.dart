@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../models/models.dart';
@@ -20,6 +22,13 @@ final metadataProviderConfiguredProvider =
   return ref.watch(gameMetadataServiceProvider).isConfigured(providerId);
 });
 
+/// ISO 639-1 code game descriptions are fetched in: the device language.
+/// Auto-disposed with the detail page, so a locale change applies on reopen.
+final metadataLanguageProvider = Provider.autoDispose<String>((ref) {
+  final code = PlatformDispatcher.instance.locale.languageCode.toLowerCase();
+  return code.isEmpty || code == 'und' ? 'en' : code;
+});
+
 final gameMetadataProvider =
     FutureProvider.autoDispose.family<GameMetadata?, String>((ref, slug) async {
   if (!ref.watch(settingsProvider.select((s) => s.metadataEnabled))) {
@@ -27,5 +36,8 @@ final gameMetadataProvider =
   }
   final entry = await ref.watch(romDatabaseProvider).getEntry(slug);
   if (entry == null) return null;
-  return ref.watch(gameMetadataServiceProvider).getMetadata(entry);
+  return ref.watch(gameMetadataServiceProvider).getMetadata(
+        entry,
+        language: ref.watch(metadataLanguageProvider),
+      );
 });

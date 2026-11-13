@@ -56,6 +56,7 @@ class SteamGridDbProvider extends GameMetadataProvider {
     required String title,
     required String platform,
     required Map<String, String> creds,
+    String language = 'en',
   }) async {
     try {
       final search = await _dio.get(
